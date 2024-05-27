@@ -1,4 +1,4 @@
-package br.com.fatecmogidascruzes.entity;
+package br.com.fatecmogidascruzes.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
