@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,12 +14,15 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Livro {
     private long id;
+    private String isbn10;
+    private String isbn13;
     private String titulo;
-    private String sinopse;
-    private String autor;
-    private String editora;
-    private String genero;
     private String idioma;
-    private BigDecimal preco;
-    private LocalDate anoDePublicacao;
+    private List<String> autores; // Considere usar uma lista se houver vários autores
+    private int estoque;
+    private String editora;
+    private int numeroDePaginas;
+    private LocalDate dataDePublicacao;
+    private double preco;
+    private Categoria categoria; // Considere usar um objeto Categoria se a categoria tiver seus próprios atributos
 }
