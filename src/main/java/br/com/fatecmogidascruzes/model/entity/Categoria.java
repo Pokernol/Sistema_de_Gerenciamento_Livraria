@@ -9,12 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Categoria {
     private int id;
     private String nome;
-    private String endereco;
-    private String email;
-    private String telefone;
-    private String metodoPagamento;
-    private boolean isFuncionario; // true se o usuário é um funcionário, false se é um cliente
+    private String descricao;
 }

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.gov.sp.fatec</groupId>
-    <artifactId>Sistema_de_gerenciamento_de_produtos</artifactId>
+    <artifactId>Sistema_de_livraria</artifactId>
     <version>0.0.1</version>
 
     <properties>
