@@ -11,18 +11,18 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor 
 public class Livro {
     private long id;
     private String isbn10;
     private String isbn13;
     private String titulo;
     private String idioma;
-    private List<String> autores; // Considere usar uma lista se houver vários autores
+    private String autores; // Considere usar uma lista se houver vários autores
     private int estoque;
     private String editora;
     private int numeroDePaginas;
     private LocalDate dataDePublicacao;
     private double preco;
-    private Categoria categoria; // Considere usar um objeto Categoria se a categoria tiver seus próprios atributos
+    private String categoria; // Considere usar um objeto Categoria se a categoria tiver seus próprios atributos
 }

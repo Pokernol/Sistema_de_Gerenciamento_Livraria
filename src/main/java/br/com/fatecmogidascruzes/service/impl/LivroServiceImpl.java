@@ -6,95 +6,106 @@ import br.com.fatecmogidascruzes.service.LivroService;
 
 public class LivroServiceImpl implements LivroService {
 
-	private LivroRepository repository;
+    private LivroRepository repository;
 
-	public LivroServiceImpl(LivroRepository repository) {
+    public LivroServiceImpl(LivroRepository repository) {
+        this.repository = repository;
+    }
 
-		super();
-		this.repository = repository;
+    @Override
+    public void adicionarLivro(Livro livro) {
+        if (validarAdicionar(livro)) 
+            repository.adicionarLivro(livro);
+    }
 
-	}
+    @Override
+    public boolean validarAdicionar(Livro livro) {
+        if (livro.getIsbn10() != null && !livro.getIsbn10().isEmpty()) {
+            if (!validarIsbn10(livro)) {
+                System.out.println("ISBN-10 inválido.");
+                return false;
+            }
+        } 
+        
+        if (livro.getIsbn13() != null && !livro.getIsbn13().isEmpty()) {
+            if (!validarIsbn13(livro)) {
+                System.out.println("ISBN-13 inválido.");
+                return false;
+            }
+        } 
 
-	@Override
-	public void adicionarLivro(Livro livro) {
-		
-		boolean valido = validarAdicionar(livro);
+        if (livro.getTitulo() == null || livro.getTitulo().isEmpty()) {
+            System.out.println("Por favor preencha o título corretamente.");
+            return false;
+        }
 
-		if (valido) {
-			repository.adicionarLivro(livro);
-		}
+        if (livro.getIdioma() == null || livro.getIdioma().isEmpty()) {
+            System.out.println("Por favor preencha o idioma corretamente.");
+            return false;
+        }
 
-	}
+        if (livro.getAutores() == null || livro.getAutores().isEmpty()) {
+            System.out.println("Por favor preencha os autores corretamente.");
+            return false;
+        }
 
-	@Override
-	public boolean validarAdicionar(Livro livro) {
+        if (livro.getEstoque() <= 0) {
+            System.out.println("Por favor preencha a quantidade para adicionar no estoque corretamente.");
+            return false;
+        }
 
-		if (livro.getIsbn10() != null && !livro.getIsbn10().isEmpty()) {
-			if (livro.getIsbn10().length() != 10 || !livro.getIsbn10().matches("[0-9]{9}[0-9X]")) {
-				return false;
-			} else {
+        if (livro.getEditora() == null || livro.getEditora().isEmpty()) {
+            System.out.println("Por favor preencha a editora corretamente.");
+            return false;
+        }
 
-				int soma = 0;
-				for (int i = 0; i < 9; i++) {
-					soma += (10 - i) * Character.getNumericValue(livro.getIsbn10().charAt(i));
-				}
+        if (livro.getDataDePublicacao() == null) {
+            System.out.println("Por favor preencha a data de publicação corretamente.");
+            return false;
+        }
 
-				soma = (11 - (soma % 11)) % 11;
-				char ultimoDigito = soma == 10 ? 'X' : Character.forDigit(soma, 10);
-				return livro.getIsbn10().charAt(9) == ultimoDigito;
-			}
-		}
+        if (livro.getNumeroDePaginas() <= 0) {
+            System.out.println("Por favor preencha o número de páginas corretamente.");
+            return false;
+        }
 
-		if (livro.getIsbn13() != null && !livro.getIsbn13().isEmpty()) {
-			if (livro.getIsbn13().length() != 13 || !livro.getIsbn13().matches("[0-9]{13}")) {
-				return false;
-			} else {
+        if (livro.getCategoria() == null || livro.getCategoria().isEmpty()) {
+            System.out.println("Por favor preencha a categoria corretamente.");
+            return false;
+        }
 
-				int soma = 0;
-				for (int i = 0; i < 12; i++) {
-					soma += ((i % 2 == 0) ? 1 : 3) * Character.getNumericValue(livro.getIsbn13().charAt(i));
-				}
+        System.out.println("Livro cadastrado com sucesso!");
+        return true;
+    }
+   
+    public boolean validarIsbn10(Livro livro) {
+        if (livro.getIsbn10().length() != 10 || !livro.getIsbn10().matches("[0-9]{9}[0-9X]")) {
+            return false;
+        }
 
-				soma = (10 - (soma % 10)) % 10;
-				char ultimoDigito = Character.forDigit(soma, 10);
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (10 - i) * Character.getNumericValue(livro.getIsbn10().charAt(i));
+        }
 
-				return livro.getIsbn13().charAt(12) == ultimoDigito;
-				
-			}
-		}
-		
-		if (livro.getTitulo() == null) {
-			return false;
-		}
+        soma = (11 - (soma % 11)) % 11;
+        char ultimoDigito = (soma == 10) ? 'X' : Character.forDigit(soma, 10);
+        return livro.getIsbn10().charAt(9) == ultimoDigito;
+    }
+    
+    public boolean validarIsbn13(Livro livro) {
+        if (livro.getIsbn13().length() != 13 || !livro.getIsbn13().matches("[0-9]{13}")) {
+            return false;
+        }
 
-		if (livro.getIdioma() == null) {
-			return false;
-		}
+        int soma = 0;
+        for (int i = 0; i < 12; i++) {
+            soma += ((i % 2 == 0) ? 1 : 3) * Character.getNumericValue(livro.getIsbn13().charAt(i));
+        }
 
-		if (livro.getAutores() == null) {
-			return false;
-		}
-
-		if (livro.getEstoque() <= 0) {
-			return false;
-		}
-
-		if (livro.getEditora() == null) {
-			return false;
-		}
-
-		if (livro.getDataDePublicacao() == null) {
-			return false;
-		}
-
-		if (livro.getNumeroDePaginas() <= 0) {
-			return false;
-		}
-		
-		if (livro.getCategoria() == null) {
-			return false;
-		}
-		
-		return true;
-	}
+        soma = (10 - (soma % 10)) % 10;
+        char ultimoDigito = Character.forDigit(soma, 10);
+        return livro.getIsbn13().charAt(12) == ultimoDigito;
+    }
+    
 }
