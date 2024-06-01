@@ -25,6 +25,16 @@ public class LivroRepository {
 		return -1;
 	}
 
+	public List<Livro> findAllWhereExistEstoque() {
+		List<Livro> livrosComEstoque = new ArrayList<>();
+		for (Livro livro : livros) {
+			if (livro.getEstoque() > 0) {
+				livrosComEstoque.add(livro);
+			}
+		}
+		return livrosComEstoque;
+	}
+
 }
 
 

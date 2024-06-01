@@ -24,7 +24,7 @@ public class LivroServiceImpl implements LivroService {
     }
 
     @Override
-    public void alterarLivro(Livro livro) {
+    public void atualizarLivro(Livro livro) {
         int index = repository.findIndexPorId(livro.getId());
         if (index != -1) {
             if (validator.validarAlterar(livro)){

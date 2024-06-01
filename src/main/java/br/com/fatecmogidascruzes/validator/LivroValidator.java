@@ -43,7 +43,7 @@ public class LivroValidator {
         }
 
         if (livro.getEstoque() < 0) {
-            System.out.println("Não a mais livros no estoque.");
+            System.out.println("Não pode adicionar estoque negativo.");
             return false;
         }
 
