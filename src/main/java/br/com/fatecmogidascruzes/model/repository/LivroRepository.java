@@ -12,6 +12,10 @@ public class LivroRepository {
 		livros.add(livro);
 	}
 
+	public void alterarLivro(int index, Livro livro) {
+		livros.set(index, livro);
+	}
+
 	public int findIndexPorId(long id) {
 		for (int i = 0; i < livros.size(); i++) {
 			if (livros.get(i).getId() == id) {

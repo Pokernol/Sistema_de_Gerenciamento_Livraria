@@ -18,11 +18,11 @@ public class Livro {
     private String isbn13;
     private String titulo;
     private String idioma;
-    private String autores; // Considere usar uma lista se houver vários autores
+    private String autor;
     private int estoque;
     private String editora;
     private int numeroDePaginas;
     private LocalDate dataDePublicacao;
     private double preco;
-    private String categoria; // Considere usar um objeto Categoria se a categoria tiver seus próprios atributos
+    private String categoria;
 }
