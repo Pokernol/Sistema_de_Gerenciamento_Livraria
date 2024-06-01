@@ -6,11 +6,21 @@ import br.com.fatecmogidascruzes.model.entity.Livro;
 
 public class LivroRepository {
 	
-	private List<Livro> livros = new ArrayList<>();
+	private final List<Livro> livros = new ArrayList<>();
 	
 	public void adicionarLivro(Livro livro) {
 		livros.add(livro);
 	}
+
+	public int findIndexPorId(long id) {
+		for (int i = 0; i < livros.size(); i++) {
+			if (livros.get(i).getId() == id) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 }
 
 
