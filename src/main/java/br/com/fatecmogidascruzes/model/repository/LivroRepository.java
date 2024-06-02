@@ -12,6 +12,10 @@ public class LivroRepository {
 		livros.add(livro);
 	}
 
+	public void alterarLivro(int index, Livro livro) {
+		livros.set(index, livro);
+	}
+
 	public int findIndexPorId(long id) {
 		for (int i = 0; i < livros.size(); i++) {
 			if (livros.get(i).getId() == id) {
@@ -19,6 +23,16 @@ public class LivroRepository {
 			}
 		}
 		return -1;
+	}
+
+	public List<Livro> findAllWhereExistEstoque() {
+		List<Livro> livrosComEstoque = new ArrayList<>();
+		for (Livro livro : livros) {
+			if (livro.getEstoque() > 0) {
+				livrosComEstoque.add(livro);
+			}
+		}
+		return livrosComEstoque;
 	}
 
 }

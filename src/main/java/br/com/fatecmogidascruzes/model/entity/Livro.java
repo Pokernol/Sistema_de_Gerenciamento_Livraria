@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -18,11 +18,29 @@ public class Livro {
     private String isbn13;
     private String titulo;
     private String idioma;
-    private String autores; // Considere usar uma lista se houver vários autores
+    private String autor;
     private int estoque;
     private String editora;
     private int numeroDePaginas;
     private LocalDate dataDePublicacao;
     private double preco;
-    private String categoria; // Considere usar um objeto Categoria se a categoria tiver seus próprios atributos
+    private String categoria;
+
+    @Override
+    public String toString() {
+        return "\n Livro {" +
+                "\n  id = " + id +
+                "\n  isbn-10 = " + isbn10 +
+                "\n  isbn-13 = " + isbn13 +
+                "\n  titulo = " + titulo  +
+                "\n  idioma = " + idioma +
+                "\n  autor = " + autor +
+                "\n  estoque = " + estoque +
+                "\n  editora = " + editora +
+                "\n  numeroDePaginas = " + numeroDePaginas +
+                "\n  dataDePublicacao = " + dataDePublicacao +
+                "\n  preço = " + preco +
+                "\n  categoria = " + categoria +
+                "\n }\n";
+    }
 }
