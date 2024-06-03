@@ -31,7 +31,7 @@ public class SistemaDeLivraria {
         Livro livro2 = new Livro(3, "0060930314", "", "1984", "Ingles", "George Orwell", 5, "Secker & Warburg", 300, dataDePublicacao2, 200.00, "Ficção Científica");
 
         LocalDate dataDePublicacao3 = LocalDate.of(2016, 3, 10);
-        Livro livro3 = new Livro(4, "0451524934", "", "Dom Quixote", "Espanhol", "Miguel de Cervantes", 7, "Francisco de Robles", 1000, dataDePublicacao3, 250.00, "Romance");
+        Livro livro3 = new Livro(11, "0451524934", "", "Dom Quixote", "Espanhol", "Miguel de Cervantes", 7, "Francisco de Robles", 1000, dataDePublicacao3, 250.00, "Romance");
 
         service.adicionarLivro(livro);
         service.adicionarLivro(livro1);
@@ -46,6 +46,8 @@ public class SistemaDeLivraria {
         livro = new Livro(1, "0123456789", "", "Biblia", "Portugues", "profeta", 0, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
         service.atualizarLivro(livro);
 
+        System.out.println("\n---- BUSCAR ---" );
+        System.out.println(service.buscarLivro(7,"Romance"));
         System.out.println(livroRepository.findAllWhereExistEstoque());
         
         //testando excluir livros
