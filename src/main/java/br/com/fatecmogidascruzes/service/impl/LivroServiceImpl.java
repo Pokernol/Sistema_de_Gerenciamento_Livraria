@@ -84,7 +84,7 @@ public class LivroServiceImpl implements LivroService {
 	public List<Livro> buscarLivro(int opcao, String valorBuscar) {	
 	    List<Livro> livrosEncontrados = new ArrayList<Livro>();
 
-		switch(opcao) {
+		switch(opcao){
 			case 1:
 				livrosEncontrados = repository.findAllLivros();
 				break;
@@ -120,6 +120,7 @@ public class LivroServiceImpl implements LivroService {
 	    if (livrosEncontrados == null || livrosEncontrados.isEmpty()) {
 			System.out.println("Livro não encontrado.");
 	    }
+	    
 		return livrosEncontrados;
 	}
     

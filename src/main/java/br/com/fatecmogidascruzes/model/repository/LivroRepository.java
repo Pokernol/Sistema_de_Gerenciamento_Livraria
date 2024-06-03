@@ -60,11 +60,7 @@ public class LivroRepository {
 	}
 	
 	public List<Livro> findAllLivros() {
-		List<Livro> todosLivros = new ArrayList<>();
-		for (Livro livro : livros) {
-			todosLivros.add(livro);
-		}
-		return todosLivros;
+		return livros;
 	}
 	
 	public List<Livro> findById(Integer id) {
