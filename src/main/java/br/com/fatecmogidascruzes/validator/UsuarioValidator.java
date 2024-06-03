@@ -19,7 +19,7 @@ public class UsuarioValidator {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-    public boolean validarAdicionar(Usuario usuario) {
+    public boolean validarUsuario(Usuario usuario) {
 
         if (!validarTelefone(usuario))
             return false;
@@ -32,7 +32,7 @@ public class UsuarioValidator {
 
     public boolean validarFuncionario(Funcionario funcionario) {
 
-        if (!validarAdicionar(funcionario))
+        if (!validarUsuario(funcionario))
             return false;
 
         return validarCargo(funcionario);

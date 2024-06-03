@@ -17,7 +17,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void adicionarCliente(Cliente cliente) {
-        if(validator.validarAdicionar(cliente)){
+        if(validator.validarUsuario(cliente)){
             repository.adicionarCliente(cliente);
             System.out.println("Cliente " + cliente.getNome() + " adicionado com sucesso!");
         }
