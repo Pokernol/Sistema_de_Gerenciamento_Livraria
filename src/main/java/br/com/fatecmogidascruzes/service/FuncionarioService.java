@@ -1,6 +1,5 @@
 package br.com.fatecmogidascruzes.service;
 
-import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 
 public interface FuncionarioService {
