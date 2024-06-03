@@ -4,6 +4,7 @@ import br.com.fatecmogidascruzes.model.entity.Livro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LivroRepository {
 	
@@ -57,7 +58,71 @@ public class LivroRepository {
 		}
 		return livrosComEstoque;
 	}
+	
+	public List<Livro> findAllLivros() {
+		return livros;
+	}
+	
+	public List<Livro> findById(Integer id) {
+		List<Livro> listaLivros = new ArrayList<>();
+		for (Livro livro : livros) {
+			if(livro.getId() == id) {
+				listaLivros.add(livro);
+			}
+		}
+		return listaLivros;
+	}
+	
+	public List<Livro> findByPreco(Double preco) {
+		List<Livro> listaLivros = new ArrayList<>();
+		for (Livro livro : livros) {
+			if(livro.getPreco() == preco) {
+				listaLivros.add(livro);
+			}
+		}
+		return listaLivros;
+	}
+	
+	public List<Livro> findByEstoque(Integer qtd) {
+		List<Livro> listaLivros = new ArrayList<>();
+		for (Livro livro : livros) {
+			if(livro.getEstoque() == qtd) {
+				listaLivros.add(livro);
+			}
+		}
+		return listaLivros;
+	}
+	
+	public List<Livro> findByTitulo(String titulo) {
+		return livros.stream()
+				.filter(livro -> livro.getTitulo().toUpperCase().contains(titulo.toUpperCase()))
+				.collect(Collectors.toList());
+	}
+	
+	public List<Livro> findByAutor(String autor) {
+		return livros.stream()
+				.filter(livro -> livro.getAutor().toUpperCase().contains(autor.toUpperCase()))
+				.collect(Collectors.toList());
+	}
+	
+	public List<Livro> findByIdioma(String idioma) {
+		return livros.stream()
+				.filter(livro -> livro.getIdioma().toUpperCase().contains(idioma.toUpperCase()))
+				.collect(Collectors.toList());
+	}
 
+	public List<Livro> findByEditora(String editora) {
+		return livros.stream()
+				.filter(livro -> livro.getEditora().toUpperCase().contains(editora.toUpperCase()))
+				.collect(Collectors.toList());
+	}	
+
+	public List<Livro> findByCategoria(String categoria) {
+		return livros.stream()
+				.filter(livro -> livro.getCategoria().toUpperCase().contains(categoria.toUpperCase()))
+				.collect(Collectors.toList());
+	}
+	
 }
 
 
