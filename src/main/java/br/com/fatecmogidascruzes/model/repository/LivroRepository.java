@@ -25,6 +25,28 @@ public class LivroRepository {
 		}
 		return -1;
 	}
+	
+	public Livro findByIsbn10(String isbn10) {
+		for (Livro livro : livros) {
+			if (livro.getIsbn10().equals(isbn10)) {
+				return livro;
+			}
+		}
+		return null;
+	}
+
+	public Livro findByIsbn13(String isbn13) {
+		for (Livro livro : livros) {
+			if (livro.getIsbn13().equals(isbn13)) {
+				return livro;
+			}
+		}
+		return null;
+	}
+	
+	public void delete(int index) {
+		livros.remove(index);
+	}
 
 	public List<Livro> findAllWhereExistEstoque() {
 		List<Livro> livrosComEstoque = new ArrayList<>();
