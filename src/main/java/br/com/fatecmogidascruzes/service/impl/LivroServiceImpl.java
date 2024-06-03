@@ -38,6 +38,47 @@ public class LivroServiceImpl implements LivroService {
             System.out.println("Ocorreu algo de errado ao atualizar informações do livro, por favor verifique as informações e tente novamente");
         }
     }
+    
+    @Override
+    public boolean excluirLivroPorId(long id) {
+        int index = repository.findIndexPorId(id);
+        if (index != -1) {
+            repository.delete(index);
+            System.out.println("Livro excluído com sucesso!");
+            return true;
+        } else {
+            System.out.println("Livro não encontrado com ID: " + id);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean excluirLivroPorIsbn10(String isbn10) {
+        Livro livro = repository.findByIsbn10(isbn10);
+        if (livro != null) {
+            int index = repository.findIndexPorId(livro.getId());
+            repository.delete(index);
+            System.out.println("Livro excluído com sucesso!");
+            return true;
+        } else {
+            System.out.println("Livro não encontrado com ISBN-10: " + isbn10);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean excluirLivroPorIsbn13(String isbn13) {
+        Livro livro = repository.findByIsbn13(isbn13);
+        if (livro != null) {
+            int index = repository.findIndexPorId(livro.getId());
+            repository.delete(index);
+            System.out.println("Livro excluído com sucesso!");
+            return true;
+        } else {
+            System.out.println("Livro não encontrado com ISBN-13: " + isbn13);
+            return false;
+        }
+    }
 
 	@Override
 	public List<Livro> buscarLivro(int opcao, String valorBuscar) {	
