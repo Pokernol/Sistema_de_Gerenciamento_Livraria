@@ -40,5 +40,25 @@ public class SistemaDeLivraria {
         service.atualizarLivro(livro);
 
         System.out.println(livroRepository.findAllWhereExistEstoque());
+        
+        //testando excluir livros
+        LocalDate dataDePublicacao4 = LocalDate.of(2023, 8, 15);
+        Livro livro4 = new Livro(5, "6584956245", "9786584956247", "O Pequeno Principe", "Portugues", "Antoine de Saint-Exupery", 5, "Editora Garnier", 96, dataDePublicacao4, 19.90, "Acao e Aventura");
+        service.adicionarLivro(livro4);
+        
+        System.out.println("Tentando excluir livro com ID 1:");
+        service.excluirLivroPorId(1);
+
+        System.out.println("Tentando excluir livro com ISBN-10 0306406152:");
+        service.excluirLivroPorIsbn10("0306406152");
+
+        System.out.println("Tentando excluir livro com ISBN-13 9786584956247:");
+        service.excluirLivroPorIsbn13("9786584956247");
+
+        System.out.println("Tentando excluir livro com ID 6 (inexistente):");
+        service.excluirLivroPorId(6);
+        
+        System.out.println(livroRepository.findAllWhereExistEstoque());
+        
     }
 }
