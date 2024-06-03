@@ -2,10 +2,17 @@ package br.com.fatecmogidascruzes;
 
 import java.time.LocalDate;
 
+import br.com.fatecmogidascruzes.model.entity.Cliente;
+import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.entity.Livro;
+import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
+import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
 import br.com.fatecmogidascruzes.model.repository.LivroRepository;
+import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
+import br.com.fatecmogidascruzes.service.impl.FuncionarioServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
 import br.com.fatecmogidascruzes.validator.LivroValidator;
+import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 
 public class SistemaDeLivraria {
     public static void main(String[] args) {
@@ -40,5 +47,46 @@ public class SistemaDeLivraria {
         service.atualizarLivro(livro);
 
         System.out.println(livroRepository.findAllWhereExistEstoque());
+
+        FuncionarioRepository funcionarioRepository = new FuncionarioRepository();
+        ClienteRepository clienteRepository = new ClienteRepository();
+
+        UsuarioValidator usuarioValidator = new UsuarioValidator(clienteRepository, funcionarioRepository);
+
+        ClienteServiceImpl clienteService = new ClienteServiceImpl(clienteRepository, usuarioValidator);
+        FuncionarioServiceImpl funcionarioService = new FuncionarioServiceImpl(funcionarioRepository, usuarioValidator);
+
+        Funcionario ana = new Funcionario( );
+        // Definindo os atributos de Usuario
+        ana.setId(1);
+        ana.setNome("Ana");
+        ana.setEndereco("Endereço da Ana");
+        ana.setEmail("ana@email.com");
+        ana.setTelefone("12934567890");
+
+        // Definindo os atributos de Funcionario
+        ana.setCargo("Cargo da Ana");
+        ana.setDataContratacao(LocalDate.now());
+
+        funcionarioService.adicionarFuncionario(ana);
+        System.out.println(funcionarioRepository.findAll());
+
+        // Criação do objeto Cliente
+        Cliente cliente = new Cliente();
+
+        // Definindo os atributos de Usuario
+        cliente.setId(1);
+        cliente.setNome("Nome do Cliente");
+        cliente.setEndereco("Endereço do Cliente");
+        cliente.setEmail("cliente@email.com");
+        cliente.setTelefone("12934567890");
+
+        // Definindo os atributos de Cliente
+        cliente.setMetodoPagamento("Cartão de Crédito");
+        cliente.setDataCadastro(LocalDate.now());
+
+        clienteService.adicionarCliente(cliente);
+        System.out.println(clienteRepository.findAll());
+
     }
 }

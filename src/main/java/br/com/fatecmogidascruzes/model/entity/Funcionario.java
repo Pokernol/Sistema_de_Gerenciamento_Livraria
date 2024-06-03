@@ -14,4 +14,17 @@ import java.time.LocalDate;
 public class Funcionario extends Usuario {
     private String cargo;
     private LocalDate dataContratacao;
+
+    @Override
+    public String toString() {
+        return "\n Funcionario {" +
+                "\n  Id = " + getId() +
+                "\n  Nome = " + getNome() +
+                "\n  Endereco = " + getEndereco() +
+                "\n  Email = " + getEmail() +
+                "\n  Telefone = " + getTelefone() +
+                "\n  Cargo = " + cargo +
+                "\n  Data de Contratação = " + dataContratacao +
+                "\n }\n";
+    }
 }

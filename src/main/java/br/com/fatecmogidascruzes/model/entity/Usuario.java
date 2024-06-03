@@ -15,6 +15,4 @@ public class Usuario {
     private String endereco;
     private String email;
     private String telefone;
-    private String metodoPagamento;
-    private boolean isFuncionario; // true se o usuário é um funcionário, false se é um cliente
 }
