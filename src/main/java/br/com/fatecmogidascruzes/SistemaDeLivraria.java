@@ -99,14 +99,32 @@ public class SistemaDeLivraria {
         // Testando a criação de cliente
         Cliente cliente = new Cliente();
         cliente.setId(1);
-        cliente.setNome("Nome do Cliente");
-        cliente.setEndereco("Endereço do Cliente");
-        cliente.setEmail("cliente@email.com");
-        cliente.setTelefone("12934567890");
-        cliente.setMetodoPagamento("Cartão de Crédito");
+        cliente.setNome("Romulo");
+        cliente.setEndereco("Romulandia");
+        cliente.setEmail("romulo@romail.com");
+        cliente.setTelefone("11988521035");
+        cliente.setMetodoPagamento("moedinhas de 1 centavo");
         cliente.setDataCadastro(LocalDate.now());
         
         clienteService.adicionarCliente(cliente);
+        System.out.println(clienteRepository.findAll());
+        
+        //testando excluir funcionario
+        System.out.println("Tentando excluir a funcionaria Ana com ID 1");
+        funcionarioService.excluirFuncionario(1);
+        
+        System.out.println("Tentando excluir funcionario com ID 2 (inexistente)");
+        funcionarioService.excluirFuncionario(2);
+        
+        System.out.println(clienteRepository.findAll());
+        
+        //testando excluir cliente
+        System.out.println("Tentando excluir o cliente Romulo com ID 1");
+        clienteService.excluirCliente(1);
+        
+        System.out.println("Tentando excluir o cliente com ID 2(inexistente)");
+        clienteService.excluirCliente(2);
+        
         System.out.println(clienteRepository.findAll());
 
     }
