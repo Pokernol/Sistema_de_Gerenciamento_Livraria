@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.entity.Livro;
+import br.com.fatecmogidascruzes.model.entity.Categoria;
+import br.com.fatecmogidascruzes.model.repository.CategoriaRepository;
 import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
 import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
 import br.com.fatecmogidascruzes.model.repository.LivroRepository;
 import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.FuncionarioServiceImpl;
+import br.com.fatecmogidascruzes.service.impl.CategoriaServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
 import br.com.fatecmogidascruzes.validator.LivroValidator;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
@@ -109,6 +112,15 @@ public class SistemaDeLivraria {
 
         clienteService.adicionarCliente(cliente);
         System.out.println(clienteRepository.findAll());
+
+
+        System.out.println("\n---- CATEGORIA ADICIONAR ---" );
+
+        CategoriaRepository categoriaRepository = new CategoriaRepository();
+        CategoriaServiceImpl categoriaService = new CategoriaServiceImpl(categoriaRepository);
+
+        categoriaService.adicionarCategoria(new Categoria(1,"Romance" , "Livros de Romance e Fanfics."));
+        System.out.println(categoriaRepository.findAllCategorias());
 
     }
 }
