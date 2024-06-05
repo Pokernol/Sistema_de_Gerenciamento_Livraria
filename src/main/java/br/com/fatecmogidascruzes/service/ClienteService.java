@@ -5,5 +5,6 @@ import br.com.fatecmogidascruzes.model.entity.Cliente;
 public interface ClienteService {
 
     void adicionarCliente(Cliente cliente);
+    boolean excluirCliente(int id);
 
 }

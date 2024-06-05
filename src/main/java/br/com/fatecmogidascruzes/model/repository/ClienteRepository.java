@@ -16,4 +16,21 @@ public class ClienteRepository {
     public List<Cliente> findAll() {
         return clientes;
     }
+    
+    public Cliente findById(int id) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getId() == id) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    public boolean removerCliente(int id) {
+        Cliente cliente = findById(id);
+        if (cliente != null) {
+            return clientes.remove(cliente);
+        }
+        return false;
+    }
 }

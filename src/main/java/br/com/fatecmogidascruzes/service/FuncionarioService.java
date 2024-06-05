@@ -5,5 +5,6 @@ import br.com.fatecmogidascruzes.model.entity.Funcionario;
 public interface FuncionarioService {
 
     void adicionarFuncionario(Funcionario funcionario);
+    boolean excluirFuncionario(int id);
 
 }
