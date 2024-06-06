@@ -9,5 +9,6 @@ public interface ClienteService {
 
     void adicionarCliente(Cliente cliente);
     List<Cliente> buscarCliente(int opcao, String valorBuscar);
+    boolean excluirCliente(int id);
 
 }

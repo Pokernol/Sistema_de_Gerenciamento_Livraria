@@ -19,6 +19,23 @@ public class FuncionarioRepository {
     public List<Funcionario> findAll() {
         return funcionarios;
     }
+    
+    public Funcionario findById(int id) {
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getId() == id) {
+                return funcionario;
+            }
+        }
+        return null;
+    }
+
+    public boolean removerFuncionario(int id) {
+        Funcionario funcionario = findById(id);
+        if (funcionario != null) {
+            return funcionarios.remove(funcionario);
+        }
+        return false;
+    }
 
     public List<Funcionario> findById(int id) {
         return funcionarios.stream()

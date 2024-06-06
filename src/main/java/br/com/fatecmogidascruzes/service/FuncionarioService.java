@@ -10,5 +10,6 @@ public interface FuncionarioService {
     void adicionarFuncionario(Funcionario funcionario);
     List<Funcionario> buscarFuncionario(int opcao, String valorBuscar);
 
+    boolean excluirFuncionario(int id);
 
 }

@@ -58,4 +58,15 @@ public class ClienteServiceImpl implements ClienteService {
 
         return clientesEncontrados;
     }
+   
+    @Override
+    public boolean excluirCliente(int id) {
+        if (repository.removerCliente(id)) {
+            System.out.println("Cliente com ID " + id + " excluído com sucesso!");
+            return true;
+        } else {
+            System.out.println("Cliente com ID " + id + " não encontrado.");
+            return false;
+        }
+    }
 }

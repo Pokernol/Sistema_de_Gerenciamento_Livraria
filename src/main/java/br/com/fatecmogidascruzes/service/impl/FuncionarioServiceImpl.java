@@ -26,6 +26,17 @@ public class FuncionarioServiceImpl implements FuncionarioService {
             System.out.println("Funcionario " + funcionario.getNome() + " adicionado com sucesso!");
         }
     }
+    
+    @Override
+    public boolean excluirFuncionario(int id) {
+        if (repository.removerFuncionario(id)) {
+            System.out.println("Funcionaria(o) com ID " + id + " excluído com sucesso!");
+            return true;
+        } else {
+            System.out.println("Funcionaria(o) com ID " + id + " não encontrado.");
+            return false;
+        }
+    }
 
     @Override
     public List<Funcionario> buscarFuncionario(int opcao, String valorBuscar) {

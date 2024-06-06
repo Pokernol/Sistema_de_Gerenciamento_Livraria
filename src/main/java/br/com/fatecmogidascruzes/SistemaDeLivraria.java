@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.entity.Livro;
+import br.com.fatecmogidascruzes.model.entity.Categoria;
+import br.com.fatecmogidascruzes.model.repository.CategoriaRepository;
 import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
 import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
 import br.com.fatecmogidascruzes.model.repository.LivroRepository;
 import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.FuncionarioServiceImpl;
+import br.com.fatecmogidascruzes.service.impl.CategoriaServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 
@@ -93,15 +96,42 @@ public class SistemaDeLivraria {
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
         Cliente cliente = new Cliente();
         cliente.setId(1);
-        cliente.setNome("Nome do Cliente");
-        cliente.setEndereco("Endereço do Cliente");
-        cliente.setEmail("cliente@email.com");
-        cliente.setTelefone("12934567890");
-        cliente.setMetodoPagamento("Cartão de Crédito");
+        cliente.setNome("Romulo");
+        cliente.setEndereco("Romulandia");
+        cliente.setEmail("romulo@romail.com");
+        cliente.setTelefone("11988521035");
+        cliente.setMetodoPagamento("moedinhas de 1 centavo");
         cliente.setDataCadastro(LocalDate.now());
         
         clienteService.adicionarCliente(cliente);
         System.out.println(clienteRepository.findAll());
+        
+        //testando excluir funcionario
+        System.out.println("Tentando excluir a funcionaria Ana com ID 1");
+        funcionarioService.excluirFuncionario(1);
+        
+        System.out.println("Tentando excluir funcionario com ID 2 (inexistente)");
+        funcionarioService.excluirFuncionario(2);
+        
+        System.out.println(clienteRepository.findAll());
+        
+        //testando excluir cliente
+        System.out.println("Tentando excluir o cliente Romulo com ID 1");
+        clienteService.excluirCliente(1);
+        
+        System.out.println("Tentando excluir o cliente com ID 2(inexistente)");
+        clienteService.excluirCliente(2);
+        
+        System.out.println(clienteRepository.findAll());
+
+
+        System.out.println("\n---- CATEGORIA ADICIONAR ---" );
+
+        CategoriaRepository categoriaRepository = new CategoriaRepository();
+        CategoriaServiceImpl categoriaService = new CategoriaServiceImpl(categoriaRepository);
+
+        categoriaService.adicionarCategoria(new Categoria(1,"Romance" , "Livros de Romance e Fanfics."));
+        System.out.println(categoriaRepository.findAllCategorias());
 
         // Testando a busca de funcionario
         System.out.println("\n---- BUSCAR FUNCIONARIOS ---" );
