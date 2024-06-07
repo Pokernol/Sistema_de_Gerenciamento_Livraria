@@ -138,6 +138,22 @@ public class SistemaDeLivraria {
 
         categoriaService.adicionarCategoria(new Categoria(1,"Romance" , "Livros de Romance e Fanfics."));
         System.out.println(categoriaRepository.findAllCategorias());
+        
+        
+        System.out.println("\n---- BUSCAR CATEGORIA PELO NOME ---");
+        System.out.println("\nbuscando cateogira romance...");
+        System.out.println(categoriaService.buscarCategoriaPorNome("Romance"));
+        
+        System.out.println("\n\nbuscando cateogira ficcao (inexistente)...");
+        System.out.println(categoriaService.buscarCategoriaPorNome("Ficção"));
+        
+        System.out.println("\n---- CATEGORIA DESTRUIR ---" );
+        System.out.println("\n tentando excluir categoria com ID 1");
+        categoriaService.excluirCategoria(1);
+        System.out.println(categoriaRepository.findAllCategorias());
+        
+        System.out.println("\n tentando excluir categoria com ID 2 (inexistente)");
+        categoriaService.excluirCategoria(2);
 
     }
 }
