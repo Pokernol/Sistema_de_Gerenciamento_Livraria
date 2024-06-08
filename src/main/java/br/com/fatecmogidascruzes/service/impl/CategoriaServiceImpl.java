@@ -2,8 +2,6 @@ package br.com.fatecmogidascruzes.service.impl;
 
 import br.com.fatecmogidascruzes.model.entity.Categoria;
 import br.com.fatecmogidascruzes.model.repository.CategoriaRepository;
-//import br.com.fatecmogidascruzes.validator.CategoriaValidator;
-
 
 public class CategoriaServiceImpl {
     private final CategoriaRepository repository;
@@ -17,6 +15,5 @@ public class CategoriaServiceImpl {
     public void adicionarCategoria(Categoria categoria) {
             repository.adicionarCategoria(categoria);
     } 
-
 
 }

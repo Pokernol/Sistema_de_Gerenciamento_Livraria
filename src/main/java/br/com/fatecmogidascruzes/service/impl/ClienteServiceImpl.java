@@ -1,11 +1,11 @@
 package br.com.fatecmogidascruzes.service.impl;
 
 import br.com.fatecmogidascruzes.model.entity.Cliente;
-import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
 import br.com.fatecmogidascruzes.service.ClienteService;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,16 +36,19 @@ public class ClienteServiceImpl implements ClienteService {
                 clientesEncontrados = repository.findAll();
                 break;
             case 2:
-                clientesEncontrados =  repository.findById(Integer.parseInt(valorBuscar));
+                clientesEncontrados.add(repository.findById(Integer.parseInt(valorBuscar)));
                 break;
             case 3:
                 clientesEncontrados =  repository.findByNome(valorBuscar);
                 break;
             case 4:
-                clientesEncontrados = repository.findByEmail(valorBuscar);
+                clientesEncontrados.add(repository.findByEmail(valorBuscar));
                 break;
             case 5:
                 clientesEncontrados = repository.findByMetodoPagamento(valorBuscar);
+                break;
+            case 6:
+                clientesEncontrados = repository.findByDataCadastro(LocalDate.parse(valorBuscar));
                 break;
             default:
                 System.out.println("Opção invalida.");

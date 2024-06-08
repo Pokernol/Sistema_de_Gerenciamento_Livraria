@@ -1,6 +1,5 @@
 package br.com.fatecmogidascruzes.model.repository;
 
-import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 
 import java.time.LocalDate;
@@ -16,20 +15,7 @@ public class FuncionarioRepository {
         funcionarios.add(funcionario);
     }
 
-    public List<Funcionario> findAll() {
-        return funcionarios;
-    }
-    
-    public Funcionario findById(int id) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getId() == id) {
-                return funcionario;
-            }
-        }
-        return null;
-    }
-
-    public boolean removerFuncionario(int id) {
+    public boolean removerFuncionario(Integer id) {
         Funcionario funcionario = findById(id);
         if (funcionario != null) {
             return funcionarios.remove(funcionario);
@@ -37,10 +23,14 @@ public class FuncionarioRepository {
         return false;
     }
 
-    public List<Funcionario> findById(int id) {
+    public List<Funcionario> findAll() {
+        return funcionarios;
+    }
+    
+    public Funcionario findById(Integer id) {
         return funcionarios.stream()
-                .filter(cliente -> cliente.getId() == id)
-                .collect(Collectors.toList());
+                .filter(funcionario -> funcionario.getId().equals(id))
+                .findFirst().orElse(null);
     }
 
     public List<Funcionario> findByNome(String nome) {
@@ -49,10 +39,10 @@ public class FuncionarioRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Funcionario> findByEmail(String email) {
+    public Funcionario findByEmail(String email) {
         return funcionarios.stream()
-                .filter(cliente -> cliente.getEmail().toUpperCase().contains(email.toUpperCase()))
-                .collect(Collectors.toList());
+                .filter(funcionario -> funcionario.getEmail().toUpperCase().contains(email.toUpperCase()))
+                .findFirst().orElse(null);
     }
 
     public List<Funcionario> findByCargo(String cargo) {

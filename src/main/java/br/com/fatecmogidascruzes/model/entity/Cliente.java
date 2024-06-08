@@ -1,19 +1,21 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Cliente extends Usuario {
     private String metodoPagamento;
     private LocalDate dataCadastro;
+
+    public Cliente(Integer id, String nome, String endereco, String email, String telefone, String metodoPagamento, LocalDate dataCadastro) {
+        super(id, nome, endereco, email, telefone);
+        this.metodoPagamento = metodoPagamento;
+        this.dataCadastro = dataCadastro;
+    }
 
     @Override
     public String toString() {
