@@ -21,5 +21,30 @@ public class CategoriaRepository {
         return categorias;
     }
 
+    public Categoria findById(int id) {
+        for (Categoria categoria : categorias) {
+            if (categoria.getId() == id) {
+                return categoria;
+            }
+        }
+        return null;
+    }
+    
+    public Categoria findByName(String nome) {
+        for (Categoria categoria : categorias) {
+            if (categoria.getNome().equalsIgnoreCase(nome)) {
+                return categoria;
+            }
+        }
+        return null;
+    }
+
+    public boolean removerCategoria(int id) {
+        Categoria categoria = findById(id);
+        if (categoria != null) {
+            return categorias.remove(categoria);
+        }
+        return false;
+    }
 
 }
