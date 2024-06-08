@@ -80,30 +80,15 @@ public class SistemaDeLivraria {
         
         // Testando a criação de Funcionario
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
-        Funcionario ana = new Funcionario();
-        ana.setId(1);
-        ana.setNome("Ana");
-        ana.setEndereco("Endereço da Ana");
-        ana.setEmail("ana@email.com");
-        ana.setTelefone("12934567890");
-        ana.setCargo("Cargo da Ana");
-        ana.setDataContratacao(LocalDate.now());
-
-        funcionarioService.adicionarFuncionario(ana);
+        funcionarioService.adicionarFuncionario(new Funcionario(1, "Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now(), usuarioValidator));
+        funcionarioService.adicionarFuncionario(new Funcionario(2, "Antony", "Endereço do Antony", "antony@email.com","12934567890", "Cargo do Antony", LocalDate.now(), usuarioValidator));
         System.out.println(funcionarioRepository.findAll());
 
         // Testando a criação de cliente
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
-        Cliente cliente = new Cliente();
-        cliente.setId(1);
-        cliente.setNome("Romulo");
-        cliente.setEndereco("Romulandia");
-        cliente.setEmail("romulo@romail.com");
-        cliente.setTelefone("11988521035");
-        cliente.setMetodoPagamento("moedinhas de 1 centavo");
-        cliente.setDataCadastro(LocalDate.now());
-        
-        clienteService.adicionarCliente(cliente);
+        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now(), usuarioValidator));
+        clienteService.adicionarCliente(new Cliente(2, "ana", "ENDEREÇO", "antony@email.com", "11958496285", "moedinhas de 1 centavo", LocalDate.now(), usuarioValidator));
+
         System.out.println(clienteRepository.findAll());
         
         //testando excluir funcionario

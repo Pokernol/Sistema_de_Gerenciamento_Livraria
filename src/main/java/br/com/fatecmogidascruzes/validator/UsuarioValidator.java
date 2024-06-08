@@ -19,70 +19,19 @@ public class UsuarioValidator {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-    public boolean validarUsuario(Usuario usuario) {
-
-        if (!validarTelefone(usuario))
-            return false;
-
-        if (!validarvazio(usuario))
-            return false;
-
-        return validarEmail(usuario);
-    }
-
-    public boolean validarFuncionario(Funcionario funcionario) {
-
-        if (!validarUsuario(funcionario))
-            return false;
-
-        return validarCargo(funcionario);
-
-    }
-
-    public boolean validarvazio(Usuario usuario) {
-
-        if (usuario.getNome() == null || usuario.getNome().isEmpty()) {
-            System.out.println("Por favor preencha o Nome corretamente.");
-            return false;
-        }
-
-        if (usuario.getEmail() == null || usuario.getEmail().isEmpty()) {
-            System.out.println("Por favor preencha o Email corretamente.");
-            return false;
-        }
-
-        if (usuario.getEndereco() == null || usuario.getEndereco().isEmpty()) {
-            System.out.println("Por favor preencha o Endereco corretamente.");
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean validarTelefone(Usuario usuario) {
-        if(usuario.getTelefone() != null && !usuario.getTelefone().isEmpty()){
-            if (usuario.getTelefone().length() != 11) {
-                System.out.println("Por favor preencha o Telefone corretamente.");
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean validarEmail(Usuario usuario) {
+    public boolean validarEmail(Usuario usuario, String email) {
         if (usuario instanceof Funcionario) {
             List<Funcionario> listaDeFuncionarios = funcionarioRepository.findAll();
             for (Funcionario funcionario : listaDeFuncionarios) {
-                if (funcionario.getEmail().equals(usuario.getEmail())) {
-                    System.out.println("Funcionario já cadastrado com este email.");
+        
+                if (funcionario.getEmail().equals(email)) {
                     return false;
                 }
             }
         } else if (usuario instanceof Cliente){
             List<Cliente> listaDeClientes = clienteRepository.findAll();
             for (Cliente cliente : listaDeClientes) {
-                if (cliente.getEmail().equals(usuario.getEmail())) {
+                if (cliente.getEmail().equals(email)) {
                     System.out.println("Cliente já cadastrado com este email.");
                     return false;
                 }
@@ -91,13 +40,4 @@ public class UsuarioValidator {
 
         return true;
     }
-
-    public boolean validarCargo(Funcionario funcionario) {
-        if (funcionario.getCargo() == null || funcionario.getCargo().isEmpty()) {
-            System.out.println("Por favor preencha o Cargo corretamente.");
-            return false;
-        }
-        return true;
-    }
-
 }
