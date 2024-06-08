@@ -1,19 +1,44 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
+import br.com.fatecmogidascruzes.validator.UsuarioValidator;
+
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Cliente extends Usuario {
     private String metodoPagamento;
     private LocalDate dataCadastro;
+
+    public Cliente(int id, String nome, String endereco, String email, String telefone,String metodoPagamento, LocalDate dataCadastro, UsuarioValidator usuarioValidator ) {
+        
+        super(id, nome, endereco, email, telefone, usuarioValidator);
+        setMetodoPagamento(metodoPagamento);
+        setDataCadastro(dataCadastro);
+    }
+
+    public void setMetodoPagamento(String metodoPagamento) {
+        try {
+            if (metodoPagamento == null || metodoPagamento.isEmpty()) {
+                throw new IllegalArgumentException("Metodo de pagamento do cliente não pode ser vazio.");
+            }
+            this.metodoPagamento = metodoPagamento;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + " Por favor insira um metodo de pagamento válido.");
+        }
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+
+            if (dataCadastro == null) {
+                throw new IllegalArgumentException("Data de cadastro do cliente não pode ser vazio.");
+            }
+            this.dataCadastro = dataCadastro;
+       
+    }
 
     @Override
     public String toString() {

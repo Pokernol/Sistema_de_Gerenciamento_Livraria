@@ -1,19 +1,42 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
+import br.com.fatecmogidascruzes.validator.UsuarioValidator;
+
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Funcionario extends Usuario {
     private String cargo;
     private LocalDate dataContratacao;
+
+    public Funcionario(long id, String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao, UsuarioValidator usuarioValidator) {
+        
+        super(id, nome, endereco, email, telefone, usuarioValidator);
+        setCargo(cargo);
+        setDataContratacao(dataContratacao);
+
+    }
+
+    public void setCargo(String cargo) {
+
+        if (cargo == null || cargo.isEmpty()) {
+            throw new IllegalArgumentException("Cargo do funcionário não pode ser vazio.");
+        }
+        this.cargo = cargo;
+       
+    }
+
+    public void setDataContratacao(LocalDate dataContratacao) {
+
+        if (dataContratacao == null) {
+            throw new IllegalArgumentException("Data de contratação do funcionário não pode ser vazio.");
+        }
+        this.dataContratacao = dataContratacao;
+    }
 
     @Override
     public String toString() {
