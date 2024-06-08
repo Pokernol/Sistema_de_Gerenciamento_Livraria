@@ -1,19 +1,21 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Funcionario extends Usuario {
     private String cargo;
     private LocalDate dataContratacao;
+
+    public Funcionario(Integer id, String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao) {
+        super(id, nome, endereco, email, telefone);
+        this.cargo = cargo;
+        this.dataContratacao = dataContratacao;
+    }
 
     @Override
     public String toString() {

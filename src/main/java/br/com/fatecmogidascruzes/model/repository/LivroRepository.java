@@ -50,13 +50,9 @@ public class LivroRepository {
 	}
 
 	public List<Livro> findAllWhereExistEstoque() {
-		List<Livro> livrosComEstoque = new ArrayList<>();
-		for (Livro livro : livros) {
-			if (livro.getEstoque() > 0) {
-				livrosComEstoque.add(livro);
-			}
-		}
-		return livrosComEstoque;
+		return livros.stream()
+				.filter(livro -> livro.getEstoque() > 0)
+				.collect(Collectors.toList());
 	}
 	
 	public List<Livro> findAllLivros() {
@@ -64,33 +60,21 @@ public class LivroRepository {
 	}
 	
 	public List<Livro> findById(Integer id) {
-		List<Livro> listaLivros = new ArrayList<>();
-		for (Livro livro : livros) {
-			if(livro.getId() == id) {
-				listaLivros.add(livro);
-			}
-		}
-		return listaLivros;
+		return livros.stream()
+				.filter(livro -> livro.getId() == id)
+				.collect(Collectors.toList());
 	}
 	
 	public List<Livro> findByPreco(Double preco) {
-		List<Livro> listaLivros = new ArrayList<>();
-		for (Livro livro : livros) {
-			if(livro.getPreco() == preco) {
-				listaLivros.add(livro);
-			}
-		}
-		return listaLivros;
+		return livros.stream()
+				.filter(livro -> livro.getPreco() == preco)
+				.collect(Collectors.toList());
 	}
 	
 	public List<Livro> findByEstoque(Integer qtd) {
-		List<Livro> listaLivros = new ArrayList<>();
-		for (Livro livro : livros) {
-			if(livro.getEstoque() == qtd) {
-				listaLivros.add(livro);
-			}
-		}
-		return listaLivros;
+		return livros.stream()
+				.filter(livro -> livro.getEstoque() == qtd)
+				.collect(Collectors.toList());
 	}
 	
 	public List<Livro> findByTitulo(String titulo) {
@@ -124,5 +108,3 @@ public class LivroRepository {
 	}
 	
 }
-
-

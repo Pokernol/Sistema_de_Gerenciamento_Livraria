@@ -3,7 +3,6 @@ package br.com.fatecmogidascruzes.service;
 import br.com.fatecmogidascruzes.model.entity.Livro;
 import br.com.fatecmogidascruzes.model.repository.LivroRepository;
 import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
-import br.com.fatecmogidascruzes.validator.LivroValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,14 +16,12 @@ import static org.mockito.Mockito.*;
 public class LivroServiceTest {
 
     private LivroRepository livroRepository;
-    private LivroValidator livroValidator;
     private LivroServiceImpl service;
 
     @BeforeEach
     public void setUp() {
         livroRepository = mock(LivroRepository.class);
-        livroValidator = mock(LivroValidator.class);
-        service = new LivroServiceImpl(livroRepository, livroValidator);
+        service = new LivroServiceImpl(livroRepository);
     }
 
     @Test
@@ -32,7 +29,6 @@ public class LivroServiceTest {
         LocalDate dataDePublicacao = LocalDate.of(0, 1, 1);
         Livro livro = new Livro(1, "0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
 
-        when(livroValidator.validarAdicionar(livro)).thenReturn(true);
         service.adicionarLivro(livro);
 
         verify(livroRepository, times(1)).adicionarLivro(livro);
@@ -44,7 +40,7 @@ public class LivroServiceTest {
         Livro livro = new Livro(1, "0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
 
         livro = new Livro(livro.getId(), livro.getIsbn10(), livro.getIsbn13(), livro.getTitulo(), livro.getIdioma(), "profeta", 0, livro.getEditora(), livro.getNumeroDePaginas(), livro.getDataDePublicacao(), livro.getPreco(), livro.getCategoria());
-        when(livroValidator.validarAlterar(livro)).thenReturn(true);
+
         service.atualizarLivro(livro);
 
         verify(livroRepository, times(1)).alterarLivro(0, livro);

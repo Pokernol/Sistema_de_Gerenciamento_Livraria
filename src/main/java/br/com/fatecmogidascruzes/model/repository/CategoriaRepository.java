@@ -21,7 +21,6 @@ public class CategoriaRepository {
         return categorias;
     }
 
-
     public Categoria findById(int id) {
         for (Categoria categoria : categorias) {
             if (categoria.getId() == id) {

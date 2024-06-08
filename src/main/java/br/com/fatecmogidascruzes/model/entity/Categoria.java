@@ -10,7 +10,6 @@ public class Categoria {
     private String nome;
     private String descricao;
 
-
     @Override
     public String toString() {
         return "\n Categoria {" +
@@ -19,7 +18,6 @@ public class Categoria {
                 "\n  Descricao = " + descricao +
                 "\n }\n";
     }
-
 
     public Categoria(int id, String nome, String descricao) {
         setId(id);
