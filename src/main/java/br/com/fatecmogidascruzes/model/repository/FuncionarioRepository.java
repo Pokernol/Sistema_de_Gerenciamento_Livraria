@@ -29,7 +29,7 @@ public class FuncionarioRepository {
     
     public Funcionario findById(Integer id) {
         return funcionarios.stream()
-                .filter(funcionario -> funcionario.getId().equals(id))
+                .filter(funcionario -> funcionario.getId() == id)
                 .findFirst().orElse(null);
     }
 

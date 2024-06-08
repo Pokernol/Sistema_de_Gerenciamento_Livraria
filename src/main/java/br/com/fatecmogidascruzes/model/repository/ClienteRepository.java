@@ -28,12 +28,9 @@ public class ClienteRepository {
     }
 
     public Cliente findById(int id) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getId() == id) {
-                return cliente;
-            }
-        }
-        return null;
+        return clientes.stream()
+                .filter(cliente -> cliente.getId() == id)
+                .findFirst().orElse(null);
     }
 
     public List<Cliente> findByNome(String nome) {

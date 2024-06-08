@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
-    private Integer id;
+    private long id;
     private String nome;
     private String endereco;
     private String email;

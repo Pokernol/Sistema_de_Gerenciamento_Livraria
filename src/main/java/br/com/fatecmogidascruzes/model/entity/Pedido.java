@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pedido {
-    private int id;
+    private long id;
     private Cliente idCliente;
     private List<Livro> livros;
     private LocalDate dataPedido;
