@@ -37,6 +37,7 @@ public class Livro {
         setDataDePublicacao(dataDePublicacao);
         setPreco(preco);
         setCategoria(categoria);
+
     }
 
     public void setId(long id) {
