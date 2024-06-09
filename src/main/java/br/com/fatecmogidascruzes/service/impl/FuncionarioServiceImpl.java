@@ -23,7 +23,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     @Override
     public void adicionarFuncionario(Funcionario funcionario) throws IllegalArgumentException{
         try {
-            if(validator.validarEmail(funcionario, funcionario.getEmail())){
+            if(validator.validarEmail(funcionario)){
                 repository.adicionarFuncionario(funcionario);
                 System.out.println("Funcionario " + funcionario.getNome() + " adicionado com sucesso!");
             } else{ 
@@ -32,7 +32,6 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
     
     @Override
@@ -47,14 +46,12 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     }
 
     @Override
-    public boolean excluirFuncionario(int id) {
+    public void excluirFuncionario(int id) {
         try {
             repository.removerFuncionario(id);
             System.out.println("Funcionario removido com sucesso!");
-            return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
+            System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");
         }
     }
 

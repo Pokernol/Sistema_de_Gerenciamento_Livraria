@@ -1,11 +1,8 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,13 +16,25 @@ public class Pedido {
     private double precoTotal;
     private String enderecoEntrega;
 
-    public Pedido(String emailCliente, String tituloLivro, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
+    public Pedido(long id, String emailCliente, String tituloLivro, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
+        setId(id);
         setemailCliente(emailCliente);
         setLivros(tituloLivro);
         setDataPedido(dataPedido);
         setStatusPedido(statusPedido);
         setPrecoTotal(precoTotal);
         setEnderecoEntrega(endrecoEntrega);
+    }
+
+    public void setId(long id) {
+        try {
+            if (id < 0) {
+                throw new IllegalArgumentException("ID do pedido não pode ser negativo.");
+            }
+            this.id = id;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um ID válido.");
+        }
     }
 
     public void setemailCliente(String emailCliente) {
@@ -35,7 +44,7 @@ public class Pedido {
             }
             this.emailCliente = emailCliente;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um email válido.");
+            System.out.println(e.getMessage() + " Por favor insira um email válido.");
         }
     }
 
@@ -46,7 +55,7 @@ public class Pedido {
             }
             this.tituloLivro = tituloLivro;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor selecione um livro.");
+            System.out.println(e.getMessage() + " Por favor selecione um livro.");
         }
     }
 
@@ -57,7 +66,7 @@ public class Pedido {
             }
             this.dataPedido = dataPedido;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira a data correta.");
+            System.out.println(e.getMessage() + " Por favor insira a data correta.");
         }
     }
 
@@ -68,7 +77,7 @@ public class Pedido {
             }
             this.statusPedido = statusPedido;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um status válido.");
+            System.out.println(e.getMessage() + " Por favor insira um status válido.");
         }
     }
 
@@ -79,7 +88,7 @@ public class Pedido {
             }
             this.precoTotal = precoTotal;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um preço válido.");
+            System.out.println(e.getMessage() + " Por favor insira um preço válido.");
         }
     }
 
@@ -90,7 +99,7 @@ public class Pedido {
             }
             this.enderecoEntrega = enderecoEntrega;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um endereço válido.");
+            System.out.println(e.getMessage() + " Por favor insira um endereço válido.");
         }
     }
 

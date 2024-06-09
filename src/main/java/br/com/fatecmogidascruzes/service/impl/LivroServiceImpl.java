@@ -22,58 +22,45 @@ public class LivroServiceImpl implements LivroService {
     }
 
     @Override
-    public void atualizarLivro(Livro livro) {
+    public void atualizarLivro(long id, Livro livro) {
         try {
-            int index = repository.findIndexPorId(livro.getId());
-            if (index != -1) {
-                repository.alterarLivro(index, livro);
-                System.out.println("Livro atualizado com sucesso!");
-            } else {
-                System.out.println("Ocorreu algo de errado ao atualizar informações do livro, por favor verifique as informações e tente novamente");
-            }
+            repository.atualizarLivro(id, livro);
+            System.out.println("Livro " + livro.getTitulo() + " atualizado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
     
     @Override
-    public boolean excluirLivroPorId(long id) {
-        int index = repository.findIndexPorId(id);
-        if (index != -1) {
-            repository.delete(index);
-            System.out.println("Livro excluído com sucesso!");
-            return true;
-        } else {
-            System.out.println("Livro não encontrado com ID: " + id);
-            return false;
+    public void excluirLivroPorId(long id) {
+        try {
+            Livro livro = repository.findById(id);
+            repository.removerLivro(livro);
+            System.out.println("Livro removido com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");
         }
     }
 
     @Override
-    public boolean excluirLivroPorIsbn10(String isbn10) {
-        Livro livro = repository.findByIsbn10(isbn10);
-        if (livro != null) {
-            int index = repository.findIndexPorId(livro.getId());
-            repository.delete(index);
-            System.out.println("Livro excluído com sucesso!");
-            return true;
-        } else {
-            System.out.println("Livro não encontrado com ISBN-10: " + isbn10);
-            return false;
+    public void excluirLivroPorIsbn10(String isbn10) {
+        try {
+            Livro livro = repository.findByIsbn10(isbn10);
+            repository.removerLivro(livro);
+            System.out.println("Livro removido com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor, verifique o ISBN10 informado.");
         }
     }
 
     @Override
-    public boolean excluirLivroPorIsbn13(String isbn13) {
-        Livro livro = repository.findByIsbn13(isbn13);
-        if (livro != null) {
-            int index = repository.findIndexPorId(livro.getId());
-            repository.delete(index);
-            System.out.println("Livro excluído com sucesso!");
-            return true;
-        } else {
-            System.out.println("Livro não encontrado com ISBN-13: " + isbn13);
-            return false;
+    public void excluirLivroPorIsbn13(String isbn13) {
+        try {
+            Livro livro = repository.findByIsbn13(isbn13);
+            repository.removerLivro(livro);
+            System.out.println("Livro removido com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage()  + " Por favor, verifique o ISBN13 informado.");
         }
     }
 
@@ -83,13 +70,13 @@ public class LivroServiceImpl implements LivroService {
 
 		switch(opcao){
 			case 1:
-				livrosEncontrados = repository.findAllLivros();
+				livrosEncontrados = repository.findAllWhereExistEstoque();
 				break;
 			case 2:
-				livrosEncontrados =  repository.findById(Integer.parseInt(valorBuscar));
+				livrosEncontrados.add(repository.findById(Long.parseLong(valorBuscar)));
 				break;
 			case 3:
-				livrosEncontrados =  repository.findByTitulo(valorBuscar);
+				livrosEncontrados = repository.findByTitulo(valorBuscar);
 				break;
 			case 4:
 				livrosEncontrados = repository.findByAutor(valorBuscar);
@@ -98,7 +85,7 @@ public class LivroServiceImpl implements LivroService {
 				livrosEncontrados = repository.findByIdioma(valorBuscar);
 				break;
 			case 6:
-				livrosEncontrados =  repository.findByEditora(valorBuscar);
+				livrosEncontrados = repository.findByEditora(valorBuscar);
 				break;
 			case 7:
 				livrosEncontrados = repository.findByCategoria(valorBuscar);
@@ -120,6 +107,4 @@ public class LivroServiceImpl implements LivroService {
 	    
 		return livrosEncontrados;
 	}
-    
-
 }

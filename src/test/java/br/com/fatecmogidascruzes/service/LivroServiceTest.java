@@ -41,9 +41,9 @@ public class LivroServiceTest {
 
         livro = new Livro(livro.getId(), livro.getIsbn10(), livro.getIsbn13(), livro.getTitulo(), livro.getIdioma(), "profeta", 0, livro.getEditora(), livro.getNumeroDePaginas(), livro.getDataDePublicacao(), livro.getPreco(), livro.getCategoria());
 
-        service.atualizarLivro(livro);
+        service.atualizarLivro(livro.getId(), livro);
 
-        verify(livroRepository, times(1)).alterarLivro(0, livro);
+        verify(livroRepository, times(1)).atualizarLivro(0, livro);
     }
 
     @Test

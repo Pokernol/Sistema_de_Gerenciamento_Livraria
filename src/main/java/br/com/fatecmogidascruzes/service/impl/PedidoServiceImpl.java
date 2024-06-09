@@ -3,11 +3,13 @@ package br.com.fatecmogidascruzes.service.impl;
 import br.com.fatecmogidascruzes.model.entity.Pedido;
 import br.com.fatecmogidascruzes.model.repository.PedidoRepository;
 import br.com.fatecmogidascruzes.service.PedidoService;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoServiceImpl implements PedidoService {
 
-    private static PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     //inicia o pedidoRepository, eviatar nullpointer
     public PedidoServiceImpl(PedidoRepository pedidoRepository) {
@@ -21,24 +23,33 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido pesquisarID(int id) {
-        return pedidoRepository.findById(id);
-    }
+	public List<Pedido> buscarPedido(int opcao, String valorBuscar) {	
+	    List<Pedido> pedidosEncontrados = new ArrayList<>();
 
-    @Override
-    public List<Pedido> pesquisarEmailCliente(String emailCliente) {
-        return pedidoRepository.pesquisarEmailCliente(emailCliente);
-    }
-
-    @Override
-    public List<Pedido> pesquisarTituloLivro(String tituloLivro) {
-        return pedidoRepository.pesquisarTituloLivro(tituloLivro);
-    }
-
-    @Override
-    public List<Pedido> pesquisarPorStatus(int statusPedido) {
-        return pedidoRepository.pesquisarPorStatus(statusPedido);
-    }
+		switch(opcao){
+			case 1:
+                pedidosEncontrados.add(pedidoRepository.findById(Integer.parseInt(valorBuscar)));
+                break;
+			case 2:
+				pedidosEncontrados = pedidoRepository.findByEmailCliente(valorBuscar);
+				break;
+			case 3:
+				pedidosEncontrados = pedidoRepository.findByTituloLivro(valorBuscar);
+				break;			
+			case 4:
+				pedidosEncontrados = pedidoRepository.findByStatus(Integer.parseInt(valorBuscar));
+				break;
+			default:
+				System.out.println("Opção invalida.");
+				break;
+		}
+		
+	    if (pedidosEncontrados == null || pedidosEncontrados.isEmpty()) {
+			System.out.println("Pedido não encontrado por " + valorBuscar + " informado.");
+	    }
+	    
+		return pedidosEncontrados;
+	}
 
 }
 
