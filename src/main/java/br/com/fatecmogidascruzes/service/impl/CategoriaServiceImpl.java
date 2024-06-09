@@ -15,6 +15,17 @@ public class CategoriaServiceImpl {
     public void adicionarCategoria(Categoria categoria) {
         repository.adicionarCategoria(categoria);
     }
+
+    public void atualizarCategoria(long id, Categoria categoria) {
+        try { 
+            
+            repository.atualizarCategoria(id, categoria);
+            System.out.println("Categoria " + categoria.getNome() + " atualizado com sucesso!");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     
     public Categoria buscarCategoriaPorNome(String nome) {
         Categoria categoria = repository.findByName(nome);

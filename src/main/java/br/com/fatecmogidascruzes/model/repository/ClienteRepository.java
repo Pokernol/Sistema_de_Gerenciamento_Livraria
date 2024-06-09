@@ -15,6 +15,25 @@ public class ClienteRepository {
         clientes.add(cliente);
     }
 
+    public int findIndexPorId(long id) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getId() == id) {
+                return i;
+            }
+        } 
+        return -1; 
+    }
+   
+    public void atualizarCliente(long id, Cliente cliente) {
+        int index = findIndexPorId(id);
+        if (index != -1) {
+            clientes.set(index, cliente);
+        }
+        else{
+            throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações do cliente, por favor verifique as informações e tente novamente");
+        }
+    }
+
     public boolean removerCliente(int id) {
         Cliente cliente = findById(id);
         if (cliente != null) {

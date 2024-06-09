@@ -12,19 +12,37 @@ public class FuncionarioRepository {
     private final List<Funcionario> funcionarios = new ArrayList<>();
 
     public void adicionarFuncionario(Funcionario funcionario) {
-        funcionarios.add(funcionario);
+            funcionarios.add(funcionario);
     }
-
-    public boolean removerFuncionario(Integer id) {
-        Funcionario funcionario = findById(id);
-        if (funcionario != null) {
-            return funcionarios.remove(funcionario);
-        }
-        return false;
-    }
-
+    
     public List<Funcionario> findAll() {
         return funcionarios;
+    }
+    
+    public int findIndexPorId(long id) {
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (funcionarios.get(i).getId() == id) {
+                return i;
+            }
+        } 
+        return -1; 
+    }
+
+    public void alterarFuncionario(long id, Funcionario funcionario) {
+        int index = findIndexPorId(id);
+        if (index != -1) {
+            funcionarios.set(index, funcionario);
+        }
+        else{
+            throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações do funcionario, por favor verifique as informações e tente novamente");
+        }
+    }
+
+    public void removerFuncionario(int id) {
+        int index = findIndexPorId(id);
+        if (index != -1) {
+             funcionarios.remove(index);
+        }
     }
     
     public Funcionario findById(Integer id) {

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class FuncionarioServiceImpl implements FuncionarioService {
 
     private final FuncionarioRepository repository;
@@ -20,20 +21,39 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     }
 
     @Override
-    public void adicionarFuncionario(Funcionario funcionario) {
-        if(validator.validarFuncionario(funcionario)){
-            repository.adicionarFuncionario(funcionario);
-            System.out.println("Funcionario " + funcionario.getNome() + " adicionado com sucesso!");
+    public void adicionarFuncionario(Funcionario funcionario) throws IllegalArgumentException{
+        try {
+            if(validator.validarEmail(funcionario, funcionario.getEmail())){
+                repository.adicionarFuncionario(funcionario);
+                System.out.println("Funcionario " + funcionario.getNome() + " adicionado com sucesso!");
+            } else{ 
+                throw new IllegalArgumentException("Funcionario não pode ser adicionado, email já cadastrado.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
+
     }
     
     @Override
+    public void atualizarFuncionario(long id, Funcionario funcionario) {
+        try { 
+            repository.alterarFuncionario(id, funcionario);
+            System.out.println("Funcionario " + funcionario.getNome() + " atualizado com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    
+    }
+
+    @Override
     public boolean excluirFuncionario(int id) {
-        if (repository.removerFuncionario(id)) {
-            System.out.println("Funcionaria(o) com ID " + id + " excluído com sucesso!");
+        try {
+            repository.removerFuncionario(id);
+            System.out.println("Funcionario removido com sucesso!");
             return true;
-        } else {
-            System.out.println("Funcionaria(o) com ID " + id + " não encontrado.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }

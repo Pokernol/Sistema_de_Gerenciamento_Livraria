@@ -21,9 +21,30 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void adicionarCliente(Cliente cliente) {
-        if(validator.validarUsuario(cliente)){
-            repository.adicionarCliente(cliente);
-            System.out.println("Cliente " + cliente.getNome() + " adicionado com sucesso!");
+        try {
+            if(validator.validarEmail(cliente, cliente.getEmail())){
+
+                repository.adicionarCliente(cliente);
+                System.out.println("Funcionario " + cliente.getNome() + " adicionado com sucesso!");
+
+            } else{ 
+                throw new IllegalArgumentException("Funcionario não pode ser adicionado, email já cadastrado.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+
+    @Override
+    public void atualizarCliente(long id, Cliente cliente) {
+        try { 
+            
+            repository.atualizarCliente(id, cliente);
+            System.out.println("Funcionario " + cliente.getNome() + " atualizado com sucesso!");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
