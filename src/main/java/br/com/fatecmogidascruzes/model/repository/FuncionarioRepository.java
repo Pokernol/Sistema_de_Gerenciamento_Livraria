@@ -1,4 +1,4 @@
-package br.com.fatecmogidascruzes.model.repository;
+    package br.com.fatecmogidascruzes.model.repository;
 
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 
@@ -14,19 +14,6 @@ public class FuncionarioRepository {
     public void adicionarFuncionario(Funcionario funcionario) {
             funcionarios.add(funcionario);
     }
-    
-    public List<Funcionario> findAll() {
-        return funcionarios;
-    }
-    
-    public int findIndexPorId(long id) {
-        for (int i = 0; i < funcionarios.size(); i++) {
-            if (funcionarios.get(i).getId() == id) {
-                return i;
-            }
-        } 
-        return -1; 
-    }
 
     public void alterarFuncionario(long id, Funcionario funcionario) {
         int index = findIndexPorId(id);
@@ -38,14 +25,27 @@ public class FuncionarioRepository {
         }
     }
 
-    public void removerFuncionario(int id) {
-        int index = findIndexPorId(id);
-        if (index != -1) {
-             funcionarios.remove(index);
-        }
+    public void removerFuncionario(long id) {
+        Funcionario funcionario = findById(id);
+        if (funcionario != null) {
+            funcionarios.remove(funcionario);
+        } else 
+            throw new IllegalArgumentException("Funcionario não encontrado.");
+    }
+
+    public List<Funcionario> findAll() {
+        return funcionarios;
+    }
+
+    public int findIndexPorId(long id) {
+        return funcionarios.stream()
+                .filter(funcionario -> funcionario.getId() == id)
+                .findFirst()
+                .map(funcionarios::indexOf)
+                .orElse(-1);
     }
     
-    public Funcionario findById(Integer id) {
+    public Funcionario findById(long id) {
         return funcionarios.stream()
                 .filter(funcionario -> funcionario.getId() == id)
                 .findFirst().orElse(null);

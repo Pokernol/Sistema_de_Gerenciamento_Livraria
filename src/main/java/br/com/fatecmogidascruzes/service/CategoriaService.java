@@ -6,7 +6,6 @@ public interface CategoriaService {
 
     void adicionarCategoria(Categoria categoria);
     void atualizarCategoria(long id, Categoria categoria);
+    void excluirCategoria(int id);
     Categoria buscarCategoriaPorNome(String nome);
-    boolean excluirCategoria(int id);
-
 }

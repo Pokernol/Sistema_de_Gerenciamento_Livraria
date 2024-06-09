@@ -2,8 +2,9 @@ package br.com.fatecmogidascruzes.service.impl;
 
 import br.com.fatecmogidascruzes.model.entity.Categoria;
 import br.com.fatecmogidascruzes.model.repository.CategoriaRepository;
+import br.com.fatecmogidascruzes.service.CategoriaService;
 
-public class CategoriaServiceImpl {
+public class CategoriaServiceImpl implements CategoriaService {
     private final CategoriaRepository repository;
 
     public CategoriaServiceImpl(CategoriaRepository repository) {
@@ -14,14 +15,13 @@ public class CategoriaServiceImpl {
 
     public void adicionarCategoria(Categoria categoria) {
         repository.adicionarCategoria(categoria);
+        System.out.println("Categoria " + categoria.getNome() + " adicionada com sucesso!");
     }
 
     public void atualizarCategoria(long id, Categoria categoria) {
-        try { 
-            
+        try {
             repository.atualizarCategoria(id, categoria);
             System.out.println("Categoria " + categoria.getNome() + " atualizado com sucesso!");
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -37,13 +37,12 @@ public class CategoriaServiceImpl {
         }
     }
 
-    public boolean excluirCategoria(int id) {
-        if (repository.removerCategoria(id)) {
-            System.out.println("Categoria com ID " + id + " excluída com sucesso!");
-            return true;
-        } else {
-            System.out.println("Categoria com ID " + id + " não encontrada.");
-            return false;
+    public void excluirCategoria(int id) {
+        try {
+            repository.removerCategoria(id);
+            System.out.println("Categoria removida com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");
         }
     }
 

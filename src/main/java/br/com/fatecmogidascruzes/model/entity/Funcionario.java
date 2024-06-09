@@ -12,28 +12,31 @@ public class Funcionario extends Usuario {
     private LocalDate dataContratacao;
 
     public Funcionario(long id, String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao) {
-        
         super(id, nome, endereco, email, telefone);
         setCargo(cargo);
         setDataContratacao(dataContratacao);
-
     }
 
     public void setCargo(String cargo) {
-
-        if (cargo == null || cargo.isEmpty()) {
-            throw new IllegalArgumentException("Cargo do funcionário não pode ser vazio.");
-        }
-        this.cargo = cargo;
-       
+        try {
+            if (cargo == null || cargo.isEmpty()) {
+                throw new IllegalArgumentException("Cargo do funcionário não pode ser vazio.");
+            }
+            this.cargo = cargo;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um cargo válido.");
+        }      
     }
 
     public void setDataContratacao(LocalDate dataContratacao) {
-
-        if (dataContratacao == null) {
-            throw new IllegalArgumentException("Data de contratação do funcionário não pode ser vazio.");
+        try {
+            if (dataContratacao == null) {
+                throw new IllegalArgumentException("Data de contratação do funcionário não pode ser vazio.");
+            }
+            this.dataContratacao = dataContratacao;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira uma data de contratação para o funcionário.");
         }
-        this.dataContratacao = dataContratacao;
     }
 
     @Override

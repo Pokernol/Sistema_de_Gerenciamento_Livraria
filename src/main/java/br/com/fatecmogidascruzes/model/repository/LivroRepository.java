@@ -14,54 +14,58 @@ public class LivroRepository {
 		livros.add(livro);
 	}
 
-	public void alterarLivro(int index, Livro livro) {
-		livros.set(index, livro);
+	public void atualizarLivro(long id, Livro livro) {
+		int index = findIndexPorId(id);
+		if (index != -1) {
+			livros.set(index, livro);
+		} else {
+			throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações do livro, por favor verifique as informações e tente novamente");
+		}
 	}
 
-	public int findIndexPorId(long id) {
-		for (int i = 0; i < livros.size(); i++) {
-			if (livros.get(i).getId() == id) {
-				return i;
-			}
-		}
-		return -1;
+	public void removerLivro(Livro livro) {
+		if (livro != null) {
+			livros.remove(livro);
+		} else 
+			throw new IllegalArgumentException("Livro não encontrado.");
+	}
+
+	public List<Livro> findAll() {
+		return livros;
+	}
+
+	private int findIndexPorId(long id) {
+		return livros.stream()
+				.filter(livro -> livro.getId() == id)
+				.findFirst()
+				.map(livros::indexOf)
+				.orElse(-1);
+	}
+
+	public Livro findById(long id) {
+		return livros.stream()
+				.filter(livro -> livro.getId() == id)
+				.findFirst()
+				.orElse(null);
 	}
 	
 	public Livro findByIsbn10(String isbn10) {
-		for (Livro livro : livros) {
-			if (livro.getIsbn10().equals(isbn10)) {
-				return livro;
-			}
-		}
-		return null;
+		return livros.stream()
+				.filter(livro -> livro.getIsbn10().equals(isbn10))
+				.findFirst()
+				.orElse(null);
 	}
 
 	public Livro findByIsbn13(String isbn13) {
-		for (Livro livro : livros) {
-			if (livro.getIsbn13().equals(isbn13)) {
-				return livro;
-			}
-		}
-		return null;
-	}
-	
-	public void delete(int index) {
-		livros.remove(index);
+		return livros.stream()
+				.filter(livro -> livro.getIsbn13().equals(isbn13))
+				.findFirst()
+				.orElse(null);
 	}
 
 	public List<Livro> findAllWhereExistEstoque() {
 		return livros.stream()
 				.filter(livro -> livro.getEstoque() > 0)
-				.collect(Collectors.toList());
-	}
-	
-	public List<Livro> findAllLivros() {
-		return livros;
-	}
-	
-	public List<Livro> findById(Integer id) {
-		return livros.stream()
-				.filter(livro -> livro.getId() == id)
 				.collect(Collectors.toList());
 	}
 	

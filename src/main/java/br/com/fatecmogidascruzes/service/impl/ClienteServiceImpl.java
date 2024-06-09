@@ -22,8 +22,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void adicionarCliente(Cliente cliente) {
         try {
-            if(validator.validarEmail(cliente, cliente.getEmail())){
-
+            if(validator.validarEmail(cliente)){
                 repository.adicionarCliente(cliente);
                 System.out.println("Funcionario " + cliente.getNome() + " adicionado com sucesso!");
 
@@ -38,11 +37,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void atualizarCliente(long id, Cliente cliente) {
-        try { 
-            
+        try {
             repository.atualizarCliente(id, cliente);
             System.out.println("Funcionario " + cliente.getNome() + " atualizado com sucesso!");
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -60,7 +57,7 @@ public class ClienteServiceImpl implements ClienteService {
                 clientesEncontrados.add(repository.findById(Integer.parseInt(valorBuscar)));
                 break;
             case 3:
-                clientesEncontrados =  repository.findByNome(valorBuscar);
+                clientesEncontrados = repository.findByNome(valorBuscar);
                 break;
             case 4:
                 clientesEncontrados.add(repository.findByEmail(valorBuscar));
@@ -84,13 +81,12 @@ public class ClienteServiceImpl implements ClienteService {
     }
    
     @Override
-    public boolean excluirCliente(int id) {
-        if (repository.removerCliente(id)) {
-            System.out.println("Cliente com ID " + id + " excluído com sucesso!");
-            return true;
-        } else {
-            System.out.println("Cliente com ID " + id + " não encontrado.");
-            return false;
+    public void excluirCliente(int id) {
+        try {
+            repository.removerCliente(id);
+            System.out.println("Funcionario removido com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");
         }
     }
 }

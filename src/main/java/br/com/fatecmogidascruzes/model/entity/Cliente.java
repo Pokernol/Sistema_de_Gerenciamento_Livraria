@@ -25,16 +25,19 @@ public class Cliente extends Usuario {
             }
             this.metodoPagamento = metodoPagamento;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um metodo de pagamento válido.");
+            System.out.println(e.getMessage() + " Por favor insira um metodo de pagamento válido.");
         }
     }
 
     public void setDataCadastro(LocalDate dataCadastro) {
-
+        try {
             if (dataCadastro == null) {
                 throw new IllegalArgumentException("Data de cadastro do cliente não pode ser vazio.");
             }
             this.dataCadastro = dataCadastro;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira uma data de cadastro para o cliente.");
+        }
     }
 
     @Override

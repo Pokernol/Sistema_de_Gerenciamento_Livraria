@@ -9,56 +9,46 @@ public class CategoriaRepository {
 
     public void adicionarCategoria(Categoria categoria) {
             categorias.add(categoria);
-            System.out.println("Categoria " + categoria.getNome() + " adicionada com sucesso!");
-    }
-
-    public List<Categoria> findAllCategorias() {
-        return categorias;
-    }
-
-    public int findIndexPorId(long id) {
-        for (int i = 0; i < categorias.size(); i++) {
-            if (categorias.get(i).getId() == id) {
-                return i;
-            }
-        } 
-        return -1; 
     }
 
     public void atualizarCategoria(long id, Categoria categoria) {
         int index = findIndexPorId(id);
         if (index != -1) {
             categorias.set(index, categoria);
-        }
-        else{
-            throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações da categoria, por favor verifique e tente novamente");
-        }
+        } else
+            throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações da categoria. Por favor, informe um ID Valido e tente novamente.");
+    }
+
+    public void removerCategoria(int id) {
+        Categoria categoria = findById(id);
+        if (categoria != null) {
+            categorias.remove(categoria);
+        } else
+            throw new IllegalArgumentException("Categoria não encontrada.");
+    }
+
+    public List<Categoria> findAllCategorias() {
+        return categorias;
+    }
+
+    private int findIndexPorId(long id) {
+        return categorias.stream()
+                .filter(categoria -> categoria.getId() == id)
+                .findFirst()
+                .map(categorias::indexOf)
+                .orElse(-1);
     }
 
     public Categoria findById(long id) {
-        for (Categoria categoria : categorias) {
-            if (categoria.getId() == id) {
-                return categoria;
-            }
-        }
-        return null;
+        return categorias.stream()
+                .filter(categoria -> categoria.getId() == id)
+                .findFirst().orElse(null);
     }
-    
+
     public Categoria findByName(String nome) {
-        for (Categoria categoria : categorias) {
-            if (categoria.getNome().equalsIgnoreCase(nome)) {
-                return categoria;
-            }
-        }
-        return null;
+        return categorias.stream()
+                .filter(categoria -> categoria.getNome().toUpperCase().contains(nome.toUpperCase()))
+                .findFirst()
+                .orElse(null);
     }
-
-    public boolean removerCategoria(int id) {
-        Categoria categoria = findById(id);
-        if (categoria != null) {
-            return categorias.remove(categoria);
-        }
-        return false;
-    }
-
 }

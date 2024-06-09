@@ -19,25 +19,22 @@ public class UsuarioValidator {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-    public boolean validarEmail(Usuario usuario, String email) {
+    public boolean validarEmail(Usuario usuario) {
         if (usuario instanceof Funcionario) {
             List<Funcionario> listaDeFuncionarios = funcionarioRepository.findAll();
             for (Funcionario funcionario : listaDeFuncionarios) {
-        
-                if (funcionario.getEmail().equals(email)) {
+                if (funcionario.getEmail().equals(usuario.getEmail())) {
                     return false;
                 }
             }
         } else if (usuario instanceof Cliente){
             List<Cliente> listaDeClientes = clienteRepository.findAll();
             for (Cliente cliente : listaDeClientes) {
-                if (cliente.getEmail().equals(email)) {
-                    System.out.println("Cliente já cadastrado com este email.");
+                if (cliente.getEmail().equals(usuario.getEmail())) {
                     return false;
                 }
             }
         }
-
         return true;
     }
 }

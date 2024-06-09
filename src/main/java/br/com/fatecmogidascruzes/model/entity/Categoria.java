@@ -23,7 +23,7 @@ public class Categoria {
             }
             this.nome = nome;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um nome válido.");
+            System.out.println(e.getMessage() + " Por favor insira um nome válido.");
         }
     }
 
@@ -34,7 +34,7 @@ public class Categoria {
             }
             this.descricao = descricao;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira uma descrição válida.");
+            System.out.println(e.getMessage() + " Por favor insira uma descrição válida.");
         }
     }
 
