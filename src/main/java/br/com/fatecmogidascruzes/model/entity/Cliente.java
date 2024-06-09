@@ -13,6 +13,7 @@ public class Cliente extends Usuario {
     private String metodoPagamento;
     private LocalDate dataCadastro;
 
+<<<<<<< HEAD
     public Cliente(int id, String nome, String endereco, String email, String telefone,String metodoPagamento, LocalDate dataCadastro, UsuarioValidator usuarioValidator ) {
         
         super(id, nome, endereco, email, telefone, usuarioValidator);
@@ -38,6 +39,12 @@ public class Cliente extends Usuario {
             }
             this.dataCadastro = dataCadastro;
        
+=======
+    public Cliente(Integer id, String nome, String endereco, String email, String telefone, String metodoPagamento, LocalDate dataCadastro) {
+        super(id, nome, endereco, email, telefone);
+        this.metodoPagamento = metodoPagamento;
+        this.dataCadastro = dataCadastro;
+>>>>>>> d68bdd98c972348d8d1e5d1fbbc3c3c1d9387f84
     }
 
     @Override

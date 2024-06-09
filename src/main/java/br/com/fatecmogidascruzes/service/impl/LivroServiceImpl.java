@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.fatecmogidascruzes.model.entity.Livro;
 import br.com.fatecmogidascruzes.model.repository.LivroRepository;
 import br.com.fatecmogidascruzes.service.LivroService;
-import br.com.fatecmogidascruzes.validator.LivroValidator;
 
 public class LivroServiceImpl implements LivroService {
 

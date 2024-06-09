@@ -44,11 +44,11 @@ public class FuncionarioRepository {
              funcionarios.remove(index);
         }
     }
-
-    public List<Funcionario> findById(int id) {
+    
+    public Funcionario findById(Integer id) {
         return funcionarios.stream()
-                .filter(cliente -> cliente.getId() == id)
-                .collect(Collectors.toList());
+                .filter(funcionario -> funcionario.getId() == id)
+                .findFirst().orElse(null);
     }
 
     public List<Funcionario> findByNome(String nome) {
@@ -57,10 +57,10 @@ public class FuncionarioRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Funcionario> findByEmail(String email) {
+    public Funcionario findByEmail(String email) {
         return funcionarios.stream()
-                .filter(cliente -> cliente.getEmail().toUpperCase().contains(email.toUpperCase()))
-                .collect(Collectors.toList());
+                .filter(funcionario -> funcionario.getEmail().toUpperCase().contains(email.toUpperCase()))
+                .findFirst().orElse(null);
     }
 
     public List<Funcionario> findByCargo(String cargo) {
