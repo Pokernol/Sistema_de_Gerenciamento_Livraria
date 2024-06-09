@@ -1,6 +1,5 @@
 package br.com.fatecmogidascruzes.model.repository;
 
-import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 
 import java.time.LocalDate;
@@ -13,28 +12,37 @@ public class FuncionarioRepository {
     private final List<Funcionario> funcionarios = new ArrayList<>();
 
     public void adicionarFuncionario(Funcionario funcionario) {
-        funcionarios.add(funcionario);
+            funcionarios.add(funcionario);
     }
-
+    
     public List<Funcionario> findAll() {
         return funcionarios;
     }
     
-    public Funcionario findById(int id) {
-        for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getId() == id) {
-                return funcionario;
+    public int findIndexPorId(long id) {
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (funcionarios.get(i).getId() == id) {
+                return i;
             }
-        }
-        return null;
+        } 
+        return -1; 
     }
 
-    public boolean removerFuncionario(int id) {
-        Funcionario funcionario = findById(id);
-        if (funcionario != null) {
-            return funcionarios.remove(funcionario);
+    public void alterarFuncionario(Funcionario funcionario) {
+        int index = findIndexPorId(funcionario.getId());
+        if (index != -1) {
+            funcionarios.set(index, funcionario);
         }
-        return false;
+        else{
+            throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações do funcionario, por favor verifique as informações e tente novamente");
+        }
+    }
+
+    public void removerFuncionario(int id) {
+        int index = findIndexPorId(id);
+        if (index != -1) {
+             funcionarios.remove(index);
+        }
     }
 
     public List<Funcionario> findById(int id) {

@@ -21,10 +21,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void adicionarCliente(Cliente cliente) {
-        if(validator.validarUsuario(cliente)){
-            repository.adicionarCliente(cliente);
-            System.out.println("Cliente " + cliente.getNome() + " adicionado com sucesso!");
-        }
+        repository.adicionarCliente(cliente);
+        System.out.println("Cliente " + cliente.getNome() + " adicionado com sucesso!");
+    
     }
 
     @Override
@@ -36,7 +35,7 @@ public class ClienteServiceImpl implements ClienteService {
                 clientesEncontrados = repository.findAll();
                 break;
             case 2:
-                clientesEncontrados =  repository.findById(Integer.parseInt(valorBuscar));
+                clientesEncontrados.add(repository.findById(Integer.parseInt(valorBuscar)));
                 break;
             case 3:
                 clientesEncontrados =  repository.findByNome(valorBuscar);

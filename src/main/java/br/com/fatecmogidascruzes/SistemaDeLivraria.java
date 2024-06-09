@@ -81,16 +81,19 @@ public class SistemaDeLivraria {
         // Testando a criação de Funcionario
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
         funcionarioService.adicionarFuncionario(new Funcionario(1, "Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now(), usuarioValidator));
-        funcionarioService.adicionarFuncionario(new Funcionario(2, "Antony", "Endereço do Antony", "antony@email.com","12934567890", "Cargo do Antony", LocalDate.now(), usuarioValidator));
+        funcionarioService.adicionarFuncionario(new Funcionario(2, "Antony", "Endereço do Antony", "ana@email.com","12934567890", "Cargo do Antony", LocalDate.now(), usuarioValidator));
         System.out.println(funcionarioRepository.findAll());
 
         // Testando a criação de cliente
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
         clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now(), usuarioValidator));
-        clienteService.adicionarCliente(new Cliente(2, "ana", "ENDEREÇO", "antony@email.com", "11958496285", "moedinhas de 1 centavo", LocalDate.now(), usuarioValidator));
-
         System.out.println(clienteRepository.findAll());
-        
+
+        System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
+        System.out.println(funcionarioRepository.findById(1));
+        funcionarioService.atualizarFuncionario(new Funcionario(1, "ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now(), usuarioValidator));
+        System.out.println(funcionarioRepository.findById(1));
+
         //testando excluir funcionario
         System.out.println("Tentando excluir a funcionaria Ana com ID 1");
         funcionarioService.excluirFuncionario(1);
@@ -130,5 +133,7 @@ public class SistemaDeLivraria {
         System.out.println(clienteService.buscarCliente(4, "cliente@email.com"));
         System.out.println(funcionarioService.buscarFuncionario(3, "Nomanomano"));
 
+         //testando atualizar livros
+         
     }
 }

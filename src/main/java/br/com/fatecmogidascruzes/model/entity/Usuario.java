@@ -1,10 +1,8 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 import lombok.Getter;
 import lombok.Setter;
-
 
 @Getter
 @Setter
@@ -40,9 +38,6 @@ public class Usuario {
         if (email == null || email.isEmpty()) {
             throw new IllegalArgumentException("Email não pode ser vazio.");
         } 
-        if (!validatorUsuario.validarEmail(usuario, email))
-            throw new IllegalArgumentException("Email já cadastrado no sistema.");
-        
        this.email = email;
     }
 
