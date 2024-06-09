@@ -24,8 +24,8 @@ public class ClienteRepository {
         return -1; 
     }
    
-    public void atualizarCliente(Cliente cliente) {
-        int index = findIndexPorId(cliente.getId());
+    public void atualizarCliente(long id, Cliente cliente) {
+        int index = findIndexPorId(id);
         if (index != -1) {
             clientes.set(index, cliente);
         }

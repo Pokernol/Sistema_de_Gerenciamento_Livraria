@@ -36,9 +36,9 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     }
     
     @Override
-    public void atualizarFuncionario(Funcionario funcionario) {
+    public void atualizarFuncionario(long id, Funcionario funcionario) {
         try { 
-            repository.alterarFuncionario(funcionario);
+            repository.alterarFuncionario(id, funcionario);
             System.out.println("Funcionario " + funcionario.getNome() + " atualizado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

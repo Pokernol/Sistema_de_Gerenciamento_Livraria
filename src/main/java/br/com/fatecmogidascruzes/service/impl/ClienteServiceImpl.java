@@ -37,10 +37,10 @@ public class ClienteServiceImpl implements ClienteService {
     
 
     @Override
-    public void atualizarCliente(Cliente cliente) {
+    public void atualizarCliente(long id, Cliente cliente) {
         try { 
             
-            repository.atualizarCliente(cliente);
+            repository.atualizarCliente(id, cliente);
             System.out.println("Funcionario " + cliente.getNome() + " atualizado com sucesso!");
 
         } catch (IllegalArgumentException e) {

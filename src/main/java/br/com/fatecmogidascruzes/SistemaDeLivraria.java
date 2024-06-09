@@ -96,7 +96,7 @@ public class SistemaDeLivraria {
 
         System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
         System.out.println(funcionarioRepository.findById(1));
-        funcionarioService.atualizarFuncionario(new Funcionario(1, "ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.atualizarFuncionario(1,new Funcionario(1, "ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
         System.out.println(funcionarioRepository.findById(1));
 
         clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
@@ -104,7 +104,7 @@ public class SistemaDeLivraria {
 
         System.out.println("\n---- ATUALIZAR CLIENTE ---" );
         System.out.println(clienteRepository.findById(1));
-        clienteRepository.atualizarCliente(new Cliente(1, "Romulo da silva", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteRepository.atualizarCliente(1,new Cliente(1, "Romulo da silva", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findById(1));
 
 
@@ -153,7 +153,13 @@ public class SistemaDeLivraria {
 
         categoriaService.adicionarCategoria(new Categoria(1,"Romance" , "Livros de Romance e Fanfics."));
         System.out.println(categoriaRepository.findAllCategorias());
-        
+
+        System.out.println("\n---- CATEGORIA ALTERAR ---" );
+        categoriaRepository.atualizarCategoria(1,new Categoria(1,"Romance de Época" , "Livros de Romance e Fanfics de época."));
+        System.out.println(categoriaRepository.findAllCategorias());
+        categoriaRepository.atualizarCategoria(1,new Categoria(1,"Romance" , "Livros de Romance e Fanfics de época."));
+
+
         System.out.println("\n---- BUSCAR CATEGORIA PELO NOME ---");
         System.out.println("\nbuscando cateogira romance...");
         System.out.println(categoriaService.buscarCategoriaPorNome("Romance"));

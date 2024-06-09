@@ -28,8 +28,8 @@ public class FuncionarioRepository {
         return -1; 
     }
 
-    public void alterarFuncionario(Funcionario funcionario) {
-        int index = findIndexPorId(funcionario.getId());
+    public void alterarFuncionario(long id, Funcionario funcionario) {
+        int index = findIndexPorId(id);
         if (index != -1) {
             funcionarios.set(index, funcionario);
         }

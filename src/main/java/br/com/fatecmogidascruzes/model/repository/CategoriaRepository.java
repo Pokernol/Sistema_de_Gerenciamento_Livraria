@@ -11,11 +11,31 @@ public class CategoriaRepository {
             categorias.add(categoria);
             System.out.println("Categoria " + categoria.getNome() + " adicionada com sucesso!");
     }
+
     public List<Categoria> findAllCategorias() {
         return categorias;
     }
 
-    public Categoria findById(int id) {
+    public int findIndexPorId(long id) {
+        for (int i = 0; i < categorias.size(); i++) {
+            if (categorias.get(i).getId() == id) {
+                return i;
+            }
+        } 
+        return -1; 
+    }
+
+    public void atualizarCategoria(long id, Categoria categoria) {
+        int index = findIndexPorId(id);
+        if (index != -1) {
+            categorias.set(index, categoria);
+        }
+        else{
+            throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações da categoria, por favor verifique e tente novamente");
+        }
+    }
+
+    public Categoria findById(long id) {
         for (Categoria categoria : categorias) {
             if (categoria.getId() == id) {
                 return categoria;
