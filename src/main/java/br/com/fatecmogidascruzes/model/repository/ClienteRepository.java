@@ -14,15 +14,6 @@ public class ClienteRepository {
     public void adicionarCliente(Cliente cliente) {
         clientes.add(cliente);
     }
-
-    public int findIndexPorId(long id) {
-        for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getId() == id) {
-                return i;
-            }
-        } 
-        return -1; 
-    }
    
     public void atualizarCliente(long id, Cliente cliente) {
         int index = findIndexPorId(id);
@@ -34,19 +25,27 @@ public class ClienteRepository {
         }
     }
 
-    public boolean removerCliente(int id) {
+    public void removerCliente(long id) {
         Cliente cliente = findById(id);
         if (cliente != null) {
-            return clientes.remove(cliente);
-        }
-        return false;
+            clientes.remove(cliente);
+        } else 
+            throw new IllegalArgumentException("Cliente não encontrado.");
     }
 
     public List<Cliente> findAll() {
         return clientes;
     }
 
-    public Cliente findById(int id) {
+    private int findIndexPorId(long id) {
+        return clientes.stream()
+                .filter(cliente -> cliente.getId() == id)
+                .findFirst()
+                .map(clientes::indexOf)
+                .orElse(-1);
+    }
+
+    public Cliente findById(long id) {
         return clientes.stream()
                 .filter(cliente -> cliente.getId() == id)
                 .findFirst().orElse(null);

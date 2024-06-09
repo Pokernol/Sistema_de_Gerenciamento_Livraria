@@ -29,7 +29,7 @@ public class Usuario {
             }
             this.nome = nome;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um nome válido.");
+            System.out.println(e.getMessage() + " Por favor insira um nome válido.");
         }
     }
 
@@ -47,7 +47,7 @@ public class Usuario {
             }
             this.endereco = endereco;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um endereço válido.");
+            System.out.println(e.getMessage() + " Por favor insira um endereço válido.");
         }
     }
 
@@ -61,7 +61,7 @@ public class Usuario {
             }
             this.telefone = telefone;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um telefone válido.");
+            System.out.println(e.getMessage() + " Por favor insira um telefone válido.");
         }
     }
 }

@@ -4,7 +4,6 @@ import br.com.fatecmogidascruzes.validator.LivroValidator;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDate;
 
 @Getter
@@ -52,7 +51,6 @@ public class Livro {
     }
     public void setIsbn10(String isbn10) {
         try {
-
             if (isbn10 != null && !isbn10.isEmpty()) {
                 if (isbn10.length() != 10 || !isbn10.matches("[0-9]{9}[0-9X]")) {
                     throw new IllegalArgumentException("ISBN-10 inválido.");
@@ -70,7 +68,6 @@ public class Livro {
 
     public void setIsbn13(String isbn13) {
         try {
-
             if (isbn13 != null && !isbn13.isEmpty()) {
                 if (isbn13.length() != 13 || !isbn13.matches("[0-9]{13}")) {
                     throw new IllegalArgumentException("ISBN-13 inválido.");

@@ -1,11 +1,8 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -13,20 +10,31 @@ import java.util.List;
 public class Pedido {
     private long id;
     private String emailCliente;
-    private List<Livro> livros;
+    private String tituloLivro;
     private LocalDate dataPedido;
     private int statusPedido = 1;
     private double precoTotal;
     private String enderecoEntrega;
 
-    public Pedido(long id, String emailCliente, List<Livro> livros, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
-        this.id = id;
+    public Pedido(long id, String emailCliente, String tituloLivro, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
+        setId(id);
         setemailCliente(emailCliente);
-        setLivros(livros);
+        setLivros(tituloLivro);
         setDataPedido(dataPedido);
         setStatusPedido(statusPedido);
         setPrecoTotal(precoTotal);
         setEnderecoEntrega(endrecoEntrega);
+    }
+
+    public void setId(long id) {
+        try {
+            if (id < 0) {
+                throw new IllegalArgumentException("ID do pedido não pode ser negativo.");
+            }
+            this.id = id;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um ID válido.");
+        }
     }
 
     public void setemailCliente(String emailCliente) {
@@ -40,12 +48,12 @@ public class Pedido {
         }
     }
 
-    public void setLivros(List<Livro> livros) {
+    public void setLivros(String tituloLivro) {
         try {
-            if ((livros == null) || livros.isEmpty()){
+            if ((tituloLivro == null) || tituloLivro.isEmpty()){
                 throw new IllegalArgumentException("Você precisa de um livro para fazer um pedido.");
             }
-            this.livros = livros;
+            this.tituloLivro = tituloLivro;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " Por favor selecione um livro.");
         }
