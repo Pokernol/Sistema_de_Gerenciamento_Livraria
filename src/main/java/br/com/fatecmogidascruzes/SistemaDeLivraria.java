@@ -94,6 +94,7 @@ public class SistemaDeLivraria {
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
 
         clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente(2, "Caio", "dwieifds", "antony@email.com", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
 
         System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
@@ -103,6 +104,12 @@ public class SistemaDeLivraria {
 
         clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
+
+        System.out.println("\n---- ATUALIZAR CLIENTE ---" );
+        System.out.println(clienteRepository.findById(1));
+        clienteRepository.atualizarCliente(new Cliente(1, "Romulo da silva", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        System.out.println(clienteRepository.findById(1));
+
 
         // Testando a busca de funcionario
         System.out.println("\n---- BUSCAR FUNCIONARIOS ---" );
@@ -119,7 +126,9 @@ public class SistemaDeLivraria {
         System.out.println(funcionarioService.buscarFuncionario(3, "Romulandia"));
         System.out.println(clienteService.buscarCliente(5, "moedinhas de 1 centavo"));
         System.out.println(clienteService.buscarCliente(6, data));
-
+        
+        
+        System.out.println("\n---- EXCLUIR FUNCIONARIO ---" );
         //testando excluir funcionario
         System.out.println("Tentando excluir a funcionaria Ana com ID 1");
         funcionarioService.excluirFuncionario(1);
@@ -129,6 +138,7 @@ public class SistemaDeLivraria {
 
         System.out.println(funcionarioRepository.findAll());
 
+        System.out.println("\n---- EXCLUIR CLIENTE ---" );
         //testando excluir cliente
         System.out.println("Tentando excluir o cliente Romulo com ID 1");
         clienteService.excluirCliente(1);
@@ -154,15 +164,13 @@ public class SistemaDeLivraria {
         System.out.println("\n\nbuscando cateogira ficcao (inexistente)...");
         System.out.println(categoriaService.buscarCategoriaPorNome("Ficção"));
         
-        System.out.println("\n---- CATEGORIA DESTRUIR ---" );
-        System.out.println("\n tentando excluir categoria com ID 1");
+        System.out.println("\n---- CATEGORIA EXCLUIR ---" );
         categoriaService.excluirCategoria(1);
         System.out.println(categoriaRepository.findAllCategorias());
         
         System.out.println("\n tentando excluir categoria com ID 2 (inexistente)");
         categoriaService.excluirCategoria(2);
-
-         //testando atualizar livros
-         
+        
+        
     }
 }
