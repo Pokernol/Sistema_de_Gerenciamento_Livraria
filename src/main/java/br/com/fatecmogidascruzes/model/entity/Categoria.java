@@ -6,14 +6,24 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Categoria {
-    private int id;
+    private long id;
     private String nome;
     private String descricao;
 
-    public Categoria(int id, String nome, String descricao) {
-        setId(id);
+    public Categoria(String nome, String descricao) {
         setNome(nome);
         setDescricao(descricao);
+    }
+
+    public void setId(long id) {
+        try {
+            if (id < 0) {
+                throw new IllegalArgumentException("ID não pode ser negativo.");
+            }
+            this.id = id;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um ID válido.");
+        }
     }
 
     public void setNome(String nome) {

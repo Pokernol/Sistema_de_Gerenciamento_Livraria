@@ -10,14 +10,17 @@ import java.util.stream.Collectors;
 public class FuncionarioRepository {
 
     private final List<Funcionario> funcionarios = new ArrayList<>();
+    private long ultimoId = 0;
 
     public void adicionarFuncionario(Funcionario funcionario) {
-            funcionarios.add(funcionario);
+        funcionario.setId(++ultimoId);
+        funcionarios.add(funcionario);
     }
 
     public void alterarFuncionario(long id, Funcionario funcionario) {
         int index = findIndexPorId(id);
         if (index != -1) {
+            funcionario.setId(id);
             funcionarios.set(index, funcionario);
         }
         else{

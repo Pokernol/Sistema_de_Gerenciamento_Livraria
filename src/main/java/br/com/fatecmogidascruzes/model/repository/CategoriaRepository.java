@@ -6,14 +6,17 @@ import java.util.List;
 
 public class CategoriaRepository {
     private final List<Categoria> categorias = new ArrayList<>();
+    private long ultimoId = 0;
 
     public void adicionarCategoria(Categoria categoria) {
-            categorias.add(categoria);
+        categoria.setId(++ultimoId);
+        categorias.add(categoria);
     }
 
     public void atualizarCategoria(long id, Categoria categoria) {
         int index = findIndexPorId(id);
         if (index != -1) {
+            categoria.setId(id);
             categorias.set(index, categoria);
         } else
             throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações da categoria. Por favor, informe um ID Valido e tente novamente.");

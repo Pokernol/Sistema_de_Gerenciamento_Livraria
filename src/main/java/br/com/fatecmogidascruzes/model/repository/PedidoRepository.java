@@ -8,8 +8,10 @@ import java.util.stream.Collectors;
 
 public class PedidoRepository {
     private final List<Pedido> pedidos = new ArrayList<>();
+    private long ultimoId = 0;
 
     public void adicionarPedido(Pedido pedido){
+            pedido.setId(++ultimoId);
             pedidos.add(pedido);
     }
     

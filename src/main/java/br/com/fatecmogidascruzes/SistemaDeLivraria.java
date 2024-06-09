@@ -1,7 +1,6 @@
 package br.com.fatecmogidascruzes;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fatecmogidascruzes.model.entity.*;
@@ -42,34 +41,34 @@ public class SistemaDeLivraria {
 
         //Testando adicionar livros
         System.out.println("\n---- ADICIONAR LIVROS ---");
-        livroService.adicionarLivro(new Livro(1, "0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
-        livroService.adicionarLivro(new Livro(2, "0306406152", "", "O Alquimista", "Portugues", "Paulo Coelho", 10, "HarperCollins", 200, dataDePublicacao1, 150.00, "Romance"));
-        livroService.adicionarLivro(new Livro(3, "0060930314", "", "1984", "Ingles", "George Orwell", 5, "Secker & Warburg", 300, dataDePublicacao2, 200.00, "Ficção Científica"));
-        livroService.adicionarLivro(new Livro(11, "0451524934", "", "Dom Quixote", "Espanhol", "Miguel de Cervantes", 7, "Francisco de Robles", 1000, dataDePublicacao3, 250.00, "Romance"));
+        livroService.adicionarLivro(new Livro("0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
+        livroService.adicionarLivro(new Livro("0306406152", "", "O Alquimista", "Portugues", "Paulo Coelho", 10, "HarperCollins", 200, dataDePublicacao1, 150.00, "Romance"));
+        livroService.adicionarLivro(new Livro("0060930314", "", "1984", "Ingles", "George Orwell", 5, "Secker & Warburg", 300, dataDePublicacao2, 200.00, "Ficção Científica"));
+        livroService.adicionarLivro(new Livro("0451524934", "", "Dom Quixote", "Espanhol", "Miguel de Cervantes", 7, "Francisco de Robles", 1000, dataDePublicacao3, 250.00, "Romance"));
 
         // Testando adicionar funcionarios
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
-        funcionarioService.adicionarFuncionario(new Funcionario(1, "Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
-        funcionarioService.adicionarFuncionario(new Funcionario(2, "Antony", "Endereço do Antony", "ana@email.com","12934567890", "Cargo do Antony", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("Antony", "Endereço do Antony", "ana@email.com","12934567890", "Cargo do Antony", LocalDate.now()));
         System.out.println(funcionarioRepository.findAll());
 
         // Testando adicionar clientes
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
-        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
-        clienteService.adicionarCliente(new Cliente(2, "Caio", "dwieifds", "antony@email.com", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("Caio", "dwieifds", "antony@email.com", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
 
         // Testando adicionar categorias
         System.out.println("\n---- ADICIONAR CATEGORIA ---" );
-        categoriaService.adicionarCategoria(new Categoria(1,"Romance" , "Livros de Romance e Fanfics."));
+        categoriaService.adicionarCategoria(new Categoria("Romance" , "Livros de Romance e Fanfics."));
         System.out.println(categoriaRepository.findAllCategorias());
 
         //teste de adicionar de pedido
         System.out.println("\n---- ADICIONAR PEDIDO ---" );
         List<Livro> livrosComprados = livroRepository.findByTitulo("1984");
         livrosComprados.addAll(livroRepository.findByTitulo("Dom Quixote"));
-        pedidoService.adicionarPedido(new Pedido(1, "leo123@gmail.com", "A culpa é das Estrelas", LocalDate.now(), 1, 50.0, "fatec"));
-        pedidoService.adicionarPedido(new Pedido(2, "leo123@gmail.com", "Harry Potter", LocalDate.now(), 1, 50.0, "fatec"));
+        pedidoService.adicionarPedido(new Pedido("leo123@gmail.com", "A culpa é das Estrelas", LocalDate.now(), 1, 50.0, "fatec"));
+        pedidoService.adicionarPedido(new Pedido("leo123@gmail.com", "Harry Potter", LocalDate.now(), 1, 50.0, "fatec"));
         System.out.println(pedidoRepository.findAll());
 
         /******************************************/
@@ -81,29 +80,29 @@ public class SistemaDeLivraria {
         System.out.println("\n---- ATUALIZANDO LIVROS ---" );
         System.out.println(livroRepository.findById(1));
         //testando atualizar livro erro
-        livroService.atualizarLivro(1, new Livro(1, "0123456789", "", "Biblia", "Portugues", "profeta", -1, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
+        livroService.atualizarLivro(1, new Livro("0123456789", "", "Biblia", "Portugues", "profeta", -1, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
         System.out.println(livroRepository.findById(1));
         System.out.println(livroRepository.findAllWhereExistEstoque());
         //testando atualizar livro correto
-        livroService.atualizarLivro(1, new Livro(1, "0123456789", "", "Biblia", "Portugues", "profeta", 0, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
+        livroService.atualizarLivro(1, new Livro("0123456789", "", "Biblia", "Portugues", "profeta", 0, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
 
         System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
         System.out.println(funcionarioRepository.findById(1));
-        funcionarioService.atualizarFuncionario(1,new Funcionario(1, "ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.atualizarFuncionario(1,new Funcionario("ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
         System.out.println(funcionarioRepository.findById(1));
 
-        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
 
         System.out.println("\n---- ATUALIZAR CLIENTE ---" );
         System.out.println(clienteRepository.findById(1));
-        clienteService.atualizarCliente(1,new Cliente(1, "Romulo da silva", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.atualizarCliente(1,new Cliente("Romulo da silva", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findById(1));
 
         System.out.println("\n---- ATUALIZAR CATEGORIA ---" );
-        categoriaService.atualizarCategoria(1,new Categoria(1,"Romance de Época" , "Livros de Romance e Fanfics de época."));
+        categoriaService.atualizarCategoria(1,new Categoria("Romance de Época" , "Livros de Romance e Fanfics de época."));
         System.out.println(categoriaRepository.findAllCategorias());
-        categoriaService.atualizarCategoria(1,new Categoria(1,"Romance" , "Livros de Romance e Fanfics de época."));
+        categoriaService.atualizarCategoria(1,new Categoria("Romance" , "Livros de Romance e Fanfics de época."));
         System.out.println(categoriaRepository.findAllCategorias());
 
         // Testando a atualização de pedido
@@ -162,7 +161,7 @@ public class SistemaDeLivraria {
         //testando excluir livros
         System.out.println("\n---- EXCLUIR LIVROS ---" );
         LocalDate dataDePublicacao4 = LocalDate.of(2023, 8, 15);
-        livroService.adicionarLivro(new Livro(5, "6584956245", "9786584956247", "O Pequeno Principe", "Portugues", "Antoine de Saint-Exupery", 5, "Editora Garnier", 96, dataDePublicacao4, 19.90, "Acao e Aventura"));
+        livroService.adicionarLivro(new Livro("6584956245", "9786584956247", "O Pequeno Principe", "Portugues", "Antoine de Saint-Exupery", 5, "Editora Garnier", 96, dataDePublicacao4, 19.90, "Acao e Aventura"));
         System.out.println("Tentando excluir livro com ID 1:");
         livroService.excluirLivroPorId(1);
         System.out.println("Tentando excluir livro com ISBN-10 0306406152:");

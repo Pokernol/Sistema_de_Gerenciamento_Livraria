@@ -10,14 +10,17 @@ import java.util.stream.Collectors;
 public class ClienteRepository {
 
     private final List<Cliente> clientes = new ArrayList<>();
+    private long ultimoId = 0;
 
     public void adicionarCliente(Cliente cliente) {
+        cliente.setId(++ultimoId);
         clientes.add(cliente);
     }
    
     public void atualizarCliente(long id, Cliente cliente) {
         int index = findIndexPorId(id);
         if (index != -1) {
+            cliente.setId(id);
             clientes.set(index, cliente);
         }
         else{

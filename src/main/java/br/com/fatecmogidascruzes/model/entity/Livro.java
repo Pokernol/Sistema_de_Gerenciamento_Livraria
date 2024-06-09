@@ -2,9 +2,9 @@ package br.com.fatecmogidascruzes.model.entity;
 
 import br.com.fatecmogidascruzes.validator.LivroValidator;
 
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -23,8 +23,7 @@ public class Livro {
     private double preco;
     private String categoria;
 
-    public Livro(long id, String isbn10, String isbn13, String titulo, String idioma, String autor, int estoque, String editora, int numeroDePaginas, LocalDate dataDePublicacao, double preco, String categoria) { 
-        setId(id);
+    public Livro(String isbn10, String isbn13, String titulo, String idioma, String autor, int estoque, String editora, int numeroDePaginas, LocalDate dataDePublicacao, double preco, String categoria) { 
         setIsbn10(isbn10);
         setIsbn13(isbn13);
         setTitulo(titulo);
@@ -36,7 +35,6 @@ public class Livro {
         setDataDePublicacao(dataDePublicacao);
         setPreco(preco);
         setCategoria(categoria);
-
     }
 
     public void setId(long id) {
@@ -49,6 +47,7 @@ public class Livro {
             System.out.println(e.getMessage() + " Por favor insira um ID válido.");
         }
     }
+
     public void setIsbn10(String isbn10) {
         try {
             if (isbn10 != null && !isbn10.isEmpty()) {
