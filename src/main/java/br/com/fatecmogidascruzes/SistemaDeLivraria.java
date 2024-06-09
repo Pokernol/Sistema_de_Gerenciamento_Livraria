@@ -10,6 +10,7 @@ import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.FuncionarioServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.CategoriaServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
+import br.com.fatecmogidascruzes.service.impl.PedidoServiceImpl;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 
 public class SistemaDeLivraria {
@@ -25,6 +26,7 @@ public class SistemaDeLivraria {
         LivroServiceImpl service = new LivroServiceImpl(livroRepository);
         ClienteServiceImpl clienteService = new ClienteServiceImpl(clienteRepository, usuarioValidator);
         FuncionarioServiceImpl funcionarioService = new FuncionarioServiceImpl(funcionarioRepository, usuarioValidator);
+        PedidoServiceImpl pedidoService = new PedidoServiceImpl(pedidoRepository);
 
 
         //Criação de livros
@@ -177,10 +179,13 @@ public class SistemaDeLivraria {
         //teste de cadastro de pedido
         List<Livro> livrosComprados = livroRepository.findByTitulo("1984");
         livrosComprados.addAll(livroRepository.findByTitulo("Dom Quixote"));
-        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
-        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
+        pedidoRepository.adicionarPedido(new Pedido(1, "leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
+        pedidoRepository.adicionarPedido(new Pedido(2, "leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
         System.out.println(pedidoRepository.findAll());
 
+        System.out.println("\n---- EXCLUIR PEDIDO ---" );
+        pedidoService.excluirPedido(3);
+        System.out.println(pedidoRepository.findAll());
 
     }
 }

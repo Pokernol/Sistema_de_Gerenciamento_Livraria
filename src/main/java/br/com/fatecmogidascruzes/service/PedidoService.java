@@ -8,5 +8,6 @@ import java.util.List;
 public interface PedidoService {
 
     void adicionarPedido(Pedido pedido);
+    void excluirPedido(long id);
 
 }

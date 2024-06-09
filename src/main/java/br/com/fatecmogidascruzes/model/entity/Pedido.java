@@ -19,7 +19,8 @@ public class Pedido {
     private double precoTotal;
     private String enderecoEntrega;
 
-    public Pedido(String emailCliente, List<Livro> livros, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
+    public Pedido(long id, String emailCliente, List<Livro> livros, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
+        this.id = id;
         setemailCliente(emailCliente);
         setLivros(livros);
         setDataPedido(dataPedido);
@@ -35,7 +36,7 @@ public class Pedido {
             }
             this.emailCliente = emailCliente;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um email válido.");
+            System.out.println(e.getMessage() + " Por favor insira um email válido.");
         }
     }
 
@@ -46,7 +47,7 @@ public class Pedido {
             }
             this.livros = livros;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor selecione um livro.");
+            System.out.println(e.getMessage() + " Por favor selecione um livro.");
         }
     }
 
@@ -57,7 +58,7 @@ public class Pedido {
             }
             this.dataPedido = dataPedido;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira a data correta.");
+            System.out.println(e.getMessage() + " Por favor insira a data correta.");
         }
     }
 
@@ -68,7 +69,7 @@ public class Pedido {
             }
             this.statusPedido = statusPedido;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um status válido.");
+            System.out.println(e.getMessage() + " Por favor insira um status válido.");
         }
     }
 
@@ -79,7 +80,7 @@ public class Pedido {
             }
             this.precoTotal = precoTotal;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um preço válido.");
+            System.out.println(e.getMessage() + " Por favor insira um preço válido.");
         }
     }
 
@@ -90,7 +91,7 @@ public class Pedido {
             }
             this.enderecoEntrega = enderecoEntrega;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um endereço válido.");
+            System.out.println(e.getMessage() + " Por favor insira um endereço válido.");
         }
     }
 
@@ -105,10 +106,5 @@ public class Pedido {
                 "\n  endereço entrega = " + enderecoEntrega+
                 "\n }\n";
     }
-
-
-
-
-
 
 }
