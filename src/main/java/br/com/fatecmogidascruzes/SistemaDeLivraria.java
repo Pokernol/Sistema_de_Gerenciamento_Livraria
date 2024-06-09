@@ -1,15 +1,11 @@
 package br.com.fatecmogidascruzes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.fatecmogidascruzes.model.entity.Cliente;
-import br.com.fatecmogidascruzes.model.entity.Funcionario;
-import br.com.fatecmogidascruzes.model.entity.Livro;
-import br.com.fatecmogidascruzes.model.entity.Categoria;
-import br.com.fatecmogidascruzes.model.repository.CategoriaRepository;
-import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
-import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
-import br.com.fatecmogidascruzes.model.repository.LivroRepository;
+import br.com.fatecmogidascruzes.model.entity.*;
+import br.com.fatecmogidascruzes.model.repository.*;
 import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.FuncionarioServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.CategoriaServiceImpl;
@@ -22,6 +18,7 @@ public class SistemaDeLivraria {
         LivroRepository livroRepository = new LivroRepository();
         FuncionarioRepository funcionarioRepository = new FuncionarioRepository();
         ClienteRepository clienteRepository = new ClienteRepository();
+        PedidoRepository pedidoRepository = new PedidoRepository();
 
         UsuarioValidator usuarioValidator = new UsuarioValidator(clienteRepository, funcionarioRepository);
 
@@ -48,7 +45,7 @@ public class SistemaDeLivraria {
         System.out.println(livroRepository.findById(1));
 
         //atualizando livro erro
-        service.atualizarLivro(new Livro(1, "0123456789", "", "Biblia", "Portugues", "profeta", -1, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
+        service.atualizarLivro(new Livro(1, "0123456789", "", "Biblia", "Portugues", "profeta", 1, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
         System.out.println(livroRepository.findById(1));
         System.out.println(livroRepository.findAllWhereExistEstoque());
 
@@ -153,6 +150,17 @@ public class SistemaDeLivraria {
         
         System.out.println("\n tentando excluir categoria com ID 2 (inexistente)");
         categoriaService.excluirCategoria(2);
+
+        //teste de cadastro de pedido
+        List<Livro> livrosComprados = livroRepository.findByTitulo("1984");
+        livrosComprados.addAll(livroRepository.findByTitulo("Dom Quixote"));
+        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
+        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
+        System.out.println(pedidoRepository.findAll());
+
+
+
+
 
     }
 }

@@ -1,17 +1,15 @@
 package br.com.fatecmogidascruzes.model.entity;
 
 import br.com.fatecmogidascruzes.validator.LivroValidator;
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor 
+
 public class Livro {
     private long id;
     private String isbn10;
@@ -26,7 +24,8 @@ public class Livro {
     private double preco;
     private String categoria;
 
-    public Livro(String isbn10, String isbn13, String titulo, String idioma, String autor, int estoque, String editora, int numeroDePaginas, LocalDate dataDePublicacao, double preco, String categoria) {
+    public Livro(long id,String isbn10, String isbn13, String titulo, String idioma, String autor, int estoque, String editora, int numeroDePaginas, LocalDate dataDePublicacao, double preco, String categoria) {
+        setId(id);
         setIsbn10(isbn10);
         setIsbn13(isbn13);
         setTitulo(titulo);
@@ -38,19 +37,17 @@ public class Livro {
         setDataDePublicacao(dataDePublicacao);
         setPreco(preco);
         setCategoria(categoria);
+
     }
 
     public void setIsbn10(String isbn10) {
         try {
-            if (isbn10 == null || isbn10.isEmpty()) {
-                throw new IllegalArgumentException("ISBN-10 não pode ser vazio.");
-            }
-            if (isbn10.length() != 10 || !isbn10.matches("[0-9]{9}[0-9X]")) {
-                throw new IllegalArgumentException("ISBN-10 inválido.");
-            }
-            if (!LivroValidator.validarIsbn10(isbn10)){
-                throw new IllegalArgumentException("ISBN-10 inválido.");
-            }
+//            if (isbn10.length() != 10 || !isbn10.matches("[0-9]{9}[0-9X]")) {
+//                throw new IllegalArgumentException("ISBN-10 inválido.");
+//            }
+//            if (!LivroValidator.validarIsbn10(isbn10)){
+//                throw new IllegalArgumentException("ISBN-10 inválido.");
+//            }
             this.isbn10 = isbn10;
         } catch (IllegalArgumentException e) {
             System.out.println( e + " Por favor insira um ISBN-10 válido.");
@@ -59,15 +56,12 @@ public class Livro {
 
     public void setIsbn13(String isbn13) {
         try {
-            if (isbn13 == null || isbn13.isEmpty()) {
-                throw new IllegalArgumentException("ISBN-13 não pode ser vazio.");
-            }
-            if (isbn13.length() != 13 || !isbn13.matches("[0-9]{13}")) {
-                throw new IllegalArgumentException("ISBN-13 inválido.");
-            }
-            if (!LivroValidator.validarIsbn13(isbn13)){
-                throw new IllegalArgumentException("ISBN-13 inválido.");
-            }
+//            if (isbn13.length() != 13 || !isbn13.matches("[0-9]{13}")) {
+//                throw new IllegalArgumentException("ISBN-13 inválido.");
+//            }
+//            if (!LivroValidator.validarIsbn13(isbn13)){
+//                throw new IllegalArgumentException("ISBN-13 inválido.");
+//            }
             this.isbn13 = isbn13;
         } catch (IllegalArgumentException e) {
             System.out.println(e + " Por favor insira um ISBN-13 válido.");
