@@ -85,29 +85,23 @@ public class SistemaDeLivraria {
 
         // Testando a criação de Funcionario
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
-<<<<<<< HEAD
-        funcionarioService.adicionarFuncionario(new Funcionario(1, "Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now(), usuarioValidator));
-        funcionarioService.adicionarFuncionario(new Funcionario(2, "Antony", "Endereço do Antony", "ana@email.com","12934567890", "Cargo do Antony", LocalDate.now(), usuarioValidator));
-=======
-        Funcionario ana = new Funcionario(1, "Ana","Endereço da Ana", "ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now());
+        funcionarioService.adicionarFuncionario(new Funcionario(1, "Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario(2, "Antony", "Endereço do Antony", "ana@email.com","12934567890", "Cargo do Antony", LocalDate.now()));
 
-        funcionarioService.adicionarFuncionario(ana);
->>>>>>> d68bdd98c972348d8d1e5d1fbbc3c3c1d9387f84
         System.out.println(funcionarioRepository.findAll());
 
         // Testando a criação de cliente
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
-<<<<<<< HEAD
-        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now(), usuarioValidator));
+
+        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
 
         System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
         System.out.println(funcionarioRepository.findById(1));
-        funcionarioService.atualizarFuncionario(new Funcionario(1, "ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now(), usuarioValidator));
+        funcionarioService.atualizarFuncionario(new Funcionario(1, "ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
         System.out.println(funcionarioRepository.findById(1));
-=======
-        Cliente cliente = new Cliente(1, "Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now());
-        clienteService.adicionarCliente(cliente);
+
+        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
 
         // Testando a busca de funcionario
@@ -125,7 +119,6 @@ public class SistemaDeLivraria {
         System.out.println(funcionarioService.buscarFuncionario(3, "Romulandia"));
         System.out.println(clienteService.buscarCliente(5, "moedinhas de 1 centavo"));
         System.out.println(clienteService.buscarCliente(6, data));
->>>>>>> d68bdd98c972348d8d1e5d1fbbc3c3c1d9387f84
 
         //testando excluir funcionario
         System.out.println("Tentando excluir a funcionaria Ana com ID 1");

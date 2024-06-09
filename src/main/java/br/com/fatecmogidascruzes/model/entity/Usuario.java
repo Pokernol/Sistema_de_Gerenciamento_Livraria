@@ -14,8 +14,7 @@ public class Usuario {
     private String telefone;
     private UsuarioValidator validatorUsuario;
 
-    public Usuario(long id, String nome, String endereco, String email, String telefone, UsuarioValidator validatorUsuario) {
-        this.validatorUsuario = validatorUsuario; 
+    public Usuario(long id, String nome, String endereco, String email, String telefone) {
         setId(id);
         setNome(nome);
         setEmail(this, email);

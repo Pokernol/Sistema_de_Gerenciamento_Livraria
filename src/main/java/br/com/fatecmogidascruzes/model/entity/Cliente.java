@@ -5,18 +5,15 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-import br.com.fatecmogidascruzes.validator.UsuarioValidator;
-
 @Getter
 @Setter
 public class Cliente extends Usuario {
     private String metodoPagamento;
     private LocalDate dataCadastro;
 
-<<<<<<< HEAD
-    public Cliente(int id, String nome, String endereco, String email, String telefone,String metodoPagamento, LocalDate dataCadastro, UsuarioValidator usuarioValidator ) {
+    public Cliente(int id, String nome, String endereco, String email, String telefone,String metodoPagamento, LocalDate dataCadastro) {
         
-        super(id, nome, endereco, email, telefone, usuarioValidator);
+        super(id, nome, endereco, email, telefone);
         setMetodoPagamento(metodoPagamento);
         setDataCadastro(dataCadastro);
     }
@@ -38,13 +35,6 @@ public class Cliente extends Usuario {
                 throw new IllegalArgumentException("Data de cadastro do cliente não pode ser vazio.");
             }
             this.dataCadastro = dataCadastro;
-       
-=======
-    public Cliente(Integer id, String nome, String endereco, String email, String telefone, String metodoPagamento, LocalDate dataCadastro) {
-        super(id, nome, endereco, email, telefone);
-        this.metodoPagamento = metodoPagamento;
-        this.dataCadastro = dataCadastro;
->>>>>>> d68bdd98c972348d8d1e5d1fbbc3c3c1d9387f84
     }
 
     @Override

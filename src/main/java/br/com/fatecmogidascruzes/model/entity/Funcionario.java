@@ -5,17 +5,15 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-import br.com.fatecmogidascruzes.validator.UsuarioValidator;
-
 @Getter
 @Setter
 public class Funcionario extends Usuario {
     private String cargo;
     private LocalDate dataContratacao;
 
-    public Funcionario(long id, String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao, UsuarioValidator usuarioValidator) {
+    public Funcionario(long id, String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao) {
         
-        super(id, nome, endereco, email, telefone, usuarioValidator);
+        super(id, nome, endereco, email, telefone);
         setCargo(cargo);
         setDataContratacao(dataContratacao);
 
