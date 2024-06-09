@@ -13,15 +13,15 @@ import java.util.List;
 public class Pedido {
     private long id;
     private String emailCliente;
-    private List<Livro> livros;
+    private String tituloLivro;
     private LocalDate dataPedido;
     private int statusPedido = 1;
     private double precoTotal;
     private String enderecoEntrega;
 
-    public Pedido(String emailCliente, List<Livro> livros, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
+    public Pedido(String emailCliente, String tituloLivro, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
         setemailCliente(emailCliente);
-        setLivros(livros);
+        setLivros(tituloLivro);
         setDataPedido(dataPedido);
         setStatusPedido(statusPedido);
         setPrecoTotal(precoTotal);
@@ -39,12 +39,12 @@ public class Pedido {
         }
     }
 
-    public void setLivros(List<Livro> livros) {
+    public void setLivros(String tituloLivro) {
         try {
-            if ((livros == null) || livros.isEmpty()){
+            if ((tituloLivro == null) || tituloLivro.isEmpty()){
                 throw new IllegalArgumentException("Você precisa de um livro para fazer um pedido.");
             }
-            this.livros = livros;
+            this.tituloLivro = tituloLivro;
         } catch (IllegalArgumentException e) {
             System.out.println(e + " Por favor selecione um livro.");
         }

@@ -6,10 +6,8 @@ import java.util.List;
 
 import br.com.fatecmogidascruzes.model.entity.*;
 import br.com.fatecmogidascruzes.model.repository.*;
-import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
-import br.com.fatecmogidascruzes.service.impl.FuncionarioServiceImpl;
-import br.com.fatecmogidascruzes.service.impl.CategoriaServiceImpl;
-import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
+import br.com.fatecmogidascruzes.service.PedidoService;
+import br.com.fatecmogidascruzes.service.impl.*;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 
 public class SistemaDeLivraria {
@@ -19,6 +17,7 @@ public class SistemaDeLivraria {
         FuncionarioRepository funcionarioRepository = new FuncionarioRepository();
         ClienteRepository clienteRepository = new ClienteRepository();
         PedidoRepository pedidoRepository = new PedidoRepository();
+        PedidoServiceImpl pedidoService = new PedidoServiceImpl(pedidoRepository);
 
         UsuarioValidator usuarioValidator = new UsuarioValidator(clienteRepository, funcionarioRepository);
 
@@ -154,9 +153,21 @@ public class SistemaDeLivraria {
         //teste de cadastro de pedido
         List<Livro> livrosComprados = livroRepository.findByTitulo("1984");
         livrosComprados.addAll(livroRepository.findByTitulo("Dom Quixote"));
-        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
-        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", livrosComprados, LocalDate.now(), 1, 50.0, "fatec"));
+        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", "A culpa é das Estrelas", LocalDate.now(), 1, 50.0, "fatec"));
+        pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", "Harry Potter", LocalDate.now(), 1, 50.0, "fatec"));
         System.out.println(pedidoRepository.findAll());
+
+
+
+        // teste para pesquisas por categoria
+
+        System.out.println(pedidoService.pesquisarEmailCliente("leo123@gmail.com"));
+        System.out.println(pedidoService.pesquisarTituloLivro("Harry Potter"));
+        System.out.println(pedidoService.pesquisarID(1));
+        System.out.println(pedidoService.pesquisarPorStatus(1));
+
+
+
 
 
 
