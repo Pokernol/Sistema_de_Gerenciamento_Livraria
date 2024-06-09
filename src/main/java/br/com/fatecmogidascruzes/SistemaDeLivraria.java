@@ -81,16 +81,31 @@ public class SistemaDeLivraria {
 
         // Testando a criação de Funcionario
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
-        Funcionario ana = new Funcionario(1, "Ana","Endereço da Ana", "ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now());
+        funcionarioService.adicionarFuncionario(new Funcionario(1, "Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario(2, "Antony", "Endereço do Antony", "ana@email.com","12934567890", "Cargo do Antony", LocalDate.now()));
 
-        funcionarioService.adicionarFuncionario(ana);
         System.out.println(funcionarioRepository.findAll());
 
         // Testando a criação de cliente
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
-        Cliente cliente = new Cliente(1, "Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now());
-        clienteService.adicionarCliente(cliente);
+
+        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente(2, "Caio", "dwieifds", "antony@email.com", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
+
+        System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
+        System.out.println(funcionarioRepository.findById(1));
+        funcionarioService.atualizarFuncionario(1,new Funcionario(1, "ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
+        System.out.println(funcionarioRepository.findById(1));
+
+        clienteService.adicionarCliente(new Cliente(1, "Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        System.out.println(clienteRepository.findAll());
+
+        System.out.println("\n---- ATUALIZAR CLIENTE ---" );
+        System.out.println(clienteRepository.findById(1));
+        clienteRepository.atualizarCliente(1,new Cliente(1, "Romulo da silva", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        System.out.println(clienteRepository.findById(1));
+
 
         // Testando a busca de funcionario
         System.out.println("\n---- BUSCAR FUNCIONARIOS ---" );
@@ -107,7 +122,9 @@ public class SistemaDeLivraria {
         System.out.println(funcionarioService.buscarFuncionario(3, "Romulandia"));
         System.out.println(clienteService.buscarCliente(5, "moedinhas de 1 centavo"));
         System.out.println(clienteService.buscarCliente(6, data));
-
+        
+        
+        System.out.println("\n---- EXCLUIR FUNCIONARIO ---" );
         //testando excluir funcionario
         System.out.println("Tentando excluir a funcionaria Ana com ID 1");
         funcionarioService.excluirFuncionario(1);
@@ -117,6 +134,7 @@ public class SistemaDeLivraria {
 
         System.out.println(funcionarioRepository.findAll());
 
+        System.out.println("\n---- EXCLUIR CLIENTE ---" );
         //testando excluir cliente
         System.out.println("Tentando excluir o cliente Romulo com ID 1");
         clienteService.excluirCliente(1);
@@ -134,7 +152,13 @@ public class SistemaDeLivraria {
 
         categoriaService.adicionarCategoria(new Categoria(1,"Romance" , "Livros de Romance e Fanfics."));
         System.out.println(categoriaRepository.findAllCategorias());
-        
+
+        System.out.println("\n---- CATEGORIA ALTERAR ---" );
+        categoriaRepository.atualizarCategoria(1,new Categoria(1,"Romance de Época" , "Livros de Romance e Fanfics de época."));
+        System.out.println(categoriaRepository.findAllCategorias());
+        categoriaRepository.atualizarCategoria(1,new Categoria(1,"Romance" , "Livros de Romance e Fanfics de época."));
+
+
         System.out.println("\n---- BUSCAR CATEGORIA PELO NOME ---");
         System.out.println("\nbuscando cateogira romance...");
         System.out.println(categoriaService.buscarCategoriaPorNome("Romance"));
@@ -142,8 +166,7 @@ public class SistemaDeLivraria {
         System.out.println("\n\nbuscando cateogira ficcao (inexistente)...");
         System.out.println(categoriaService.buscarCategoriaPorNome("Ficção"));
         
-        System.out.println("\n---- CATEGORIA DESTRUIR ---" );
-        System.out.println("\n tentando excluir categoria com ID 1");
+        System.out.println("\n---- CATEGORIA EXCLUIR ---" );
         categoriaService.excluirCategoria(1);
         System.out.println(categoriaRepository.findAllCategorias());
         
@@ -156,22 +179,13 @@ public class SistemaDeLivraria {
         pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", "A culpa é das Estrelas", LocalDate.now(), 1, 50.0, "fatec"));
         pedidoRepository.adicionarPedido(new Pedido("leo123@gmail.com", "Harry Potter", LocalDate.now(), 1, 50.0, "fatec"));
         System.out.println(pedidoRepository.findAll());
-
-
-
+        
         // teste para pesquisas por categoria
 
         System.out.println(pedidoService.pesquisarEmailCliente("leo123@gmail.com"));
         System.out.println(pedidoService.pesquisarTituloLivro("Harry Potter"));
         System.out.println(pedidoService.pesquisarID(1));
         System.out.println(pedidoService.pesquisarPorStatus(1));
-
-
-
-
-
-
-
 
     }
 }

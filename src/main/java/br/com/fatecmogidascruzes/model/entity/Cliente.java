@@ -11,10 +11,30 @@ public class Cliente extends Usuario {
     private String metodoPagamento;
     private LocalDate dataCadastro;
 
-    public Cliente(Integer id, String nome, String endereco, String email, String telefone, String metodoPagamento, LocalDate dataCadastro) {
+    public Cliente(int id, String nome, String endereco, String email, String telefone,String metodoPagamento, LocalDate dataCadastro) {
+        
         super(id, nome, endereco, email, telefone);
-        this.metodoPagamento = metodoPagamento;
-        this.dataCadastro = dataCadastro;
+        setMetodoPagamento(metodoPagamento);
+        setDataCadastro(dataCadastro);
+    }
+
+    public void setMetodoPagamento(String metodoPagamento) {
+        try {
+            if (metodoPagamento == null || metodoPagamento.isEmpty()) {
+                throw new IllegalArgumentException("Metodo de pagamento do cliente não pode ser vazio.");
+            }
+            this.metodoPagamento = metodoPagamento;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + " Por favor insira um metodo de pagamento válido.");
+        }
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+
+            if (dataCadastro == null) {
+                throw new IllegalArgumentException("Data de cadastro do cliente não pode ser vazio.");
+            }
+            this.dataCadastro = dataCadastro;
     }
 
     @Override

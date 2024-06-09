@@ -10,6 +10,34 @@ public class Categoria {
     private String nome;
     private String descricao;
 
+    public Categoria(int id, String nome, String descricao) {
+        setId(id);
+        setNome(nome);
+        setDescricao(descricao);
+    }
+
+    public void setNome(String nome) {
+        try {
+            if (nome == null || nome.isEmpty()) {
+                throw new IllegalArgumentException("Nome da categoria não pode ser vazio.");
+            }
+            this.nome = nome;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + " Por favor insira um nome válido.");
+        }
+    }
+
+    public void setDescricao(String descricao) {
+        try {
+            if (descricao == null || descricao.isEmpty()) {
+                throw new IllegalArgumentException("Descrição da categoria não pode ser vazio.");
+            }
+            this.descricao = descricao;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + " Por favor insira uma descrição válida.");
+        }
+    }
+
     @Override
     public String toString() {
         return "\n Categoria {" +
@@ -17,32 +45,6 @@ public class Categoria {
                 "\n  Nome = " + nome +
                 "\n  Descricao = " + descricao +
                 "\n }\n";
-    }
-
-    public Categoria(int id, String nome, String descricao) {
-        setId(id);
-        setNome(nome);
-        setDescricao(descricao);
-    }
-
-
-    public void setNome(String nome) {
-        if (nome == null || nome.isEmpty()) {
-            throw new IllegalArgumentException("Nome da categoria não pode ser nulo ou vazio");
-        }
-        this.nome = nome;
-    }
-
-    public void setDescricao(String descricao) {
-        if (descricao == null || descricao.isEmpty()) {
-            throw new IllegalArgumentException("Descrição da categoria não pode ser nula ou vazia");
-        }
-        this.descricao = descricao;
-    }
-
-    public boolean isValid() {
-        return this.nome != null && !this.nome.isEmpty() &&
-               this.descricao != null && !this.descricao.isEmpty();
     }
 
 }

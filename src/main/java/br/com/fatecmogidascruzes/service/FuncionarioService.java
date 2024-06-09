@@ -6,6 +6,7 @@ import java.util.List;
 public interface FuncionarioService {
 
     void adicionarFuncionario(Funcionario funcionario);
+    void atualizarFuncionario(long id, Funcionario funcionario);
     List<Funcionario> buscarFuncionario(int opcao, String valorBuscar);
 
     boolean excluirFuncionario(int id);

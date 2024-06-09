@@ -24,7 +24,7 @@ public class Livro {
     private double preco;
     private String categoria;
 
-    public Livro(long id,String isbn10, String isbn13, String titulo, String idioma, String autor, int estoque, String editora, int numeroDePaginas, LocalDate dataDePublicacao, double preco, String categoria) {
+    public Livro(long id, String isbn10, String isbn13, String titulo, String idioma, String autor, int estoque, String editora, int numeroDePaginas, LocalDate dataDePublicacao, double preco, String categoria) { 
         setId(id);
         setIsbn10(isbn10);
         setIsbn13(isbn13);
@@ -40,33 +40,50 @@ public class Livro {
 
     }
 
+    public void setId(long id) {
+        try {
+            if (id < 0) {
+                throw new IllegalArgumentException("ID não pode ser negativo.");
+            }
+            this.id = id;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um ID válido.");
+        }
+    }
     public void setIsbn10(String isbn10) {
         try {
-//            if (isbn10.length() != 10 || !isbn10.matches("[0-9]{9}[0-9X]")) {
-//                throw new IllegalArgumentException("ISBN-10 inválido.");
-//            }
-//            if (!LivroValidator.validarIsbn10(isbn10)){
-//                throw new IllegalArgumentException("ISBN-10 inválido.");
-//            }
+
+            if (isbn10 != null && !isbn10.isEmpty()) {
+                if (isbn10.length() != 10 || !isbn10.matches("[0-9]{9}[0-9X]")) {
+                    throw new IllegalArgumentException("ISBN-10 inválido.");
+                }
+                if (!LivroValidator.validarIsbn10(isbn10)){
+                    throw new IllegalArgumentException("ISBN-10 inválido.");
+                }
+            }
             this.isbn10 = isbn10;
+            
         } catch (IllegalArgumentException e) {
-            System.out.println( e + " Por favor insira um ISBN-10 válido.");
+            System.out.println( e.getMessage() + " Por favor insira um ISBN-10 válido.");
         }
     }
 
     public void setIsbn13(String isbn13) {
         try {
-//            if (isbn13.length() != 13 || !isbn13.matches("[0-9]{13}")) {
-//                throw new IllegalArgumentException("ISBN-13 inválido.");
-//            }
-//            if (!LivroValidator.validarIsbn13(isbn13)){
-//                throw new IllegalArgumentException("ISBN-13 inválido.");
-//            }
-            this.isbn13 = isbn13;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um ISBN-13 válido.");
-        }
 
+            if (isbn13 != null && !isbn13.isEmpty()) {
+                if (isbn13.length() != 13 || !isbn13.matches("[0-9]{13}")) {
+                    throw new IllegalArgumentException("ISBN-13 inválido.");
+                }
+                if (!LivroValidator.validarIsbn13(isbn13)){
+                    throw new IllegalArgumentException("ISBN-13 inválido.");
+                }            
+            } 
+            this.isbn13 = isbn13;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um ISBN-13 válido.");
+        }
     }
 
     public void setTitulo(String titulo) {
@@ -76,7 +93,7 @@ public class Livro {
             }
             this.titulo = titulo;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um título válido.");
+            System.out.println(e.getMessage() + " Por favor insira um título válido.");
         }
     }
 
@@ -87,7 +104,7 @@ public class Livro {
             }
             this.idioma = idioma;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um idioma válido.");
+            System.out.println(e.getMessage() + " Por favor insira um idioma válido.");
         }
     }
 
@@ -98,15 +115,19 @@ public class Livro {
             }
             this.autor = autor;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um autor válido.");
+            System.out.println(e.getMessage() + " Por favor insira um autor válido.");
         }
     }
 
     public void setEstoque(int estoque) {
-        if (estoque < 0) {
-            throw new IllegalArgumentException("Estoque não pode ser negativo.");
+        try {
+            if (estoque < 0) {
+                throw new IllegalArgumentException("Estoque não pode ser negativo.");
+            }
+            this.estoque = estoque;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um estoque válido.");
         }
-        this.estoque = estoque;
     }
 
     public void setEditora(String editora) {
@@ -116,7 +137,7 @@ public class Livro {
             }
             this.editora = editora;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira uma editora válida.");
+            System.out.println(e.getMessage() + " Por favor insira uma editora válida.");
         }
     }
 
@@ -127,7 +148,7 @@ public class Livro {
             }
             this.numeroDePaginas = numeroDePaginas;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um número de páginas válido.");
+            System.out.println(e.getMessage() + " Por favor insira um número de páginas válido.");
         }
     }
 
@@ -138,7 +159,7 @@ public class Livro {
             }
             this.dataDePublicacao = dataDePublicacao;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira uma data de publicação válida.");
+            System.out.println(e.getMessage() + " Por favor insira uma data de publicação válida.");
         }
     }
 
@@ -149,7 +170,7 @@ public class Livro {
             }
             this.preco = preco;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira um preço válido.");
+            System.out.println(e.getMessage() + " Por favor insira um preço válido.");
         }
     }
 
@@ -160,7 +181,7 @@ public class Livro {
             }
             this.categoria = categoria;
         } catch (IllegalArgumentException e) {
-            System.out.println(e + " Por favor insira uma categoria válida.");
+            System.out.println(e.getMessage() + " Por favor insira uma categoria válida.");
         }
     }
 
