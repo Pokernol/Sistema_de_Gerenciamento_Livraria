@@ -27,7 +27,7 @@ public class LivroServiceTest {
     @Test
     public void testAdicionarLivro() {
         LocalDate dataDePublicacao = LocalDate.of(0, 1, 1);
-        Livro livro = new Livro(1, "0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
+        Livro livro = new Livro("0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
 
         service.adicionarLivro(livro);
 
@@ -37,9 +37,9 @@ public class LivroServiceTest {
     @Test
     public void testAtualizarLivro() {
         LocalDate dataDePublicacao = LocalDate.of(0, 1, 1);
-        Livro livro = new Livro(1, "0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
+        Livro livro = new Livro("0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
 
-        livro = new Livro(livro.getId(), livro.getIsbn10(), livro.getIsbn13(), livro.getTitulo(), livro.getIdioma(), "profeta", 0, livro.getEditora(), livro.getNumeroDePaginas(), livro.getDataDePublicacao(), livro.getPreco(), livro.getCategoria());
+        livro = new Livro(livro.getIsbn10(), livro.getIsbn13(), livro.getTitulo(), livro.getIdioma(), "profeta", 0, livro.getEditora(), livro.getNumeroDePaginas(), livro.getDataDePublicacao(), livro.getPreco(), livro.getCategoria());
 
         service.atualizarLivro(livro.getId(), livro);
 
@@ -49,8 +49,8 @@ public class LivroServiceTest {
     @Test
     public void testFindAllWhereExistEstoque() {
         LocalDate dataDePublicacao = LocalDate.of(0, 1, 1);
-        Livro livro = new Livro(1, "0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
-        Livro livro1 = new Livro(2, "0306406152", "", "O Alquimista", "Portugues", "Paulo Coelho", 10, "HarperCollins", 200, LocalDate.of(2020, 7, 20), 150.00, "Romance");
+        Livro livro = new Livro("0123456789", "", "Biblia", "Portugues", "Jesus", 7, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao");
+        Livro livro1 = new Livro("0306406152", "", "O Alquimista", "Portugues", "Paulo Coelho", 10, "HarperCollins", 200, LocalDate.of(2020, 7, 20), 150.00, "Romance");
 
         List<Livro> livros = Arrays.asList(livro, livro1);
 

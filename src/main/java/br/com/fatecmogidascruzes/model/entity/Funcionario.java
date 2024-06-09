@@ -1,9 +1,8 @@
 package br.com.fatecmogidascruzes.model.entity;
 
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -11,8 +10,8 @@ public class Funcionario extends Usuario {
     private String cargo;
     private LocalDate dataContratacao;
 
-    public Funcionario(long id, String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao) {
-        super(id, nome, endereco, email, telefone);
+    public Funcionario(String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao) {
+        super(nome, endereco, email, telefone);
         setCargo(cargo);
         setDataContratacao(dataContratacao);
     }

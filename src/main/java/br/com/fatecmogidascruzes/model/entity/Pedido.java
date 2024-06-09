@@ -1,12 +1,11 @@
 package br.com.fatecmogidascruzes.model.entity;
 
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDate;
 
 @Getter
 @Setter
-
 public class Pedido {
     private long id;
     private String emailCliente;
@@ -16,8 +15,7 @@ public class Pedido {
     private double precoTotal;
     private String enderecoEntrega;
 
-    public Pedido(long id, String emailCliente, String tituloLivro, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
-        setId(id);
+    public Pedido(String emailCliente, String tituloLivro, LocalDate dataPedido, int statusPedido, double precoTotal, String endrecoEntrega){
         setemailCliente(emailCliente);
         setLivros(tituloLivro);
         setDataPedido(dataPedido);

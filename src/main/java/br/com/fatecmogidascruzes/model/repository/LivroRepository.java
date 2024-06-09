@@ -9,14 +9,17 @@ import java.util.stream.Collectors;
 public class LivroRepository {
 	
 	private final List<Livro> livros = new ArrayList<>();
-	
+	private long ultimoId = 0;
+
 	public void adicionarLivro(Livro livro) {
+		livro.setId(++ultimoId);
 		livros.add(livro);
 	}
 
 	public void atualizarLivro(long id, Livro livro) {
 		int index = findIndexPorId(id);
 		if (index != -1) {
+			livro.setId(id);
 			livros.set(index, livro);
 		} else {
 			throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações do livro, por favor verifique as informações e tente novamente");

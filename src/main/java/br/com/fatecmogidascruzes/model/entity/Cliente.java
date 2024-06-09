@@ -1,9 +1,8 @@
 package br.com.fatecmogidascruzes.model.entity;
 
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -11,9 +10,8 @@ public class Cliente extends Usuario {
     private String metodoPagamento;
     private LocalDate dataCadastro;
 
-    public Cliente(int id, String nome, String endereco, String email, String telefone,String metodoPagamento, LocalDate dataCadastro) {
-        
-        super(id, nome, endereco, email, telefone);
+    public Cliente(String nome, String endereco, String email, String telefone,String metodoPagamento, LocalDate dataCadastro) {
+        super(nome, endereco, email, telefone);
         setMetodoPagamento(metodoPagamento);
         setDataCadastro(dataCadastro);
     }

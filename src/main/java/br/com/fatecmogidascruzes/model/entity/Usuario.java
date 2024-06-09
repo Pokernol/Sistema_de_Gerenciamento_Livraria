@@ -14,12 +14,22 @@ public class Usuario {
     private String telefone;
     private UsuarioValidator validatorUsuario;
 
-    public Usuario(long id, String nome, String endereco, String email, String telefone) {
-        setId(id);
+    public Usuario(String nome, String endereco, String email, String telefone) {
         setNome(nome);
         setEmail(this, email);
         setEndereco(endereco);
         setTelefone(telefone);
+    }
+    
+    public void setId(long id) {
+        try {
+            if (id < 0) {
+                throw new IllegalArgumentException("ID não pode ser negativo.");
+            }
+            this.id = id;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " Por favor insira um ID válido.");
+        }
     }
     
     public void setNome(String nome) {
