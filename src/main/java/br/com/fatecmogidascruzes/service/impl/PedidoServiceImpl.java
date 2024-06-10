@@ -18,7 +18,7 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public void adicionarPedido(Pedido pedido) {
-        pedidoRepository.adicionarPedido(pedido);
+        pedidoRepository.save(pedido);
         System.out.println("Pedido efetivado com sucesso!");
     }
 

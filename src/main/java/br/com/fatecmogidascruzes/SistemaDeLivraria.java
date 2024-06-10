@@ -2,7 +2,6 @@ package br.com.fatecmogidascruzes;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import br.com.fatecmogidascruzes.model.entity.*;
 import br.com.fatecmogidascruzes.model.repository.*;
 import br.com.fatecmogidascruzes.service.impl.*;
@@ -48,14 +47,14 @@ public class SistemaDeLivraria {
 
         // Testando adicionar funcionarios
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
-        funcionarioService.adicionarFuncionario(new Funcionario("Ana","Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
-        funcionarioService.adicionarFuncionario(new Funcionario("Antony", "Endereço do Antony", "ana@email.com","12934567890", "Cargo do Antony", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("Ana","Endereço da Ana","ana@email.com", "Senha123", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("Antony", "Endereço do Antony", "ana@email.com", "Senha321", "12934567890", "Cargo do Antony", LocalDate.now()));
         System.out.println(funcionarioRepository.findAll());
 
         // Testando adicionar clientes
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
-        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
-        clienteService.adicionarCliente(new Cliente("Caio", "dwieifds", "antony@email.com", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "antony@email.com", "RolaBotas123", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("Caio", "dwieifds", "antony@email.com", "Palavraonao", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
 
         // Testando adicionar categorias
@@ -88,15 +87,15 @@ public class SistemaDeLivraria {
 
         System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
         System.out.println(funcionarioRepository.findById(1));
-        funcionarioService.atualizarFuncionario(1,new Funcionario("ANA PAULA", "Endereço da Ana","ana@email.com", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.atualizarFuncionario(1,new Funcionario("ANA PAULA", "Endereço da Ana","ana@email.com", "Paulao123", "12934567890", "Cargo da Ana", LocalDate.now()));
         System.out.println(funcionarioRepository.findById(1));
 
-        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "romulo@romail.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "romulo@romail.com", "Eunaoquero", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findAll());
 
         System.out.println("\n---- ATUALIZAR CLIENTE ---" );
         System.out.println(clienteRepository.findById(1));
-        clienteService.atualizarCliente(1,new Cliente("Romulo da silva", "Romulandia", "antony@email.com", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.atualizarCliente(1,new Cliente("Romulo da silva", "Romulandia", "antony@email.com", "Silvaromulo", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(clienteRepository.findById(1));
 
         System.out.println("\n---- ATUALIZAR CATEGORIA ---" );
@@ -197,6 +196,13 @@ public class SistemaDeLivraria {
 
         // Testando a exclusão de pedido
         //System.out.println("\n---- EXCLUIR PEDIDO ---" );
+
+        StringBuilder mensagemConfirmacao = new StringBuilder("Confirme o cadastro:");
+            mensagemConfirmacao.append("\n Deseja confirmar o cadastro?");
+            mensagemConfirmacao.append("1 - Confirmar");
+            mensagemConfirmacao.append("2 - Cancelar");
+            mensagemConfirmacao.append("Escolha uma opção: ");
+            System.out.println(mensagemConfirmacao.toString());
 
     }
 }

@@ -24,7 +24,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     public void adicionarFuncionario(Funcionario funcionario) throws IllegalArgumentException{
         try {
             if(validator.validarEmail(funcionario)){
-                repository.adicionarFuncionario(funcionario);
+                repository.save(funcionario);
                 System.out.println("Funcionario " + funcionario.getNome() + " adicionado com sucesso!");
             } else{ 
                 throw new IllegalArgumentException("Funcionario não pode ser adicionado, email já cadastrado.");

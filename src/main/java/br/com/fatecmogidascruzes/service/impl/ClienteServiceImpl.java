@@ -23,7 +23,7 @@ public class ClienteServiceImpl implements ClienteService {
     public void adicionarCliente(Cliente cliente) {
         try {
             if(validator.validarEmail(cliente)){
-                repository.adicionarCliente(cliente);
+                repository.save(cliente);
                 System.out.println("Funcionario " + cliente.getNome() + " adicionado com sucesso!");
 
             } else{ 

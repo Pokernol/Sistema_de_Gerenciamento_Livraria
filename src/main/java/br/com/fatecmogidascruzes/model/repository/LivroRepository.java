@@ -11,7 +11,7 @@ public class LivroRepository {
 	private final List<Livro> livros = new ArrayList<>();
 	private long ultimoId = 0;
 
-	public void adicionarLivro(Livro livro) {
+	public void save(Livro livro) {
 		livro.setId(++ultimoId);
 		livros.add(livro);
 	}

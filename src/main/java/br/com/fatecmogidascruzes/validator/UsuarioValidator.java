@@ -37,4 +37,47 @@ public class UsuarioValidator {
         }
         return true;
     }
+
+    public boolean validarSenha(Usuario usuario) {
+        if (usuario.getSenha().length() < 8) {
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean validarLogin(String email, String senha, int tipoUsuario) {
+        if(tipoUsuario == 1){    
+            if(clienteRepository.findByEmail(email) != null){
+                Cliente cliente = clienteRepository.findByEmail(email);
+                if(cliente.getSenha().equals(senha)){
+                    System.out.println("Login efetuado com sucesso!");
+                    return true;
+                } else {
+                    System.out.println("Usuario ou senha incorreta.");
+                    return false;
+                }
+            } else {
+                System.out.println("Usuário ou senha incorreta.");
+                return false;
+            }
+        }
+        if(tipoUsuario == 2){
+            if(funcionarioRepository.findByEmail(email) != null){
+                Funcionario funcionario = funcionarioRepository.findByEmail(email);
+                if(funcionario.getSenha().equals(senha)){
+                    System.out.println("Login efetuado com sucesso!");
+                    return true;
+                } else {
+                    System.out.println("Usuario ou senha incorreta.");
+                    return false;
+                }
+            } else {
+                System.out.println("Usuário ou senha incorreta.");
+                return false;
+            }   
+        }
+        return null;
+    }
+    
+
 }

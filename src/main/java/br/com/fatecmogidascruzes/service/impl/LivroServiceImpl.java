@@ -17,7 +17,7 @@ public class LivroServiceImpl implements LivroService {
 
     @Override
     public void adicionarLivro(Livro livro) {
-        repository.adicionarLivro(livro);
+        repository.save(livro);
         System.out.println("Livro cadastrado com sucesso!");
     }
 

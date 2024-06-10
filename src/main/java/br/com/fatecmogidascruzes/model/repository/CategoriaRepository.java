@@ -8,7 +8,7 @@ public class CategoriaRepository {
     private final List<Categoria> categorias = new ArrayList<>();
     private long ultimoId = 0;
 
-    public void adicionarCategoria(Categoria categoria) {
+    public void save(Categoria categoria) {
         categoria.setId(++ultimoId);
         categorias.add(categoria);
     }

@@ -10,8 +10,8 @@ public class Funcionario extends Usuario {
     private String cargo;
     private LocalDate dataContratacao;
 
-    public Funcionario(String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao) {
-        super(nome, endereco, email, telefone);
+    public Funcionario(String email, String senha, String nome, String endereco, String telefone, String cargo, LocalDate dataContratacao) {
+        super(email, nome, senha, endereco, telefone);
         setCargo(cargo);
         setDataContratacao(dataContratacao);
     }

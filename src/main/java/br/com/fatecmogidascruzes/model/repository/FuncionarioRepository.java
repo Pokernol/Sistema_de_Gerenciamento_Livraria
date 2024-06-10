@@ -12,7 +12,7 @@ public class FuncionarioRepository {
     private final List<Funcionario> funcionarios = new ArrayList<>();
     private long ultimoId = 0;
 
-    public void adicionarFuncionario(Funcionario funcionario) {
+    public void save(Funcionario funcionario) {
         funcionario.setId(++ultimoId);
         funcionarios.add(funcionario);
     }

@@ -14,7 +14,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     public void adicionarCategoria(Categoria categoria) {
-        repository.adicionarCategoria(categoria);
+        repository.save(categoria);
         System.out.println("Categoria " + categoria.getNome() + " adicionada com sucesso!");
     }
 

@@ -12,7 +12,7 @@ public class ClienteRepository {
     private final List<Cliente> clientes = new ArrayList<>();
     private long ultimoId = 0;
 
-    public void adicionarCliente(Cliente cliente) {
+    public void save(Cliente cliente) {
         cliente.setId(++ultimoId);
         clientes.add(cliente);
     }
