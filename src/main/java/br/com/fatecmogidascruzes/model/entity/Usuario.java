@@ -1,26 +1,27 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class Usuario {
-    private long id;
-    private String nome;
-    private String endereco;
-    private String email;
-    private String telefone;
-    private UsuarioValidator validatorUsuario;
 
-    public Usuario(String nome, String endereco, String email, String telefone) {
+    private long id;
+    private String email;
+    private String nome;
+    private String senha;
+    private String endereco;
+    private String telefone;
+
+    public Usuario(String email, String nome, String senha, String endereco, String telefone) {
         setNome(nome);
-        setEmail(this, email);
+        setEmail(email);
+        setSenha(senha);
         setEndereco(endereco);
         setTelefone(telefone);
     }
-    
+
     public void setId(long id) {
         try {
             if (id < 0) {
@@ -28,10 +29,10 @@ public class Usuario {
             }
             this.id = id;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + " Por favor insira um ID válido.");
+            System.out.println(e.getMessage() + " Deve ser insirido um ID válido.");
         }
     }
-    
+
     public void setNome(String nome) {
         try {
             if (nome == null || nome.isEmpty()) {
@@ -43,11 +44,18 @@ public class Usuario {
         }
     }
 
-    public void setEmail(Usuario usuario, String email) {
+    public void setEmail(String email) {
         if (email == null || email.isEmpty()) {
             throw new IllegalArgumentException("Email não pode ser vazio.");
         } 
        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        if (senha == null || senha.isEmpty()) {
+            throw new IllegalArgumentException("Senha não pode ser vazia.");
+        }
+        this.senha = senha;
     }
 
     public void setEndereco(String endereco) {

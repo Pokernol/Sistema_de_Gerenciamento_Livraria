@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 
 public class FuncionarioRepository {
 
-    private final List<Funcionario> funcionarios = new ArrayList<>();
-    private long ultimoId = 0;
+    private static final List<Funcionario> funcionarios = new ArrayList<>();
+    private static long ultimoId = 0;
 
-    public void adicionarFuncionario(Funcionario funcionario) {
+    public static void save(Funcionario funcionario) {
         funcionario.setId(++ultimoId);
         funcionarios.add(funcionario);
     }
 
-    public void alterarFuncionario(long id, Funcionario funcionario) {
+    public static void alterarFuncionario(long id, Funcionario funcionario) {
         int index = findIndexPorId(id);
         if (index != -1) {
             funcionario.setId(id);
@@ -28,7 +28,7 @@ public class FuncionarioRepository {
         }
     }
 
-    public void removerFuncionario(long id) {
+    public static void removerFuncionario(long id) {
         Funcionario funcionario = findById(id);
         if (funcionario != null) {
             funcionarios.remove(funcionario);
@@ -36,11 +36,11 @@ public class FuncionarioRepository {
             throw new IllegalArgumentException("Funcionario não encontrado.");
     }
 
-    public List<Funcionario> findAll() {
+    public static List<Funcionario> findAll() {
         return funcionarios;
     }
 
-    public int findIndexPorId(long id) {
+    public static int findIndexPorId(long id) {
         return funcionarios.stream()
                 .filter(funcionario -> funcionario.getId() == id)
                 .findFirst()
@@ -48,31 +48,31 @@ public class FuncionarioRepository {
                 .orElse(-1);
     }
     
-    public Funcionario findById(long id) {
+    public static Funcionario findById(long id) {
         return funcionarios.stream()
                 .filter(funcionario -> funcionario.getId() == id)
                 .findFirst().orElse(null);
     }
 
-    public List<Funcionario> findByNome(String nome) {
+    public static List<Funcionario> findByNome(String nome) {
         return funcionarios.stream()
                 .filter(cliente -> cliente.getNome().toUpperCase().contains(nome.toUpperCase()))
                 .collect(Collectors.toList());
     }
 
-    public Funcionario findByEmail(String email) {
+    public static Funcionario findByEmail(String email) {
         return funcionarios.stream()
                 .filter(funcionario -> funcionario.getEmail().toUpperCase().contains(email.toUpperCase()))
                 .findFirst().orElse(null);
     }
 
-    public List<Funcionario> findByCargo(String cargo) {
+    public static List<Funcionario> findByCargo(String cargo) {
         return funcionarios.stream()
                 .filter(cliente -> cliente.getCargo().toUpperCase().contains(cargo.toUpperCase()))
                 .collect(Collectors.toList());
     }
 
-    public List<Funcionario> findByDataContratacao(LocalDate dataContratacao) {
+    public static List<Funcionario> findByDataContratacao(LocalDate dataContratacao) {
         return funcionarios.stream()
                 .filter(cliente -> cliente.getDataContratacao().equals(dataContratacao))
                 .collect(Collectors.toList());

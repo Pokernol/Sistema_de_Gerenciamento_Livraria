@@ -7,11 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Funcionario extends Usuario {
+
     private String cargo;
     private LocalDate dataContratacao;
 
-    public Funcionario(String nome, String endereco, String email, String telefone, String cargo, LocalDate dataContratacao) {
-        super(nome, endereco, email, telefone);
+    public Funcionario(String email, String nome, String senha, String endereco, String telefone, String cargo, LocalDate dataContratacao) {
+        super(email, nome, senha, endereco, telefone);
         setCargo(cargo);
         setDataContratacao(dataContratacao);
     }
@@ -42,9 +43,9 @@ public class Funcionario extends Usuario {
     public String toString() {
         return "\n Funcionario {" +
                 "\n  Id = " + getId() +
+                "\n  Email = " + getEmail() +
                 "\n  Nome = " + getNome() +
                 "\n  Endereco = " + getEndereco() +
-                "\n  Email = " + getEmail() +
                 "\n  Telefone = " + getTelefone() +
                 "\n  Cargo = " + cargo +
                 "\n  Data de Contratação = " + dataContratacao +

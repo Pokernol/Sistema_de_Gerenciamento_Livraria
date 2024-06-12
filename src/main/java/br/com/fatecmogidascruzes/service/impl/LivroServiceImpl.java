@@ -9,22 +9,16 @@ import br.com.fatecmogidascruzes.service.LivroService;
 
 public class LivroServiceImpl implements LivroService {
 
-    private final LivroRepository repository;
-
-    public LivroServiceImpl(LivroRepository repository) {
-        this.repository = repository;
-    }
-
     @Override
     public void adicionarLivro(Livro livro) {
-        repository.adicionarLivro(livro);
+        LivroRepository.save(livro);
         System.out.println("Livro cadastrado com sucesso!");
     }
 
     @Override
     public void atualizarLivro(long id, Livro livro) {
         try {
-            repository.atualizarLivro(id, livro);
+            LivroRepository.atualizarLivro(id, livro);
             System.out.println("Livro " + livro.getTitulo() + " atualizado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -34,8 +28,8 @@ public class LivroServiceImpl implements LivroService {
     @Override
     public void excluirLivroPorId(long id) {
         try {
-            Livro livro = repository.findById(id);
-            repository.removerLivro(livro);
+            Livro livro = LivroRepository.findById(id);
+            LivroRepository.removerLivro(livro);
             System.out.println("Livro removido com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");
@@ -45,8 +39,8 @@ public class LivroServiceImpl implements LivroService {
     @Override
     public void excluirLivroPorIsbn10(String isbn10) {
         try {
-            Livro livro = repository.findByIsbn10(isbn10);
-            repository.removerLivro(livro);
+            Livro livro = LivroRepository.findByIsbn10(isbn10);
+            LivroRepository.removerLivro(livro);
             System.out.println("Livro removido com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " Por favor, verifique o ISBN10 informado.");
@@ -56,45 +50,49 @@ public class LivroServiceImpl implements LivroService {
     @Override
     public void excluirLivroPorIsbn13(String isbn13) {
         try {
-            Livro livro = repository.findByIsbn13(isbn13);
-            repository.removerLivro(livro);
+            Livro livro = LivroRepository.findByIsbn13(isbn13);
+            LivroRepository.removerLivro(livro);
             System.out.println("Livro removido com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()  + " Por favor, verifique o ISBN13 informado.");
         }
     }
 
+    public Livro comprarByTitulo(String titulo) {
+        return LivroRepository.findByTituloLivro(titulo);
+    }
+
 	@Override
 	public List<Livro> buscarLivro(int opcao, String valorBuscar) {	
-	    List<Livro> livrosEncontrados = new ArrayList<Livro>();
+	    List<Livro> livrosEncontrados = new ArrayList<>();
 
 		switch(opcao){
 			case 1:
-				livrosEncontrados = repository.findAllWhereExistEstoque();
+				livrosEncontrados = LivroRepository.findAllWhereExistEstoque();
 				break;
 			case 2:
-				livrosEncontrados.add(repository.findById(Long.parseLong(valorBuscar)));
+				livrosEncontrados.add(LivroRepository.findById(Long.parseLong(valorBuscar)));
 				break;
 			case 3:
-				livrosEncontrados = repository.findByTitulo(valorBuscar);
+				livrosEncontrados = LivroRepository.findByTituloLista(valorBuscar);
 				break;
 			case 4:
-				livrosEncontrados = repository.findByAutor(valorBuscar);
+				livrosEncontrados = LivroRepository.findByAutor(valorBuscar);
 				break;			
 			case 5:
-				livrosEncontrados = repository.findByIdioma(valorBuscar);
+				livrosEncontrados = LivroRepository.findByIdioma(valorBuscar);
 				break;
 			case 6:
-				livrosEncontrados = repository.findByEditora(valorBuscar);
+				livrosEncontrados = LivroRepository.findByEditora(valorBuscar);
 				break;
 			case 7:
-				livrosEncontrados = repository.findByCategoria(valorBuscar);
+				livrosEncontrados = LivroRepository.findByCategoria(valorBuscar);
 				break;
 			case 8:
-				livrosEncontrados = repository.findByPreco(Double.parseDouble(valorBuscar));
+				livrosEncontrados = LivroRepository.findByPreco(Double.parseDouble(valorBuscar));
 				break;
 			case 9:
-				livrosEncontrados = repository.findByEstoque(Integer.parseInt(valorBuscar));
+				livrosEncontrados = LivroRepository.findByEstoque(Integer.parseInt(valorBuscar));
 				break;
 			default:
 				System.out.println("Opção invalida.");
