@@ -2,15 +2,31 @@ package br.com.fatecmogidascruzes.view;
 
 import java.util.Scanner;
 
+import br.com.fatecmogidascruzes.model.entity.Cliente;
+import br.com.fatecmogidascruzes.model.entity.Funcionario;
+import br.com.fatecmogidascruzes.model.entity.Usuario;
+import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
+import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
+import br.com.fatecmogidascruzes.model.repository.PedidoRepository;
+import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
+import br.com.fatecmogidascruzes.service.impl.PedidoServiceImpl;
+import br.com.fatecmogidascruzes.validator.UsuarioValidator;
+
 public class MenuView {
     
+	PedidoRepository pedidoRepository = new PedidoRepository();
+	PedidoServiceImpl pedidoService = new PedidoServiceImpl(pedidoRepository);	
+	ClienteRepository clienteRepository = new ClienteRepository();
+	FuncionarioRepository funcionarioRepository = new FuncionarioRepository();
+	UsuarioValidator usuarioValidator = new UsuarioValidator(clienteRepository, funcionarioRepository);
+	ClienteServiceImpl clienteService = new ClienteServiceImpl(clienteRepository, usuarioValidator);
     Scanner scanner = new Scanner(System.in);
 
     public void menuInicial() {
         
         System.out.println("Bem-vindo ao Sistema de Livraria!");
         StringBuilder mensagemOpcoes = stringMenuInicial();
-        Boolean isFuncionario;
+        Usuario usuario;
         int opcao;
 
         do {
@@ -18,11 +34,11 @@ public class MenuView {
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
-                    isFuncionario = new LoginView().login();
-                    if(isFuncionario){
-                        menuFuncionario();
+                	usuario = new LoginView().login();
+                    if(usuario instanceof Funcionario){
+                        menuFuncionario((Funcionario)usuario);
                     }else{
-                        menuCliente();
+                        menuCliente((Cliente)usuario);
                     }
                     opcao = 0;
                     break;
@@ -40,11 +56,10 @@ public class MenuView {
         } while (opcao < 1 || opcao > 3);
     }
 
-    public void menuCliente() {
-
+    public void menuCliente(Cliente cliente) {
+    	
         StringBuilder mensagemOpcoes = stringMenuCliente();
         int opcao;
-
         do{
             System.out.println(mensagemOpcoes);
             opcao = scanner.nextInt();
@@ -54,21 +69,22 @@ public class MenuView {
                 case 2:
                     break;
                 case 3:
+                	//listar todos os pedidos                	
+                	System.out.println(pedidoService.buscarPedido(2, cliente.getEmail()));
                     break;
                 case 4:
                     break;
                 case 5:
-                    break;
-                case 6:
-                    break;
+                	System.out.println("Saindo...");
+                    return;
                 default:
                     System.out.println("Opção inválida, digite novamente.");
                     break;
             }
-        }while(opcao < 1 || opcao > 7);
+        }while(opcao < 1 || opcao > 5);
     }
 
-    public void menuFuncionario() {
+    public void menuFuncionario(Funcionario funcionario) {
 
         int opcao = 0;
         StringBuilder mensagemOpcoes = stringMenuFuncionario();
@@ -114,8 +130,7 @@ public class MenuView {
         mensagemOpcoes.append("\n2 - Listar Todos Livros");
         mensagemOpcoes.append("\n3 - Listar Todos Pedidos");
         mensagemOpcoes.append("\n4 - Comprar Livro");
-        mensagemOpcoes.append("\n5 - Acompanhar Pedido");
-        mensagemOpcoes.append("\n6 - Sair");
+        mensagemOpcoes.append("\n5 - Sair");
         mensagemOpcoes.append("\nEscolha uma opção: ");
         return mensagemOpcoes;
     }
