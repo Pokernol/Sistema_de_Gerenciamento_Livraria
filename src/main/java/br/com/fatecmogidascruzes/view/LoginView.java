@@ -2,14 +2,20 @@ package br.com.fatecmogidascruzes.view;
 
 import java.util.Scanner;
 
+import br.com.fatecmogidascruzes.model.entity.Cliente;
+import br.com.fatecmogidascruzes.model.entity.Funcionario;
+import br.com.fatecmogidascruzes.model.entity.Usuario;
+import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
+import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 
 public class LoginView {
-
+	FuncionarioRepository funcionarioRepository = new FuncionarioRepository();
+	ClienteRepository clienteRepository = new ClienteRepository();
     UsuarioValidator usuarioValidator;
     Scanner scanner = new Scanner(System.in);
     
-    public Boolean login() {
+    public Usuario login() {
 
         int opcao;
 
@@ -37,26 +43,26 @@ public class LoginView {
         return null;
     }
 
-    public Boolean loginCliente() {
+    public Cliente loginCliente() {
         System.out.println("\nDigite seu Email:");
-        String nomeUsuario = scanner.next();
+        String email = scanner.next();
         System.out.println("\nDigite sua senha:");
         String senha = scanner.next();
 
-        if(usuarioValidator.validarLogin(nomeUsuario, senha, 1)){
-            return false;
+        if(usuarioValidator.validarLogin(email, senha, 1)){
+            return clienteRepository.findByEmail(email);
         }
         return null;
     }
 
-    public Boolean loginFuncionario() {
+    public Funcionario loginFuncionario() {
         System.out.println("\nDigite o Email de funcionário:");
-        String nomeUsuario = scanner.next();
+        String email = scanner.next();
         System.out.println("\nDigite a senha:");
         String senha = scanner.next();
 
-        if(usuarioValidator.validarLogin(nomeUsuario, senha, 2)){
-            return true;
+        if(usuarioValidator.validarLogin(email, senha, 2)){
+            return funcionarioRepository.findByEmail(email);
         }
         return null;
     }
