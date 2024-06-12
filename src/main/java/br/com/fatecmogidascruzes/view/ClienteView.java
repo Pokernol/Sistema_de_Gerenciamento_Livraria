@@ -1,19 +1,44 @@
 package br.com.fatecmogidascruzes.view;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
+import br.com.fatecmogidascruzes.model.entity.Cliente;
+import br.com.fatecmogidascruzes.model.entity.Livro;
+import br.com.fatecmogidascruzes.model.entity.Pedido;
 import br.com.fatecmogidascruzes.service.impl.*;
 import br.com.fatecmogidascruzes.view.ClienteView;
 
 public class ClienteView {
-     Scanner scanner = new Scanner(System.in);
+    LocalDate data = LocalDate.now();
+    PedidoServiceImpl pedidoService = new PedidoServiceImpl();
+    LivroServiceImpl livroService = new LivroServiceImpl();
+    Scanner scanner = new Scanner(System.in);
+
+    public void comprarLivro(Cliente cliente){
+    
+        System.out.println("Digite o titulo do livro que você deseja comprar:");
+        String valorBuscar = scanner.nextLine();
+
+        Livro livro = livroService.comprarByTitulo(valorBuscar);
+
+        System.out.println("----- Confira o livro pedido: -----");
+        System.out.println(livroService.buscarLivro(3,valorBuscar));
+
+        System.out.println("----- Confirmar compra? -----\n1 - Sim\n2 - Não");
+        int opcao = Integer.parseInt(scanner.next());
+
+        if(opcao == 1){
+            pedidoService.adicionarPedido(new Pedido(cliente.getEmail(), livro.getTitulo(), LocalDate.now(), 1, livro.getPreco(), cliente.getEndereco()));
+        }else{
+            System.out.println("Compra cancelada.");
+        }
+    }
 
     public void buscarLivro() {
         int opcao;
-    
-        LivroServiceImpl livroService = new LivroServiceImpl();
-
         String valorBuscar = "";
+
         do {
             System.out.println(mensagemBuscar());
             opcao = scanner.nextInt();
@@ -35,19 +60,20 @@ public class ClienteView {
                     break;
                 case 4:
                     System.out.print("Digite o idioma do livro: ");
-                  
+                    valorBuscar = scanner.nextLine();
+                    System.out.print(livroService.buscarLivro(5,valorBuscar));
                     break;
                 case 5:
                     System.out.print("Digite a editora do livro: ");
-                
+                    valorBuscar = scanner.nextLine();
+                    System.out.print(livroService.buscarLivro(6,valorBuscar));
                     break;
                 case 6:
                     System.out.print("Digite a categoria do livro: ");
-                 
+                    valorBuscar = scanner.nextLine();
+                    System.out.print(livroService.buscarLivro(7,valorBuscar));
                     break;
                 case 7:
-                    System.out.print("Digite o preço do livro: ");
-                  
                     break;
                 default:
                     System.out.println("Opção inválida.");

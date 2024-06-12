@@ -59,8 +59,8 @@ public class SistemaDeLivraria {
 
         //teste de adicionar de pedido
         System.out.println("\n---- ADICIONAR PEDIDO ---" );
-        List<Livro> livrosComprados = LivroRepository.findByTitulo("1984");
-        livrosComprados.addAll(LivroRepository.findByTitulo("Dom Quixote"));
+        List<Livro> livrosComprados = LivroRepository.findByTituloLista("1984");
+        livrosComprados.addAll(LivroRepository.findByTituloLista("Dom Quixote"));
         pedidoService.adicionarPedido(new Pedido("leo123@gmail.com", "A culpa é das Estrelas", LocalDate.now(), 1, 50.0, "fatec"));
         pedidoService.adicionarPedido(new Pedido("leo123@gmail.com", "Harry Potter", LocalDate.now(), 1, 50.0, "fatec"));
         System.out.println(PedidoRepository.findAll());

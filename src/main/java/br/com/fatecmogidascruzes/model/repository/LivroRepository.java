@@ -65,6 +65,13 @@ public class LivroRepository {
 				.findFirst()
 				.orElse(null);
 	}
+	//fiz afor
+	public static Livro findByTituloLivro(String titulo) {
+		return livros.stream()
+				.filter(livro -> livro.getTitulo().toUpperCase().contains(titulo.toUpperCase()))
+				.findFirst()
+				.orElse(null);
+	}
 
 	public static List<Livro> findAllWhereExistEstoque() {
 		return livros.stream()
@@ -84,7 +91,7 @@ public class LivroRepository {
 				.collect(Collectors.toList());
 	}
 	
-	public static List<Livro> findByTitulo(String titulo) {
+	public static List<Livro> findByTituloLista(String titulo) {
 		return livros.stream()
 				.filter(livro -> livro.getTitulo().toUpperCase().contains(titulo.toUpperCase()))
 				.collect(Collectors.toList());

@@ -58,6 +58,10 @@ public class LivroServiceImpl implements LivroService {
         }
     }
 
+    public Livro comprarByTitulo(String titulo) {
+        return LivroRepository.findByTituloLivro(titulo);
+    }
+
 	@Override
 	public List<Livro> buscarLivro(int opcao, String valorBuscar) {	
 	    List<Livro> livrosEncontrados = new ArrayList<>();
@@ -70,7 +74,7 @@ public class LivroServiceImpl implements LivroService {
 				livrosEncontrados.add(LivroRepository.findById(Long.parseLong(valorBuscar)));
 				break;
 			case 3:
-				livrosEncontrados = LivroRepository.findByTitulo(valorBuscar);
+				livrosEncontrados = LivroRepository.findByTituloLista(valorBuscar);
 				break;
 			case 4:
 				livrosEncontrados = LivroRepository.findByAutor(valorBuscar);

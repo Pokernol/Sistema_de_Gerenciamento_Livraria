@@ -58,18 +58,16 @@ public class MenuView {
                     opcao = 0;
                     break;
                 case 2:
-                    System.out.print(livroService.buscarLivro(1,""));
+                    System.out.println("\n---- LISTAR PEDIDOS ----");
+                    System.out.println(pedidoService.buscarPedido(2, cliente.getEmail()));
                     opcao = 0;
                     break;
                 case 3:
-                	//listar todos os pedidos                	
-                	System.out.println(pedidoService.buscarPedido(2, cliente.getEmail()));
+                    System.out.println("\n---- COMPRAR LIVRO ----");
+                    new ClienteView().comprarLivro(cliente);
                     opcao = 0;
                     break;
                 case 4:
-                    opcao = 0;
-                    break;
-                case 5:
                 	System.out.println("\nSaindo...");
                     break;
                 default:
@@ -95,7 +93,6 @@ public class MenuView {
                 case 3:
                     break;
                 case 4:
-                    comprarLivro();
                     break;
                 case 5:
                     break;
@@ -123,10 +120,9 @@ public class MenuView {
     private static StringBuilder stringMenuCliente() {
         StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU SISTEMA DE LIVRARIA ----");
         mensagemOpcoes.append("\n1 - Buscar Livro");
-        mensagemOpcoes.append("\n2 - Listar Todos Livros");
-        mensagemOpcoes.append("\n3 - Listar Todos Pedidos");
-        mensagemOpcoes.append("\n4 - Comprar Livro");
-        mensagemOpcoes.append("\n5 - Sair");
+        mensagemOpcoes.append("\n2 - Listar Todos Pedidos");
+        mensagemOpcoes.append("\n3 - Comprar Livro");
+        mensagemOpcoes.append("\n4 - Sair");
         mensagemOpcoes.append("\nEscolha uma opção: ");
         return mensagemOpcoes;
     }
@@ -142,13 +138,6 @@ public class MenuView {
         mensagemOpcoes.append("\n7 - Sair");
         mensagemOpcoes.append("\nEscolha uma opção: ");
         return mensagemOpcoes;
-    }
-
-    public void comprarLivro() {
-        System.out.println("\n---- COMPRAR LIVRO ----");
-
-
-
     }
 
 }
