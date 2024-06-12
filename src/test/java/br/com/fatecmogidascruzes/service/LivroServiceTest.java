@@ -31,7 +31,7 @@ public class LivroServiceTest {
 
         service.adicionarLivro(livro);
 
-        verify(livroRepository, times(1)).adicionarLivro(livro);
+        verify(livroRepository, times(1)).save(livro);
     }
 
     @Test

@@ -2,6 +2,7 @@ package br.com.fatecmogidascruzes.view;
 
 import java.util.Scanner;
 
+
 public class MenuView {
     
     Scanner scanner = new Scanner(System.in);
@@ -50,8 +51,11 @@ public class MenuView {
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
+                    new ClienteView().buscarLivro();
+                    opcao = 0;
                     break;
                 case 2:
+                    
                     break;
                 case 3:
                     break;
@@ -78,7 +82,7 @@ public class MenuView {
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
-                    break;
+                    
                 case 2:
                     break;
                 case 3:
@@ -111,11 +115,10 @@ public class MenuView {
     private static StringBuilder stringMenuCliente() {
         StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU CLIENTE ----");
         mensagemOpcoes.append("\n1 - Buscar Livro");
-        mensagemOpcoes.append("\n2 - Listar Todos Livros");
-        mensagemOpcoes.append("\n3 - Listar Todos Pedidos");
-        mensagemOpcoes.append("\n4 - Comprar Livro");
-        mensagemOpcoes.append("\n5 - Acompanhar Pedido");
-        mensagemOpcoes.append("\n6 - Sair");
+        mensagemOpcoes.append("\n2 - Listar Todos Pedidos");
+        mensagemOpcoes.append("\n3 - Comprar Livro");
+        mensagemOpcoes.append("\n4 - Acompanhar Pedido");
+        mensagemOpcoes.append("\n5 - Sair");
         mensagemOpcoes.append("\nEscolha uma opção: ");
         return mensagemOpcoes;
     }

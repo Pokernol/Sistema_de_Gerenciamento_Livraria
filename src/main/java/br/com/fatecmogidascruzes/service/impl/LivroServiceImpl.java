@@ -66,7 +66,7 @@ public class LivroServiceImpl implements LivroService {
 
 	@Override
 	public List<Livro> buscarLivro(int opcao, String valorBuscar) {	
-	    List<Livro> livrosEncontrados = new ArrayList<Livro>();
+	    List<Livro> livrosEncontrados = new ArrayList<>();
 
 		switch(opcao){
 			case 1:

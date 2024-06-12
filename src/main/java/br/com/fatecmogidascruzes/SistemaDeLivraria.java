@@ -6,6 +6,7 @@ import br.com.fatecmogidascruzes.model.entity.*;
 import br.com.fatecmogidascruzes.model.repository.*;
 import br.com.fatecmogidascruzes.service.impl.*;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
+import br.com.fatecmogidascruzes.view.ClienteView;
 import br.com.fatecmogidascruzes.view.MenuView;
 
 public class SistemaDeLivraria {
@@ -70,138 +71,13 @@ public class SistemaDeLivraria {
         pedidoService.adicionarPedido(new Pedido("leo123@gmail.com", "A culpa é das Estrelas", LocalDate.now(), 1, 50.0, "fatec"));
         pedidoService.adicionarPedido(new Pedido("leo123@gmail.com", "Harry Potter", LocalDate.now(), 1, 50.0, "fatec"));
         System.out.println(pedidoRepository.findAll());
-
-        /******************************************/
-
-        //TESTES DE ATUALIZAR ENTIDADES
-        System.out.println("\n**---- ATUALIZAR ---**");
-
-        //testando atualizar livros
-        System.out.println("\n---- ATUALIZANDO LIVROS ---" );
-        System.out.println(livroRepository.findById(1));
-        //testando atualizar livro erro
-        livroService.atualizarLivro(1, new Livro("0123456789", "", "Biblia", "Portugues", "profeta", -1, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
-        System.out.println(livroRepository.findById(1));
-        System.out.println(livroRepository.findAllWhereExistEstoque());
-        //testando atualizar livro correto
-        livroService.atualizarLivro(1, new Livro("0123456789", "", "Biblia", "Portugues", "profeta", 0, "Reino do Ceus", 1000, dataDePublicacao, 300.00, "Religiao"));
-
-        System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
-        System.out.println(funcionarioRepository.findById(1));
-        funcionarioService.atualizarFuncionario(1,new Funcionario("ANA PAULA", "Endereço da Ana","ana@email.com", "Paulao123", "12934567890", "Cargo da Ana", LocalDate.now()));
-        System.out.println(funcionarioRepository.findById(1));
-
-        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "romulo@romail.com", "Eunaoquero", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
-        System.out.println(clienteRepository.findAll());
-
-        System.out.println("\n---- ATUALIZAR CLIENTE ---" );
-        System.out.println(clienteRepository.findById(1));
-        clienteService.atualizarCliente(1,new Cliente("Romulo da silva", "Romulandia", "antony@email.com", "Silvaromulo", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
-        System.out.println(clienteRepository.findById(1));
-
-        System.out.println("\n---- ATUALIZAR CATEGORIA ---" );
-        categoriaService.atualizarCategoria(1,new Categoria("Romance de Época" , "Livros de Romance e Fanfics de época."));
-        System.out.println(categoriaRepository.findAllCategorias());
-        categoriaService.atualizarCategoria(1,new Categoria("Romance" , "Livros de Romance e Fanfics de época."));
-        System.out.println(categoriaRepository.findAllCategorias());
-
-        // Testando a atualização de pedido
-        // System.out.println("\n---- ATUALIZAR PEDIDO ---" );
-
-        /******************************************/
-
-        //TESTES DE BUSCAR ENTIDADES
-        System.out.println("\n**---- BUSCAR ---**");
-
-        // Testando a busca de livros
-        System.out.println("\n---- BUSCAR LIVROS ---" );
-        System.out.println(livroRepository.findAllWhereExistEstoque());
-        System.out.println(livroService.buscarLivro(7,"Romance"));
-        System.out.println(livroService.buscarLivro(8, "150.00"));
-        System.out.println(livroService.buscarLivro(9, "5"));
-
-        //data para string
-        String data = LocalDate.now().toString();
-
-        // Testando a busca de funcionario
-        System.out.println("\n---- BUSCAR FUNCIONARIOS ---" );
-        System.out.println(funcionarioService.buscarFuncionario(3, "Ana"));
-        System.out.println(funcionarioService.buscarFuncionario(4, "ana@email.com"));
-        System.out.println(funcionarioService.buscarFuncionario(3, "Antonythony"));
-        System.out.println(funcionarioService.buscarFuncionario(5, "Cargo da Ana"));
-        System.out.println(funcionarioService.buscarFuncionario(6, data));
-
-        // Testando a busca de cliente
-        System.out.println("\n---- BUSCAR CLIENTES ---" );
-        System.out.println(clienteService.buscarCliente(3, "Romulo"));
-        System.out.println(clienteService.buscarCliente(4, "romulo@romail.com"));
-        System.out.println(funcionarioService.buscarFuncionario(3, "Romulandia"));
-        System.out.println(clienteService.buscarCliente(5, "moedinhas de 1 centavo"));
-        System.out.println(clienteService.buscarCliente(6, data));
         
-        // Testando a busca de categoria
-        System.out.println("\n---- BUSCAR CATEGORIA---");
-        System.out.println("\nbuscando cateogira romance...");
-        System.out.println(categoriaService.buscarCategoriaPorNome("Romance"));
-        System.out.println("\n\nbuscando cateogira ficcao (inexistente)...");
-        System.out.println(categoriaService.buscarCategoriaPorNome("Ficção"));
-
-        // Testando a busca de pedido
-        System.out.println("\n---- BUSCAR PEDIDO ---" );
-        System.out.println(pedidoService.buscarPedido(1, "1"));
-        System.out.println(pedidoService.buscarPedido(2, "leo123@gmail.com"));
-        System.out.println(pedidoService.buscarPedido(3, "Harry Potter"));
-        System.out.println(pedidoService.buscarPedido(4, "1"));
-
-        /******************************************/
-
-        //TESTES DE EXCLUIR ENTIDADES
-        System.out.println("\n**---- EXCLUIR ---**");
-
-        //testando excluir livros
-        System.out.println("\n---- EXCLUIR LIVROS ---" );
-        LocalDate dataDePublicacao4 = LocalDate.of(2023, 8, 15);
-        livroService.adicionarLivro(new Livro("6584956245", "9786584956247", "O Pequeno Principe", "Portugues", "Antoine de Saint-Exupery", 5, "Editora Garnier", 96, dataDePublicacao4, 19.90, "Acao e Aventura"));
-        System.out.println("Tentando excluir livro com ID 1:");
-        livroService.excluirLivroPorId(1);
-        System.out.println("Tentando excluir livro com ISBN-10 0306406152:");
-        livroService.excluirLivroPorIsbn10("0306406152");
-        System.out.println("Tentando excluir livro com ISBN-13 9786584956247:");
-        livroService.excluirLivroPorIsbn13("9786584956247");
-        System.out.println("Tentando excluir livro com ID 6 (inexistente):");
-        livroService.excluirLivroPorId(6);
+        //TESTES MENUS1
         System.out.println(livroRepository.findAllWhereExistEstoque());
-
-        // Testando a exclusão de pedido
-        System.out.println("\n---- EXCLUIR FUNCIONARIO ---" );
-        System.out.println("Tentando excluir a funcionaria Ana com ID 1");
-        funcionarioService.excluirFuncionario(1);
-        System.out.println("Tentando excluir funcionario com ID 2 (inexistente)");
-        funcionarioService.excluirFuncionario(2);
-        System.out.println(funcionarioRepository.findAll());
-
-        // Testando a exclusão de cliente
-        System.out.println("\n---- EXCLUIR CLIENTE ---" );
-        System.out.println("Tentando excluir o cliente Romulo com ID 1");
-        clienteService.excluirCliente(1);
-        System.out.println("Tentando excluir o cliente com ID 2(inexistente)");
-        clienteService.excluirCliente(2);
-        System.out.println(clienteRepository.findAll());
-
-        // Testando a exclusão de categoria
-        System.out.println("\n---- EXCLUIR CATEGORIA ---" );
-        categoriaService.excluirCategoria(1);
-        System.out.println(categoriaRepository.findAllCategorias());
-        System.out.println("\n tentando excluir categoria com ID 2 (inexistente)");
-        categoriaService.excluirCategoria(2);
-
-        // Testando a exclusão de pedido
-        //System.out.println("\n---- EXCLUIR PEDIDO ---" );
-
-        //TESTES MENUS
         System.out.println("\n\n\n**---- MENUS ---**");
+
         MenuView menuView = new MenuView();
-        menuView.menuInicial();
+        menuView.menuCliente();
 
     }
 }
