@@ -7,8 +7,11 @@ import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
 import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class UsuarioValidator {
+
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static boolean validarEmail(Usuario usuario) {
         if (usuario instanceof Funcionario) {
@@ -29,8 +32,21 @@ public class UsuarioValidator {
         return true;
     }
 
-    public static boolean validarSenha(Usuario usuario) {
-        return usuario.getSenha().length() >= 8;
+    public static String validarSenhaCadastro(String senha, String senhaRepetida) {
+        boolean repetir;
+        do{
+            if(senha.equals(senhaRepetida)){
+                repetir = false;
+            }else{
+                System.out.println("\nAs senhas não coincidem. Tente novamente.");
+                System.out.print("\nDigite a Senha: ");
+                senha = scanner.next();
+                System.out.print("\nRepetir a Senha: ");
+                senhaRepetida = scanner.next();
+                repetir = true;
+            }
+        }while(repetir);
+        return senha;
     }
 
     public static Boolean validarLogin(String email, String senha, int tipoUsuario) {

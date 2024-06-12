@@ -10,17 +10,15 @@ import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 
 public class LoginView {
-	FuncionarioRepository funcionarioRepository = new FuncionarioRepository();
-	ClienteRepository clienteRepository = new ClienteRepository();
-    UsuarioValidator usuarioValidator;
+
     Scanner scanner = new Scanner(System.in);
-    
+
     public Usuario login() {
 
         int opcao;
 
         do {
-            System.out.println(stringMenuLogin());
+            System.out.print(stringMenuLogin());
             opcao = scanner.nextInt();
 
             switch (opcao) {
@@ -44,9 +42,9 @@ public class LoginView {
     }
 
     public Cliente loginCliente() {
-        System.out.println("\nDigite seu Email:");
+        System.out.print("\nDigite seu Email:");
         String email = scanner.next();
-        System.out.println("\nDigite sua senha:");
+        System.out.print("\nDigite sua senha:");
         String senha = scanner.next();
 
         if(Boolean.TRUE.equals(UsuarioValidator.validarLogin(email, senha, 1))){
@@ -56,9 +54,9 @@ public class LoginView {
     }
 
     public Funcionario loginFuncionario() {
-        System.out.println("\nDigite o Email de funcionário:");
+        System.out.print("\nDigite o Email de funcionário:");
         String email = scanner.next();
-        System.out.println("\nDigite a senha:");
+        System.out.print("\nDigite a senha:");
         String senha = scanner.next();
 
         if(Boolean.TRUE.equals(UsuarioValidator.validarLogin(email, senha, 2))){
@@ -77,5 +75,4 @@ public class LoginView {
             mensagemOpcoes.append("\nEscolha uma opção: ");
         return mensagemOpcoes;
     }
-    
 }

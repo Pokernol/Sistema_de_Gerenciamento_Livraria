@@ -4,6 +4,8 @@ import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.FuncionarioServiceImpl;
 import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
+import br.com.fatecmogidascruzes.validator.UsuarioValidator;
+
 import java.util.Scanner;
 import java.time.LocalDate;
 
@@ -60,7 +62,7 @@ public class CadastroUsuarioView {
         System.out.print("\nEscolha um método de pagamento padrão (Pode ser alterado posteriormente): ");
         String metodoPagamento = escolherMetodoPagamento();
 
-        senha = validarSenha(senha, senhaRepetida);
+        senha = UsuarioValidator.validarSenhaCadastro(senha, senhaRepetida);
 
         StringBuilder mensagemConfirmacao = new StringBuilder("\nConfirme o cadastro:")
             .append("\nNome: ").append(nome)
@@ -107,7 +109,7 @@ public class CadastroUsuarioView {
         System.out.print("\nDigite o cargo do funcionário: ");
         String cargo = scanner.next();
 
-        senha = validarSenha(senha, senhaRepetida);
+        senha = UsuarioValidator.validarSenhaCadastro(senha, senhaRepetida);
 
         StringBuilder mensagemConfirmacao = new StringBuilder("\nConfirme o cadastro:")
             .append("\nNome: ").append(nome)
@@ -188,22 +190,5 @@ public class CadastroUsuarioView {
         }while(opcao < 1 || opcao > 4);
 
         return metodoPagamento;
-    }
-
-    public String validarSenha(String senha, String senhaRepetida) {
-        boolean repetir;
-        do{
-            if(senha.equals(senhaRepetida)){
-                repetir = false;
-            }else{
-                System.out.println("\nAs senhas não coincidem. Tente novamente.");
-                System.out.print("\nDigite a Senha: ");
-                senha = scanner.next();
-                System.out.print("\nRepetir a Senha: ");
-                senhaRepetida = scanner.next();
-                repetir = true;
-            }
-        }while(repetir);
-        return senha;
     }
 }

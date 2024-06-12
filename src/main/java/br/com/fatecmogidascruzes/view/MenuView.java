@@ -16,7 +16,7 @@ public class MenuView {
 
     public void menuInicial() {
         
-        System.out.println("Bem-vindo ao Sistema de Livraria!");
+        System.out.println("**Bem-vindo ao Sistema de Livraria!**");
         Usuario usuario;
         int opcao;
 
@@ -28,7 +28,7 @@ public class MenuView {
                 	usuario = new LoginView().login();
                     if(usuario instanceof Funcionario){
                         menuFuncionario((Funcionario)usuario);
-                    }else{
+                    }else if(usuario instanceof Cliente){
                         menuCliente((Cliente)usuario);
                     }
                     opcao = 0;
@@ -65,10 +65,10 @@ public class MenuView {
                 case 4:
                     break;
                 case 5:
-                	System.out.println("Saindo...");
+                	System.out.println("\nSaindo...");
                     return;
                 default:
-                    System.out.println("Opção inválida, digite novamente.");
+                    System.out.println("\nOpção inválida, digite novamente.");
                     break;
             }
         }while(opcao < 1 || opcao > 5);
