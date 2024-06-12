@@ -5,7 +5,6 @@ import java.util.Scanner;
 import br.com.fatecmogidascruzes.service.impl.*;
 import br.com.fatecmogidascruzes.view.ClienteView;
 
-
 public class ClienteView {
      Scanner scanner = new Scanner(System.in);
 
@@ -20,7 +19,6 @@ public class ClienteView {
             opcao = scanner.nextInt();
             scanner.nextLine();    
             
-
             switch (opcao) {
                 case 1:
                     System.out.print(livroService.buscarLivro(1,""));
