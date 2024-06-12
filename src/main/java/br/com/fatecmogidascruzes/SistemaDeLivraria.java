@@ -41,14 +41,14 @@ public class SistemaDeLivraria {
 
         // Testando adicionar funcionarios
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
-        funcionarioService.adicionarFuncionario(new Funcionario("Ana","Endereço da Ana","ana@email.com", "Senha123", "12934567890", "Cargo da Ana", LocalDate.now()));
-        funcionarioService.adicionarFuncionario(new Funcionario("Antony", "Endereço do Antony", "ana@email.com", "Senha321", "12934567890", "Cargo do Antony", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("ana@email.com","Senha123","Ana", "Endereço da Ana", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("ana@email.com", "Senha321", "Antony", "Endereço do Antony", "12934567890", "Cargo do Antony", LocalDate.now()));
         System.out.println(FuncionarioRepository.findAll());
 
         // Testando adicionar clientes
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
-        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "antony@email.com", "RolaBotas123", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
-        clienteService.adicionarCliente(new Cliente("Caio", "dwieifds", "antony@email.com", "Palavraonao", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("antony@email.com", "Romulo", "dwieifds", "romolandia", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("antony@email.com", "Caio", "123456", "Palavraonao", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(ClienteRepository.findAll());
 
         // Testando adicionar categorias
