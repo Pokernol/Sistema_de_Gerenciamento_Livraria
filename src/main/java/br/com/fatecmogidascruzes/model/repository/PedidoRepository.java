@@ -24,7 +24,7 @@ public class PedidoRepository {
         return pedidos.stream()
                 .filter(pedido -> pedido.getId() == id)
                 .findFirst().orElse(null);
-    };
+    }
     
     public static List<Pedido> findByEmailCliente(String emailCliente) {
         return pedidos.stream()

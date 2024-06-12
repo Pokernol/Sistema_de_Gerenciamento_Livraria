@@ -1,6 +1,5 @@
 package br.com.fatecmogidascruzes.model.entity;
 
-import br.com.fatecmogidascruzes.validator.UsuarioValidator;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -38,7 +38,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public List<Cliente> buscarCliente(int opcao, String valorBuscar) {
-        List<Cliente> clientesEncontrados = new ArrayList<Cliente>();
+        List<Cliente> clientesEncontrados = new ArrayList<>();
 
         switch(opcao){
             case 1:

@@ -43,7 +43,7 @@ public class LoginView {
         System.out.println("\nDigite sua senha:");
         String senha = scanner.next();
 
-        if(usuarioValidator.validarLogin(nomeUsuario, senha, 1)){
+        if(Boolean.TRUE.equals(UsuarioValidator.validarLogin(nomeUsuario, senha, 1))){
             return false;
         }
         return null;
@@ -55,7 +55,7 @@ public class LoginView {
         System.out.println("\nDigite a senha:");
         String senha = scanner.next();
 
-        if(usuarioValidator.validarLogin(nomeUsuario, senha, 2)){
+        if(Boolean.TRUE.equals(UsuarioValidator.validarLogin(nomeUsuario, senha, 2))){
             return true;
         }
         return null;

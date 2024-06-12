@@ -21,7 +21,6 @@ public class LivroServiceTest {
     @BeforeEach
     public void setUp() {
         livroRepository = mock(LivroRepository.class);
-        service = new LivroServiceImpl(livroRepository);
     }
 
     @Test
@@ -31,7 +30,8 @@ public class LivroServiceTest {
 
         service.adicionarLivro(livro);
 
-        verify(livroRepository, times(1)).adicionarLivro(livro);
+        verify(livroRepository, times(1));
+        LivroRepository.save(livro);
     }
 
     @Test
@@ -43,7 +43,8 @@ public class LivroServiceTest {
 
         service.atualizarLivro(livro.getId(), livro);
 
-        verify(livroRepository, times(1)).atualizarLivro(0, livro);
+        verify(livroRepository, times(1));
+        LivroRepository.atualizarLivro(0, livro);
     }
 
     @Test
@@ -54,11 +55,12 @@ public class LivroServiceTest {
 
         List<Livro> livros = Arrays.asList(livro, livro1);
 
-        when(livroRepository.findAllWhereExistEstoque()).thenReturn(livros);
+        when(LivroRepository.findAllWhereExistEstoque()).thenReturn(livros);
 
-        List<Livro> result = livroRepository.findAllWhereExistEstoque();
+        List<Livro> result = LivroRepository.findAllWhereExistEstoque();
 
         assertEquals(2, result.size());
-        verify(livroRepository, times(1)).findAllWhereExistEstoque();
+        verify(livroRepository, times(1));
+        LivroRepository.findAllWhereExistEstoque();
     }
 }

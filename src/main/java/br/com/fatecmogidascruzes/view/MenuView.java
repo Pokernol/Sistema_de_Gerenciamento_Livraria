@@ -67,7 +67,7 @@ public class MenuView {
 
     public void menuFuncionario() {
 
-        int opcao = 0;
+        int opcao;
         StringBuilder mensagemOpcoes = stringMenuFuncionario();
 
         do{

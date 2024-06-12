@@ -49,7 +49,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
     @Override
     public List<Funcionario> buscarFuncionario(int opcao, String valorBuscar) {
-        List<Funcionario> funcionariosEncontrados = new ArrayList<Funcionario>();
+        List<Funcionario> funcionariosEncontrados = new ArrayList<>();
 
         switch(opcao){
             case 1:
