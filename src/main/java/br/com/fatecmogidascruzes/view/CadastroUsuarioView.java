@@ -12,72 +12,163 @@ public class CadastroUsuarioView {
     FuncionarioServiceImpl funcionarioService;
     Scanner scanner = new Scanner(System.in);
     
-    public void cadastro() {   
-        
-        StringBuilder mensagemOpçoes = new StringBuilder("---- Cadastro ----");
-        mensagemOpçoes.append("1 - Cadastrar cliente");
-        mensagemOpçoes.append("2 - Cadastrar funcionário");
-        mensagemOpçoes.append("3 - Voltar");
-        mensagemOpçoes.append("Escolha uma opção: ");
-
-        int opcao = 0;
+    public void cadastro() {
+        int opcao;
 
         do {
-            System.out.println(mensagemOpçoes.toString());
+            System.out.print(stringMenuCadastro());
             opcao = scanner.nextInt();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("---- CADASTRO CLIENTE ----");
+                    System.out.println("\n---- CADASTRO CLIENTE ----");
                     if(!cadastroCliente()){
                         opcao = 0;
                     }
                     break;
                 case 2:
-                    System.out.println("---- CADASTRO FUNCIONÁRIO ----");
+                    System.out.println("\n---- CADASTRO FUNCIONÁRIO ----");
                     if(!cadastroFuncionario()){
                         opcao = 0;
                     }
                     break;
                 case 3:
-                    System.out.println("Voltando ao menu principal...");
+                    System.out.println("\nVoltando ao menu principal...");
                     break;
                 default:
-                    System.out.println("Opção inválida. Por favor, digite uma opção válida.");
+                    System.out.println("\nOpção inválida. Por favor, digite uma opção válida.");
                     break;
             }
         } while (opcao < 1 || opcao > 3);
     }
 
     public Boolean cadastroCliente() {
+        int confirmarCadastro;
 
-        StringBuilder mensagemOpçoes = new StringBuilder("---- Método de Pagamento ----");
-            mensagemOpçoes.append("1 - Dinheiro");
-            mensagemOpçoes.append("2 - Cartão de Crédito");
-            mensagemOpçoes.append("3 - Cartão de Débito");
-            mensagemOpçoes.append("4 - Pix");
-            mensagemOpçoes.append("Escolha uma opção: ");
-        int opcao = 0;
-        int confirmarCadastro = 0;
-        boolean repetir;
-
-        System.out.printf("Digite o seu e-mail: ");
+        System.out.print("\nDigite o seu e-mail: ");
         String email = scanner.next();
-        System.out.printf("Digite o seu nome: ");
+        System.out.print("\nDigite o seu nome: ");
         String nome = scanner.next();
-        System.out.printf("Digite uma Senha: ");
+        System.out.print("\nDigite uma Senha: ");
         String senha = scanner.next();
-        System.out.printf("Repetir a Senha: ");
+        System.out.print("\nRepetir a Senha: ");
         String senhaRepetida = scanner.next();
-        System.out.printf("Digite seu endereço (Onde vamos entregar seus pedidos): ");
+        System.out.print("\nDigite seu endereço (Onde vamos entregar seus pedidos): ");
         String endereco = scanner.next();
-        System.out.printf("Digite seu telefone: ");
+        System.out.print("\nDigite seu telefone: ");
         String telefone = scanner.next();
-        System.out.printf("Escolha um método de pagamento padrão (Pode ser alterado posteriormente): ");
+        System.out.print("\nEscolha um método de pagamento padrão (Pode ser alterado posteriormente): ");
+        String metodoPagamento = escolherMetodoPagamento();
+
+        senha = validarSenha(senha, senhaRepetida);
+
+        StringBuilder mensagemConfirmacao = new StringBuilder("\nConfirme o cadastro:")
+            .append("\nNome: ").append(nome)
+            .append("\nE-mail: ").append(email)
+            .append("\nEndereço: ").append(endereco)
+            .append("\nTelefone: ").append(telefone)
+            .append("\nMétodo de Pagamento: ").append(metodoPagamento)
+            .append("\n").append(stringMenuMensagemConfirmacao());
+
+        do{
+            System.out.println(mensagemConfirmacao);
+            confirmarCadastro = scanner.nextInt();
+            switch (confirmarCadastro) {
+                case 1:
+                    clienteService.adicionarCliente(new Cliente(nome, email, senha, endereco, telefone, metodoPagamento, LocalDate.now()));
+                    return true;
+                case 2:
+                    System.out.println("\nCadastro cancelado.");
+                    break;
+                default:
+                    System.out.println("\nOpção inválida. Por favor, digite uma opção válida.");
+                    break;
+            }
+        }while(confirmarCadastro < 1 || confirmarCadastro > 2);
+        return false;
+    }
+
+    public boolean cadastroFuncionario() {
+
+        int confirmarCadastro;
+
+        System.out.print("\nDigite o e-mail do funcionário: ");
+        String email = scanner.next();
+        System.out.print("\nDigite o nome do funcionário: ");
+        String nome = scanner.next();
+        System.out.print("\nDigite a Senha: ");
+        String senha = scanner.next();
+        System.out.print("\nRepetir Senha: ");
+        String senhaRepetida = scanner.next();
+        System.out.print("\nDigite o endereço do funcionário: ");
+        String endereco = scanner.next();
+        System.out.print("\nDigite o telefone do funcionário: ");
+        String telefone = scanner.next();
+        System.out.print("\nDigite o cargo do funcionário: ");
+        String cargo = scanner.next();
+
+        senha = validarSenha(senha, senhaRepetida);
+
+        StringBuilder mensagemConfirmacao = new StringBuilder("\nConfirme o cadastro:")
+            .append("\nNome: ").append(nome)
+            .append("\nE-mail: ").append(email)
+            .append("\nEndereço: ").append(endereco)
+            .append("\nTelefone: ").append(telefone)
+            .append("\nCargo: ").append(cargo)
+            .append(stringMenuMensagemConfirmacao());
+            
+        do{
+            System.out.println(mensagemConfirmacao);
+            confirmarCadastro = scanner.nextInt();
+            switch (confirmarCadastro) {
+                case 1:
+                    funcionarioService.adicionarFuncionario(new Funcionario(email, nome, senha, endereco, telefone, cargo, LocalDate.now()));
+                    return true;
+                case 2:
+                    System.out.println("\nCadastro cancelado.");
+                    break;
+                default:
+                    System.out.println("\nOpção inválida. Por favor, digite uma opção válida.");
+                    break;
+            }
+        }while(confirmarCadastro < 1 || confirmarCadastro > 2);
+        return false;
+    }
+
+    public StringBuilder stringMenuCadastro() {
+        return new StringBuilder()
+            .append("\n\n\n")
+            .append("\n---- CADASTRO ----")
+            .append("\n1 - Cadastro Cliente")
+            .append("\n2 - Cadastro Funcionário")
+            .append("\n3 - Voltar ao menu principal")
+            .append("\nEscolha uma opção: ");
+    }
+    public StringBuilder stringMenuMetodoPagamento() {
+        return new StringBuilder()
+            .append("\n\n\n")
+            .append("\n---- MÉTODO DE PAGAMENTO ----")
+            .append("\n1 - Dinheiro")
+            .append("\n2 - Cartão de Crédito")
+            .append("\n3 - Cartão de Débito")
+            .append("\n4 - Pix")
+            .append("\nEscolha uma opção: ");
+    }
+    public StringBuilder stringMenuMensagemConfirmacao() {
+        return new StringBuilder()
+            .append("\n\n\n")
+            .append("\nConfirme o cadastro:")
+            .append("\n1 - Confirmar")
+            .append("\n2 - Cancelar")
+            .append("\nEscolha uma opção: ");
+    }
+
+    public String escolherMetodoPagamento() {
+        int opcao;
         String metodoPagamento = "";
         do{
-            System.out.println(mensagemOpçoes.toString());
-            opcao = scanner.nextInt();            
+            System.out.print(stringMenuMetodoPagamento());
+            opcao = scanner.nextInt();
             switch(opcao){
                 case 1:
                     metodoPagamento = "Dinheiro";
@@ -91,111 +182,28 @@ public class CadastroUsuarioView {
                 case 4:
                     metodoPagamento = "Pix";
                 default:
-                    System.out.println("Opção inválida. Por favor, digite uma opção válida.");
+                    System.out.println("\nOpção inválida. Por favor, digite uma opção válida.");
                     break;
             }
         }while(opcao < 1 || opcao > 4);
 
-        do{
-            if(senha.equals(senhaRepetida) ){
-                repetir = false;
-            }else{
-                System.out.println("As senhas não coincidem. Tente novamente.");
-                System.out.printf("Digite uma Senha: ");
-                senha = scanner.next();
-                System.out.printf("Repetir a Senha: ");
-                senhaRepetida = scanner.next();
-                repetir = true;
-            }
-        }while(repetir);
-
-        StringBuilder mensagemConfirmacao = new StringBuilder("Confirme o cadastro:");
-            mensagemConfirmacao.append("Nome: " + nome);
-            mensagemConfirmacao.append("E-mail: " + email);
-            mensagemConfirmacao.append("Endereço: " + endereco);
-            mensagemConfirmacao.append("Telefone: " + telefone);
-            mensagemConfirmacao.append("Método de Pagamento: " + metodoPagamento);
-            mensagemConfirmacao.append("\n Deseja confirmar o cadastro?");
-            mensagemConfirmacao.append("1 - Confirmar");
-            mensagemConfirmacao.append("2 - Cancelar");
-            mensagemConfirmacao.append("Escolha uma opção: ");
-        do{
-            System.out.println(mensagemConfirmacao.toString());
-            confirmarCadastro = scanner.nextInt();
-            switch (confirmarCadastro) {
-                case 1:
-                    clienteService.adicionarCliente(new Cliente(nome, email, senha, endereco, telefone, metodoPagamento, LocalDate.now()));
-                    return true;
-                case 2:
-                    System.out.println("Cadastro cancelado.");
-                    return false;
-                default:
-                    System.out.println("Opção inválida. Por favor, digite uma opção válida.");
-                    break;
-            }
-        }while(confirmarCadastro < 1 || confirmarCadastro > 2);
-        return false;
+        return metodoPagamento;
     }
 
-    public boolean cadastroFuncionario() {
-        
+    public String validarSenha(String senha, String senhaRepetida) {
         boolean repetir;
-        int confirmarCadastro = 0;
-
-        System.out.printf("Digite o e-mail do funcionário: ");
-        String email = scanner.next();
-        System.out.printf("Digite o nome do funcionário: ");
-        String nome = scanner.next();
-        System.out.printf("Digite a Senha: ");
-        String senha = scanner.next();
-        System.out.printf("Repetir Senha: ");
-        String senhaRepetida = scanner.next();
-        System.out.printf("Digite o endereço do funcionário: ");
-        String endereco = scanner.next();
-        System.out.printf("Digite o telefone do funcionário: ");
-        String telefone = scanner.next();
-        System.out.printf("Digite o cargo do funcionário: ");
-        String cargo = scanner.next();
-
         do{
             if(senha.equals(senhaRepetida)){
                 repetir = false;
             }else{
-                System.out.println("As senhas não coincidem. Tente novamente.");
-                System.out.printf("Digite a Senha: ");
+                System.out.println("\nAs senhas não coincidem. Tente novamente.");
+                System.out.print("\nDigite a Senha: ");
                 senha = scanner.next();
-                System.out.printf("Repetir a Senha: ");
+                System.out.print("\nRepetir a Senha: ");
                 senhaRepetida = scanner.next();
-                repetir = true;    
+                repetir = true;
             }
         }while(repetir);
-
-        StringBuilder mensagemConfirmacao = new StringBuilder("Confirme o cadastro:");
-            mensagemConfirmacao.append("Nome: " + nome);
-            mensagemConfirmacao.append("E-mail: " + email);
-            mensagemConfirmacao.append("Endereço: " + endereco);
-            mensagemConfirmacao.append("Telefone: " + telefone);
-            mensagemConfirmacao.append("Cargo: " + cargo);
-            mensagemConfirmacao.append("\n Deseja confirmar o cadastro?");
-            mensagemConfirmacao.append("1 - Confirmar");
-            mensagemConfirmacao.append("2 - Cancelar");
-            mensagemConfirmacao.append("Escolha uma opção: ");
-            
-        do{
-            System.out.println(mensagemConfirmacao.toString());
-            confirmarCadastro = scanner.nextInt();
-            switch (confirmarCadastro) {
-                case 1:
-                    funcionarioService.adicionarFuncionario(new Funcionario(email, nome, senha, endereco, telefone, cargo, LocalDate.now()));
-                    return true;
-                case 2:
-                    System.out.println("Cadastro cancelado.");
-                    return false;
-                default:
-                    System.out.println("Opção inválida. Por favor, digite uma opção válida.");
-                    break;
-            }
-        }while(confirmarCadastro < 1 || confirmarCadastro > 2);
-        return false;
+        return senha;
     }
 }

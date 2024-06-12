@@ -11,30 +11,25 @@ public class LoginView {
     
     public Boolean login() {
 
-       StringBuilder mensagemOpçoes = new StringBuilder("---- LOGIN ----");
-       mensagemOpçoes.append("1 - Login cliente");
-       mensagemOpçoes.append("2 - Login funcionário");
-       mensagemOpçoes.append("3 - Voltar");
-       mensagemOpçoes.append("Escolha uma opção: ");
-
-        int opcao = 0;
+        int opcao;
 
         do {
-            System.out.println(mensagemOpçoes.toString());
+            System.out.println(stringMenuLogin());
             opcao = scanner.nextInt();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("---- LOGIN CLIENTE ----");
+                    System.out.println("\n---- LOGIN CLIENTE ----");
                     return loginCliente();//verdadeiro
                     
                 case 2:
-                    System.out.println("---- LOGIN FUNCIONÁRIO ----");
+                    System.out.println("\n---- LOGIN FUNCIONÁRIO ----");
                     return loginFuncionario();//falso
                 case 3:
-                    return null;
+                    System.out.println("\nVoltando ao menu inicial...");
+                    break;
                 default:
-                    System.out.println("Opção inválida. Por favor, digite uma opção válida.");
+                    System.out.println("\nOpção inválida. Por favor, digite uma opção válida.");
                     break;
             }
         }while(opcao < 1 || opcao > 3);
@@ -43,9 +38,9 @@ public class LoginView {
     }
 
     public Boolean loginCliente() {
-        System.out.println("Digite Email de usuário:");
+        System.out.println("\nDigite seu Email:");
         String nomeUsuario = scanner.next();
-        System.out.println("Digite senha:");
+        System.out.println("\nDigite sua senha:");
         String senha = scanner.next();
 
         if(usuarioValidator.validarLogin(nomeUsuario, senha, 1)){
@@ -55,15 +50,26 @@ public class LoginView {
     }
 
     public Boolean loginFuncionario() {
-        System.out.println("Digite Email de funcionário:");
+        System.out.println("\nDigite o Email de funcionário:");
         String nomeUsuario = scanner.next();
-        System.out.println("Digite senha:");
+        System.out.println("\nDigite a senha:");
         String senha = scanner.next();
 
         if(usuarioValidator.validarLogin(nomeUsuario, senha, 2)){
             return true;
         }
         return null;
+    }
+
+    public StringBuilder stringMenuLogin() {
+        StringBuilder mensagemOpcoes = new StringBuilder();
+            mensagemOpcoes.append("\n\n\n");
+            mensagemOpcoes.append("\n---- LOGIN ----");
+            mensagemOpcoes.append("\n1 - Login cliente");
+            mensagemOpcoes.append("\n2 - Login funcionário");
+            mensagemOpcoes.append("\n3 - Voltar");
+            mensagemOpcoes.append("\nEscolha uma opção: ");
+        return mensagemOpcoes;
     }
     
 }

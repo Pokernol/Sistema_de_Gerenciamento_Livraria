@@ -6,21 +6,15 @@ public class MenuView {
     
     Scanner scanner = new Scanner(System.in);
 
-    public void menuLogin() {
+    public void menuInicial() {
         
         System.out.println("Bem-vindo ao Sistema de Livraria!");
-        StringBuilder mensagemOpcoes = new StringBuilder("\nPara continuar, faça login ou cadastre-se.");
-        mensagemOpcoes.append("\n---- SISTEMA DE LIVRARIA ----");
-        mensagemOpcoes.append("1 - Login");
-        mensagemOpcoes.append("2 - Cadastro");
-        mensagemOpcoes.append("3 - Sair");
-        mensagemOpcoes.append("Escolha uma opção:");
-        
-        int opcao = 0;
+        StringBuilder mensagemOpcoes = stringMenuInicial();
         Boolean isFuncionario;
+        int opcao;
 
         do {
-            System.out.println(mensagemOpcoes.toString());
+            System.out.println(mensagemOpcoes);
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
@@ -37,67 +31,50 @@ public class MenuView {
                     opcao = 0;
                     break;
                 case 3:
-                    System.out.println("Obrigado por utilizar o sistema de livraria! :)");
-                    return;
+                    System.out.println("\nObrigado por utilizar o sistema de livraria! :)");
+                    break;
                 default:
-                    System.out.println("Opção inválida. Por favor, digite uma opção válida.");
+                    System.out.println("\nOpção inválida. Por favor, digite uma opção válida.");
                     break;
             }
         } while (opcao < 1 || opcao > 3);
     }
 
-    public void menuFuncionario() {
-        int opcao = 0;
-        
-        StringBuilder mensagemOpçoes = new StringBuilder("---- MENU FUNCIONARIO ----");
-        mensagemOpçoes.append("1 - Cadastrar livro");
-        mensagemOpçoes.append("2 - Buscar Livro");
-        mensagemOpçoes.append("3 - Listar Pedidos");
-        mensagemOpçoes.append("4 - Listar Todos Livros");
-        mensagemOpçoes.append("5 - Alterar Livro");
-        mensagemOpçoes.append("6 - Excluir Livro");
-        mensagemOpçoes.append("7 - Sair");
-        mensagemOpçoes.append("Escolha uma opção: ");
-
-        do{
-            System.out.println(mensagemOpçoes.toString());
-            opcao = scanner.nextInt();
-            switch (opcao) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
-                default:
-                    System.out.println("Opção inválida, digite novamente.");
-                    break;
-            }
-        }while(opcao < 1 || opcao > 7);
-    }
-
     public void menuCliente() {
-        int opcao = 0;
-        
-        StringBuilder mensagemOpçoes = new StringBuilder("---- MENU CLIENTE ----");
-        mensagemOpçoes.append("1 - Buscar Livro");
-        mensagemOpçoes.append("2 - Listar Pedidos");
-        mensagemOpçoes.append("4 - Listar Todos Livros");
-        mensagemOpçoes.append("5 - Comprar Livro");
-        mensagemOpçoes.append("6 - Acompanhar Pedido");
-        mensagemOpçoes.append("7 - Sair");
-        mensagemOpçoes.append("Escolha uma opção: ");
+
+        StringBuilder mensagemOpcoes = stringMenuCliente();
+        int opcao;
 
         do{
-            System.out.println(mensagemOpçoes.toString());
+            System.out.println(mensagemOpcoes);
+            opcao = scanner.nextInt();
+            switch (opcao) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    System.out.println("Opção inválida, digite novamente.");
+                    break;
+            }
+        }while(opcao < 1 || opcao > 7);
+    }
+
+    public void menuFuncionario() {
+
+        int opcao = 0;
+        StringBuilder mensagemOpcoes = stringMenuFuncionario();
+
+        do{
+            System.out.println(mensagemOpcoes);
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
@@ -120,5 +97,39 @@ public class MenuView {
             }
         }while(opcao < 1 || opcao > 7);
     }
-    
+
+    private static StringBuilder stringMenuInicial() {
+        StringBuilder mensagemOpcoes = new StringBuilder("\nPara continuar, faça login ou cadastre-se.");
+        mensagemOpcoes.append("\n---- SISTEMA DE LIVRARIA ----");
+        mensagemOpcoes.append("\n1 - Login");
+        mensagemOpcoes.append("\n2 - Cadastro");
+        mensagemOpcoes.append("\n3 - Sair");
+        mensagemOpcoes.append("\nEscolha uma opção:");
+        return mensagemOpcoes;
+    }
+
+    private static StringBuilder stringMenuCliente() {
+        StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU CLIENTE ----");
+        mensagemOpcoes.append("\n1 - Buscar Livro");
+        mensagemOpcoes.append("\n2 - Listar Todos Livros");
+        mensagemOpcoes.append("\n3 - Listar Todos Pedidos");
+        mensagemOpcoes.append("\n4 - Comprar Livro");
+        mensagemOpcoes.append("\n5 - Acompanhar Pedido");
+        mensagemOpcoes.append("\n6 - Sair");
+        mensagemOpcoes.append("\nEscolha uma opção: ");
+        return mensagemOpcoes;
+    }
+
+    private static StringBuilder stringMenuFuncionario() {
+        StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU FUNCIONARIO ----");
+        mensagemOpcoes.append("\n1 - Cadastrar livro");
+        mensagemOpcoes.append("\n2 - Buscar Livro");
+        mensagemOpcoes.append("\n3 - Listar Pedidos");
+        mensagemOpcoes.append("\n4 - Listar Todos Livros");
+        mensagemOpcoes.append("\n5 - Alterar Livro");
+        mensagemOpcoes.append("\n6 - Excluir Livro");
+        mensagemOpcoes.append("\n7 - Sair");
+        mensagemOpcoes.append("\nEscolha uma opção: ");
+        return mensagemOpcoes;
+    }
 }

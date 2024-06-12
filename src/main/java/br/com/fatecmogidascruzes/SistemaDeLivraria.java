@@ -6,6 +6,7 @@ import br.com.fatecmogidascruzes.model.entity.*;
 import br.com.fatecmogidascruzes.model.repository.*;
 import br.com.fatecmogidascruzes.service.impl.*;
 import br.com.fatecmogidascruzes.validator.UsuarioValidator;
+import br.com.fatecmogidascruzes.view.MenuView;
 
 public class SistemaDeLivraria {
     public static void main(String[] args) {
@@ -197,12 +198,10 @@ public class SistemaDeLivraria {
         // Testando a exclusão de pedido
         //System.out.println("\n---- EXCLUIR PEDIDO ---" );
 
-        StringBuilder mensagemConfirmacao = new StringBuilder("Confirme o cadastro:");
-            mensagemConfirmacao.append("\n Deseja confirmar o cadastro?");
-            mensagemConfirmacao.append("1 - Confirmar");
-            mensagemConfirmacao.append("2 - Cancelar");
-            mensagemConfirmacao.append("Escolha uma opção: ");
-            System.out.println(mensagemConfirmacao.toString());
+        //TESTES MENUS
+        System.out.println("\n\n\n**---- MENUS ---**");
+        MenuView menuView = new MenuView();
+        menuView.menuInicial();
 
     }
 }
