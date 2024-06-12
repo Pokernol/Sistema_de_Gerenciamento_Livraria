@@ -4,7 +4,6 @@ import java.util.Scanner;
 import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.entity.Usuario;
-import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.PedidoServiceImpl;
 
@@ -72,7 +71,7 @@ public class MenuView {
                     break;
                 case 5:
                 	System.out.println("\nSaindo...");
-                    return;
+                    break;
                 default:
                     System.out.println("\nOpção inválida, digite novamente.");
                     break;
