@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Funcionario extends Usuario {
+
     private String cargo;
     private LocalDate dataContratacao;
 

@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaRepository {
-    private final List<Categoria> categorias = new ArrayList<>();
-    private long ultimoId = 0;
 
-    public void save(Categoria categoria) {
+    private static final List<Categoria> categorias = new ArrayList<>();
+    private static long ultimoId = 0;
+
+    public static void save(Categoria categoria) {
         categoria.setId(++ultimoId);
         categorias.add(categoria);
     }
 
-    public void atualizarCategoria(long id, Categoria categoria) {
+    public static void atualizarCategoria(long id, Categoria categoria) {
         int index = findIndexPorId(id);
         if (index != -1) {
             categoria.setId(id);
@@ -22,7 +23,7 @@ public class CategoriaRepository {
             throw new IllegalArgumentException("Ocorreu algo de errado ao atualizar informações da categoria. Por favor, informe um ID Valido e tente novamente.");
     }
 
-    public void removerCategoria(int id) {
+    public static void removerCategoria(int id) {
         Categoria categoria = findById(id);
         if (categoria != null) {
             categorias.remove(categoria);
@@ -30,11 +31,11 @@ public class CategoriaRepository {
             throw new IllegalArgumentException("Categoria não encontrada.");
     }
 
-    public List<Categoria> findAllCategorias() {
+    public static List<Categoria> findAllCategorias() {
         return categorias;
     }
 
-    private int findIndexPorId(long id) {
+    private static int findIndexPorId(long id) {
         return categorias.stream()
                 .filter(categoria -> categoria.getId() == id)
                 .findFirst()
@@ -42,13 +43,13 @@ public class CategoriaRepository {
                 .orElse(-1);
     }
 
-    public Categoria findById(long id) {
+    public static Categoria findById(long id) {
         return categorias.stream()
                 .filter(categoria -> categoria.getId() == id)
                 .findFirst().orElse(null);
     }
 
-    public Categoria findByName(String nome) {
+    public static Categoria findByName(String nome) {
         return categorias.stream()
                 .filter(categoria -> categoria.getNome().toUpperCase().contains(nome.toUpperCase()))
                 .findFirst()

@@ -5,22 +5,15 @@ import br.com.fatecmogidascruzes.model.repository.CategoriaRepository;
 import br.com.fatecmogidascruzes.service.CategoriaService;
 
 public class CategoriaServiceImpl implements CategoriaService {
-    private final CategoriaRepository repository;
-
-    public CategoriaServiceImpl(CategoriaRepository repository) {
-
-        this.repository = repository;
-    
-    }
 
     public void adicionarCategoria(Categoria categoria) {
-        repository.save(categoria);
+        CategoriaRepository.save(categoria);
         System.out.println("Categoria " + categoria.getNome() + " adicionada com sucesso!");
     }
 
     public void atualizarCategoria(long id, Categoria categoria) {
         try {
-            repository.atualizarCategoria(id, categoria);
+            CategoriaRepository.atualizarCategoria(id, categoria);
             System.out.println("Categoria " + categoria.getNome() + " atualizado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -28,7 +21,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
     
     public Categoria buscarCategoriaPorNome(String nome) {
-        Categoria categoria = repository.findByName(nome);
+        Categoria categoria = CategoriaRepository.findByName(nome);
         if (categoria != null) {
             return categoria;
         } else {
@@ -39,7 +32,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     public void excluirCategoria(int id) {
         try {
-            repository.removerCategoria(id);
+            CategoriaRepository.removerCategoria(id);
             System.out.println("Categoria removida com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");

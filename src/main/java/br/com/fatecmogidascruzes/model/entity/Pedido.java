@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Pedido {
+
     private long id;
     private String emailCliente;
     private String tituloLivro;
@@ -104,18 +105,13 @@ public class Pedido {
     @Override
     public String toString() {
         return "\n Pedido {" +
-                "\n  id = " + id +
-                "\n  email = " + emailCliente +
-                "\n  data compra = " + dataPedido +
-                "\n  status = " + statusPedido  +
-                "\n  preço total = " + precoTotal +
-                "\n  endereço entrega = " + enderecoEntrega+
-                "\n }\n";
+            "\n  id = " + id +
+            "\n  email = " + emailCliente +
+            "\n  data compra = " + dataPedido +
+            "\n  status = " + statusPedido  +
+            "\n  preço total = " + precoTotal +
+            "\n  endereço entrega = " + enderecoEntrega+
+            "\n }\n";
     }
-
-
-
-
-
 
 }

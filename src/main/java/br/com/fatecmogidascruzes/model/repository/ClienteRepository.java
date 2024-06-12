@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 
 public class ClienteRepository {
 
-    private final List<Cliente> clientes = new ArrayList<>();
-    private long ultimoId = 0;
+    private static final List<Cliente> clientes = new ArrayList<>();
+    private static long ultimoId = 0;
 
-    public void save(Cliente cliente) {
+    public static void save(Cliente cliente) {
         cliente.setId(++ultimoId);
         clientes.add(cliente);
     }
    
-    public void atualizarCliente(long id, Cliente cliente) {
+    public static void atualizarCliente(long id, Cliente cliente) {
         int index = findIndexPorId(id);
         if (index != -1) {
             cliente.setId(id);
@@ -28,7 +28,7 @@ public class ClienteRepository {
         }
     }
 
-    public void removerCliente(long id) {
+    public static void removerCliente(long id) {
         Cliente cliente = findById(id);
         if (cliente != null) {
             clientes.remove(cliente);
@@ -36,11 +36,11 @@ public class ClienteRepository {
             throw new IllegalArgumentException("Cliente não encontrado.");
     }
 
-    public List<Cliente> findAll() {
+    public static List<Cliente> findAll() {
         return clientes;
     }
 
-    private int findIndexPorId(long id) {
+    private static int findIndexPorId(long id) {
         return clientes.stream()
                 .filter(cliente -> cliente.getId() == id)
                 .findFirst()
@@ -48,31 +48,31 @@ public class ClienteRepository {
                 .orElse(-1);
     }
 
-    public Cliente findById(long id) {
+    public static Cliente findById(long id) {
         return clientes.stream()
                 .filter(cliente -> cliente.getId() == id)
                 .findFirst().orElse(null);
     }
 
-    public List<Cliente> findByNome(String nome) {
+    public static List<Cliente> findByNome(String nome) {
         return clientes.stream()
                 .filter(cliente -> cliente.getNome().toUpperCase().contains(nome.toUpperCase()))
                 .collect(Collectors.toList());
     }
 
-    public Cliente findByEmail(String email) {
+    public static Cliente findByEmail(String email) {
         return clientes.stream()
                 .filter(cliente -> cliente.getEmail().toUpperCase().contains(email.toUpperCase()))
                 .findFirst().orElse(null);
     }
 
-    public List<Cliente> findByMetodoPagamento(String metodoPagamento) {
+    public static List<Cliente> findByMetodoPagamento(String metodoPagamento) {
         return clientes.stream()
                 .filter(cliente -> cliente.getMetodoPagamento().toUpperCase().contains(metodoPagamento.toUpperCase()))
                 .collect(Collectors.toList());
     }
 
-    public List<Cliente> findByDataCadastro(LocalDate dataCadastro) {
+    public static List<Cliente> findByDataCadastro(LocalDate dataCadastro) {
         return clientes.stream()
                 .filter(cliente -> cliente.getDataCadastro().equals(dataCadastro))
                 .collect(Collectors.toList());

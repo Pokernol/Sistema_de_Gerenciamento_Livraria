@@ -10,25 +10,16 @@ import java.util.List;
 
 public class UsuarioValidator {
 
-    private final ClienteRepository clienteRepository;
-    private final FuncionarioRepository funcionarioRepository;
-
-
-    public UsuarioValidator(ClienteRepository clienteRepository, FuncionarioRepository funcionarioRepository) {
-        this.clienteRepository = clienteRepository;
-        this.funcionarioRepository = funcionarioRepository;
-    }
-
-    public boolean validarEmail(Usuario usuario) {
+    public static boolean validarEmail(Usuario usuario) {
         if (usuario instanceof Funcionario) {
-            List<Funcionario> listaDeFuncionarios = funcionarioRepository.findAll();
+            List<Funcionario> listaDeFuncionarios = FuncionarioRepository.findAll();
             for (Funcionario funcionario : listaDeFuncionarios) {
                 if (funcionario.getEmail().equals(usuario.getEmail())) {
                     return false;
                 }
             }
         } else if (usuario instanceof Cliente){
-            List<Cliente> listaDeClientes = clienteRepository.findAll();
+            List<Cliente> listaDeClientes = ClienteRepository.findAll();
             for (Cliente cliente : listaDeClientes) {
                 if (cliente.getEmail().equals(usuario.getEmail())) {
                     return false;
@@ -38,17 +29,14 @@ public class UsuarioValidator {
         return true;
     }
 
-    public boolean validarSenha(Usuario usuario) {
-        if (usuario.getSenha().length() < 8) {
-            return false;
-        }
-        return true;
+    public static boolean validarSenha(Usuario usuario) {
+        return usuario.getSenha().length() >= 8;
     }
 
-    public Boolean validarLogin(String email, String senha, int tipoUsuario) {
+    public static Boolean validarLogin(String email, String senha, int tipoUsuario) {
         if(tipoUsuario == 1){    
-            if(clienteRepository.findByEmail(email) != null){
-                Cliente cliente = clienteRepository.findByEmail(email);
+            if(ClienteRepository.findByEmail(email) != null){
+                Cliente cliente = ClienteRepository.findByEmail(email);
                 if(cliente.getSenha().equals(senha)){
                     System.out.println("Login efetuado com sucesso!");
                     return true;
@@ -62,8 +50,8 @@ public class UsuarioValidator {
             }
         }
         if(tipoUsuario == 2){
-            if(funcionarioRepository.findByEmail(email) != null){
-                Funcionario funcionario = funcionarioRepository.findByEmail(email);
+            if(FuncionarioRepository.findByEmail(email) != null){
+                Funcionario funcionario = FuncionarioRepository.findByEmail(email);
                 if(funcionario.getSenha().equals(senha)){
                     System.out.println("Login efetuado com sucesso!");
                     return true;

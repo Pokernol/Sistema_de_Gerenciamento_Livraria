@@ -9,12 +9,11 @@ public class MenuView {
     public void menuInicial() {
         
         System.out.println("Bem-vindo ao Sistema de Livraria!");
-        StringBuilder mensagemOpcoes = stringMenuInicial();
         Boolean isFuncionario;
         int opcao;
 
         do {
-            System.out.println(mensagemOpcoes);
+            System.out.print(stringMenuInicial());
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
@@ -41,12 +40,9 @@ public class MenuView {
     }
 
     public void menuCliente() {
-
-        StringBuilder mensagemOpcoes = stringMenuCliente();
         int opcao;
-
         do{
-            System.out.println(mensagemOpcoes);
+            System.out.println(stringMenuCliente());
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
@@ -60,12 +56,13 @@ public class MenuView {
                 case 5:
                     break;
                 case 6:
+                    System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida, digite novamente.");
                     break;
             }
-        }while(opcao < 1 || opcao > 7);
+        }while(opcao < 1 || opcao > 6);
     }
 
     public void menuFuncionario() {
@@ -84,6 +81,7 @@ public class MenuView {
                 case 3:
                     break;
                 case 4:
+                    comprarLivro();
                     break;
                 case 5:
                     break;
@@ -109,7 +107,7 @@ public class MenuView {
     }
 
     private static StringBuilder stringMenuCliente() {
-        StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU CLIENTE ----");
+        StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU SISTEMA DE LIVRARIA ----");
         mensagemOpcoes.append("\n1 - Buscar Livro");
         mensagemOpcoes.append("\n2 - Listar Todos Livros");
         mensagemOpcoes.append("\n3 - Listar Todos Pedidos");
@@ -121,7 +119,7 @@ public class MenuView {
     }
 
     private static StringBuilder stringMenuFuncionario() {
-        StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU FUNCIONARIO ----");
+        StringBuilder mensagemOpcoes = new StringBuilder("\n---- MENU SISTEMA DE LIVRARIA (FUNCIONÁRIO) ----");
         mensagemOpcoes.append("\n1 - Cadastrar livro");
         mensagemOpcoes.append("\n2 - Buscar Livro");
         mensagemOpcoes.append("\n3 - Listar Pedidos");
@@ -132,4 +130,12 @@ public class MenuView {
         mensagemOpcoes.append("\nEscolha uma opção: ");
         return mensagemOpcoes;
     }
+
+    public void comprarLivro() {
+        System.out.println("\n---- COMPRAR LIVRO ----");
+
+
+
+    }
+
 }

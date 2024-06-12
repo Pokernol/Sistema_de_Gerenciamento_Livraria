@@ -11,19 +11,11 @@ import java.util.List;
 
 public class ClienteServiceImpl implements ClienteService {
 
-    private final ClienteRepository repository;
-    private final UsuarioValidator validator;
-
-    public ClienteServiceImpl(ClienteRepository repository, UsuarioValidator validator) {
-        this.repository = repository;
-        this.validator = validator;
-    }
-
     @Override
     public void adicionarCliente(Cliente cliente) {
         try {
-            if(validator.validarEmail(cliente)){
-                repository.save(cliente);
+            if(UsuarioValidator.validarEmail(cliente)){
+                ClienteRepository.save(cliente);
                 System.out.println("Funcionario " + cliente.getNome() + " adicionado com sucesso!");
 
             } else{ 
@@ -33,12 +25,11 @@ public class ClienteServiceImpl implements ClienteService {
             System.out.println(e.getMessage());
         }
     }
-    
 
     @Override
     public void atualizarCliente(long id, Cliente cliente) {
         try {
-            repository.atualizarCliente(id, cliente);
+            ClienteRepository.atualizarCliente(id, cliente);
             System.out.println("Funcionario " + cliente.getNome() + " atualizado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -51,22 +42,22 @@ public class ClienteServiceImpl implements ClienteService {
 
         switch(opcao){
             case 1:
-                clientesEncontrados = repository.findAll();
+                clientesEncontrados = ClienteRepository.findAll();
                 break;
             case 2:
-                clientesEncontrados.add(repository.findById(Integer.parseInt(valorBuscar)));
+                clientesEncontrados.add(ClienteRepository.findById(Integer.parseInt(valorBuscar)));
                 break;
             case 3:
-                clientesEncontrados = repository.findByNome(valorBuscar);
+                clientesEncontrados = ClienteRepository.findByNome(valorBuscar);
                 break;
             case 4:
-                clientesEncontrados.add(repository.findByEmail(valorBuscar));
+                clientesEncontrados.add(ClienteRepository.findByEmail(valorBuscar));
                 break;
             case 5:
-                clientesEncontrados = repository.findByMetodoPagamento(valorBuscar);
+                clientesEncontrados = ClienteRepository.findByMetodoPagamento(valorBuscar);
                 break;
             case 6:
-                clientesEncontrados = repository.findByDataCadastro(LocalDate.parse(valorBuscar));
+                clientesEncontrados = ClienteRepository.findByDataCadastro(LocalDate.parse(valorBuscar));
                 break;
             default:
                 System.out.println("Opção invalida.");
@@ -83,7 +74,7 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void excluirCliente(int id) {
         try {
-            repository.removerCliente(id);
+            ClienteRepository.removerCliente(id);
             System.out.println("Funcionario removido com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");

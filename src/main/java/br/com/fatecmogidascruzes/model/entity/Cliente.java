@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Cliente extends Usuario {
+
     private String metodoPagamento;
     private LocalDate dataCadastro;
 
@@ -16,6 +17,7 @@ public class Cliente extends Usuario {
         setMetodoPagamento(metodoPagamento);
         setDataCadastro(dataCadastro);
     }
+
     @Override
     public void setId(long id) {
         super.setId(id);

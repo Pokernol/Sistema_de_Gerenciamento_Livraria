@@ -9,16 +9,9 @@ import java.util.List;
 
 public class PedidoServiceImpl implements PedidoService {
 
-    private PedidoRepository pedidoRepository;
-
-    //inicia o pedidoRepository, eviatar nullpointer
-    public PedidoServiceImpl(PedidoRepository pedidoRepository) {
-        this.pedidoRepository = pedidoRepository;
-    }
-
     @Override
     public void adicionarPedido(Pedido pedido) {
-        pedidoRepository.save(pedido);
+		PedidoRepository.save(pedido);
         System.out.println("Pedido efetivado com sucesso!");
     }
 
@@ -28,16 +21,16 @@ public class PedidoServiceImpl implements PedidoService {
 
 		switch(opcao){
 			case 1:
-                pedidosEncontrados.add(pedidoRepository.findById(Integer.parseInt(valorBuscar)));
+                pedidosEncontrados.add(PedidoRepository.findById(Integer.parseInt(valorBuscar)));
                 break;
 			case 2:
-				pedidosEncontrados = pedidoRepository.findByEmailCliente(valorBuscar);
+				pedidosEncontrados = PedidoRepository.findByEmailCliente(valorBuscar);
 				break;
 			case 3:
-				pedidosEncontrados = pedidoRepository.findByTituloLivro(valorBuscar);
+				pedidosEncontrados = PedidoRepository.findByTituloLivro(valorBuscar);
 				break;			
 			case 4:
-				pedidosEncontrados = pedidoRepository.findByStatus(Integer.parseInt(valorBuscar));
+				pedidosEncontrados = PedidoRepository.findByStatus(Integer.parseInt(valorBuscar));
 				break;
 			default:
 				System.out.println("Opção invalida.");
@@ -52,4 +45,3 @@ public class PedidoServiceImpl implements PedidoService {
 	}
 
 }
-
