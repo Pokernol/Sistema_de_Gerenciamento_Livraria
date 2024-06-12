@@ -50,8 +50,8 @@ public class Cliente extends Usuario {
         return "\n Cliente {" +
                 "\n  Id = " + getId() +
                 "\n  Nome = " + getNome() +
-                "\n  Endereco = " + getEndereco() +
                 "\n  Email = " + getEmail() +
+                "\n  Endereco = " + getEndereco() +
                 "\n  Telefone = " + getTelefone() +
                 "\n  Metodo de Pagamento = " + metodoPagamento +
                 "\n  Data de Cadastro = " + dataCadastro +

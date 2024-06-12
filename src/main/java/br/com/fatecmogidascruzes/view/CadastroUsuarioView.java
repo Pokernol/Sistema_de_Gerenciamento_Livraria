@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 public class CadastroUsuarioView {
-    ClienteServiceImpl clienteService;
+    ClienteServiceImpl clienteService = new ClienteServiceImpl();
     FuncionarioServiceImpl funcionarioService;
     Scanner scanner = new Scanner(System.in);
     
@@ -139,7 +139,6 @@ public class CadastroUsuarioView {
 
     public StringBuilder stringMenuCadastro() {
         return new StringBuilder()
-            .append("\n\n\n")
             .append("\n---- CADASTRO ----")
             .append("\n1 - Cadastro Cliente")
             .append("\n2 - Cadastro Funcionário")
@@ -148,7 +147,6 @@ public class CadastroUsuarioView {
     }
     public StringBuilder stringMenuMetodoPagamento() {
         return new StringBuilder()
-            .append("\n\n\n")
             .append("\n---- MÉTODO DE PAGAMENTO ----")
             .append("\n1 - Dinheiro")
             .append("\n2 - Cartão de Crédito")
@@ -158,7 +156,6 @@ public class CadastroUsuarioView {
     }
     public StringBuilder stringMenuMensagemConfirmacao() {
         return new StringBuilder()
-            .append("\n\n\n")
             .append("\nConfirme o cadastro:")
             .append("\n1 - Confirmar")
             .append("\n2 - Cancelar")

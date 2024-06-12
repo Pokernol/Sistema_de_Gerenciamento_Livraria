@@ -16,10 +16,10 @@ public class ClienteServiceImpl implements ClienteService {
         try {
             if(UsuarioValidator.validarEmail(cliente)){
                 ClienteRepository.save(cliente);
-                System.out.println("Funcionario " + cliente.getNome() + " adicionado com sucesso!");
+                System.out.println("Cliente " + cliente.getNome() + " adicionado com sucesso!");
 
             } else{ 
-                throw new IllegalArgumentException("Funcionario não pode ser adicionado, email já cadastrado.");
+                throw new IllegalArgumentException("Cliente não pode ser adicionado, email já cadastrado.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -30,7 +30,7 @@ public class ClienteServiceImpl implements ClienteService {
     public void atualizarCliente(long id, Cliente cliente) {
         try {
             ClienteRepository.atualizarCliente(id, cliente);
-            System.out.println("Funcionario " + cliente.getNome() + " atualizado com sucesso!");
+            System.out.println("Cliente " + cliente.getNome() + " atualizado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -75,7 +75,7 @@ public class ClienteServiceImpl implements ClienteService {
     public void excluirCliente(int id) {
         try {
             ClienteRepository.removerCliente(id);
-            System.out.println("Funcionario removido com sucesso!");
+            System.out.println("Cliente removido com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + " Por favor, verifique o ID informado.");
         }

@@ -5,12 +5,13 @@ import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.entity.Usuario;
 import br.com.fatecmogidascruzes.service.impl.ClienteServiceImpl;
+import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.PedidoServiceImpl;
 
 public class MenuView {
     
-	PedidoServiceImpl pedidoService;	
-	ClienteServiceImpl clienteService;
+	PedidoServiceImpl pedidoService = new PedidoServiceImpl();
+    LivroServiceImpl livroService = new LivroServiceImpl();
     Scanner scanner = new Scanner(System.in);
 
     public void menuInicial() {
@@ -58,13 +59,16 @@ public class MenuView {
                     opcao = 0;
                     break;
                 case 2:
-                    
+                    System.out.print(livroService.buscarLivro(1,""));
+                    opcao = 0;
                     break;
                 case 3:
                 	//listar todos os pedidos                	
                 	System.out.println(pedidoService.buscarPedido(2, cliente.getEmail()));
+                    opcao = 0;
                     break;
                 case 4:
+                    opcao = 0;
                     break;
                 case 5:
                 	System.out.println("\nSaindo...");

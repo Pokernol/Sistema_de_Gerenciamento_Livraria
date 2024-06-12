@@ -49,6 +49,7 @@ public class SistemaDeLivraria {
         System.out.println("\n---- ADICIONANDO CLIENTES ---");
         clienteService.adicionarCliente(new Cliente("antony@email.com", "Romulo", "dwieifds", "romolandia", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         clienteService.adicionarCliente(new Cliente("antony@email.com", "Caio", "123456", "Palavraonao", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("l@e.com", "leo", "123", "Palavraonao", "1198844555", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(ClienteRepository.findAll());
 
         // Testando adicionar categorias

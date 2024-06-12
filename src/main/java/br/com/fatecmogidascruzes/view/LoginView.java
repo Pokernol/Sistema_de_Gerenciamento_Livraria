@@ -67,7 +67,6 @@ public class LoginView {
 
     public StringBuilder stringMenuLogin() {
         StringBuilder mensagemOpcoes = new StringBuilder();
-            mensagemOpcoes.append("\n\n\n");
             mensagemOpcoes.append("\n---- LOGIN ----");
             mensagemOpcoes.append("\n1 - Login cliente");
             mensagemOpcoes.append("\n2 - Login funcionário");
