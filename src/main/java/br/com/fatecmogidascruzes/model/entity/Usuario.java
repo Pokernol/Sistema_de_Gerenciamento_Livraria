@@ -15,8 +15,8 @@ public class Usuario {
     private String telefone;
 
     public Usuario(String email, String nome, String senha, String endereco, String telefone) {
-        setNome(email);
-        setEmail(nome);
+        setNome(nome);
+        setEmail(email);
         setSenha(senha);
         setEndereco(endereco);
         setTelefone(telefone);

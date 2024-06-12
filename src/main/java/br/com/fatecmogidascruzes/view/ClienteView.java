@@ -7,10 +7,8 @@ import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Livro;
 import br.com.fatecmogidascruzes.model.entity.Pedido;
 import br.com.fatecmogidascruzes.service.impl.*;
-import br.com.fatecmogidascruzes.view.ClienteView;
 
 public class ClienteView {
-    LocalDate data = LocalDate.now();
     PedidoServiceImpl pedidoService = new PedidoServiceImpl();
     LivroServiceImpl livroService = new LivroServiceImpl();
     Scanner scanner = new Scanner(System.in);

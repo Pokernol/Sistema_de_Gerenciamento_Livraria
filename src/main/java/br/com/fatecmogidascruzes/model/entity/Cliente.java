@@ -49,8 +49,8 @@ public class Cliente extends Usuario {
     public String toString() {
         return "\n Cliente {" +
                 "\n  Id = " + getId() +
-                "\n  Nome = " + getNome() +
                 "\n  Email = " + getEmail() +
+                "\n  Nome = " + getNome() +
                 "\n  Endereco = " + getEndereco() +
                 "\n  Telefone = " + getTelefone() +
                 "\n  Metodo de Pagamento = " + metodoPagamento +

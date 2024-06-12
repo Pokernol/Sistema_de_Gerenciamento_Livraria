@@ -58,7 +58,7 @@ public class MenuView {
                     opcao = 0;
                     break;
                 case 2:
-                    System.out.println("\n---- LISTAR PEDIDOS ----");
+                    System.out.println("\n---- LISTA DE PEDIDOS ----");
                     System.out.println(pedidoService.buscarPedido(2, cliente.getEmail()));
                     opcao = 0;
                     break;

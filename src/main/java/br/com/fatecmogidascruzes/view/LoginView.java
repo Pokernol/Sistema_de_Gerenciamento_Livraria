@@ -24,11 +24,11 @@ public class LoginView {
             switch (opcao) {
                 case 1:
                     System.out.println("\n---- LOGIN CLIENTE ----");
-                    return loginCliente();//verdadeiro
+                    return loginCliente();
                     
                 case 2:
                     System.out.println("\n---- LOGIN FUNCIONÁRIO ----");
-                    return loginFuncionario();//falso
+                    return loginFuncionario();
                 case 3:
                     System.out.println("\nVoltando ao menu inicial...");
                     break;

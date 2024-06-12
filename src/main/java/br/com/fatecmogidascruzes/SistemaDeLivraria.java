@@ -41,8 +41,8 @@ public class SistemaDeLivraria {
 
         // Testando adicionar funcionarios
         System.out.println("\n---- ADICIONANDO FUNCIONARIOS ---");
-        funcionarioService.adicionarFuncionario(new Funcionario("ana@email.com","Senha123","Ana", "Endereço da Ana", "12934567890", "Cargo da Ana", LocalDate.now()));
-        funcionarioService.adicionarFuncionario(new Funcionario("ana@email.com", "Senha321", "Antony", "Endereço do Antony", "12934567890", "Cargo do Antony", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("ana@email.com", "Ana", "Senha123", "Endereço da Ana", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.adicionarFuncionario(new Funcionario("ana@email.com", "Antony", "Senha321", "Endereço do Antony", "12934567890", "Cargo do Antony", LocalDate.now()));
         System.out.println(FuncionarioRepository.findAll());
 
         // Testando adicionar clientes
@@ -82,15 +82,15 @@ public class SistemaDeLivraria {
 
         System.out.println("\n---- ATUALIZANDO FUNCIONÁRIO ---" );
         System.out.println(FuncionarioRepository.findById(1));
-        funcionarioService.atualizarFuncionario(1,new Funcionario("ANA PAULA", "Endereço da Ana","ana@email.com", "Paulao123", "12934567890", "Cargo da Ana", LocalDate.now()));
+        funcionarioService.atualizarFuncionario(1,new Funcionario("ana@email.com", "ANA PAULA","Paulao123", "Endereço da Ana", "12934567890", "Cargo da Ana", LocalDate.now()));
         System.out.println(FuncionarioRepository.findById(1));
 
-        clienteService.adicionarCliente(new Cliente("Romulo", "Romulandia", "romulo@romail.com", "Eunaoquero", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.adicionarCliente(new Cliente("romulo@romail.com", "Romulo", "123", "Eunaoquero", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(ClienteRepository.findAll());
 
         System.out.println("\n---- ATUALIZAR CLIENTE ---" );
         System.out.println(ClienteRepository.findById(1));
-        clienteService.atualizarCliente(1,new Cliente("Romulo da silva", "Romulandia", "antony@email.com", "Silvaromulo", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
+        clienteService.atualizarCliente(1,new Cliente("antony@email.com", "Romulo da silva", "Silvaromulo", "Romulandia", "11988521035", "moedinhas de 1 centavo", LocalDate.now()));
         System.out.println(ClienteRepository.findById(1));
 
         System.out.println("\n---- ATUALIZAR CATEGORIA ---" );
@@ -175,8 +175,8 @@ public class SistemaDeLivraria {
         System.out.println("\n---- EXCLUIR CLIENTE ---" );
         System.out.println("Tentando excluir o cliente Romulo com ID 1");
         clienteService.excluirCliente(1);
-        System.out.println("Tentando excluir o cliente com ID 2(inexistente)");
-        clienteService.excluirCliente(2);
+        System.out.println("Tentando excluir o cliente com ID 4(inexistente)");
+        clienteService.excluirCliente(4);
         System.out.println(ClienteRepository.findAll());
 
         // Testando a exclusão de categoria
@@ -187,6 +187,7 @@ public class SistemaDeLivraria {
         categoriaService.excluirCategoria(2);
 
         //******************************************
+        funcionarioService.adicionarFuncionario(new Funcionario("ana@email.com","Ana","Senha123", "Endereço da Ana", "12934567890", "Cargo da Ana", LocalDate.now()));
 
         //TESTES MENUS
         System.out.println("\n\n\n**---- MENUS ---**");
