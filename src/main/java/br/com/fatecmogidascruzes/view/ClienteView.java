@@ -2,7 +2,6 @@ package br.com.fatecmogidascruzes.view;
 
 import java.util.Scanner;
 
-import br.com.fatecmogidascruzes.model.repository.*;
 import br.com.fatecmogidascruzes.service.impl.*;
 import br.com.fatecmogidascruzes.view.ClienteView;
 
@@ -13,8 +12,7 @@ public class ClienteView {
     public void buscarLivro() {
         int opcao;
     
-        LivroRepository livroRepository = new LivroRepository();
-        LivroServiceImpl livroService = new LivroServiceImpl(livroRepository);
+        LivroServiceImpl livroService = new LivroServiceImpl();
 
         String valorBuscar = "";
         do {
