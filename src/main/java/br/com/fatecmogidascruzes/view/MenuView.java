@@ -4,13 +4,11 @@ import java.util.Scanner;
 import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.entity.Usuario;
-import br.com.fatecmogidascruzes.service.impl.LivroServiceImpl;
 import br.com.fatecmogidascruzes.service.impl.PedidoServiceImpl;
 
 public class MenuView {
     
 	PedidoServiceImpl pedidoService = new PedidoServiceImpl();
-    LivroServiceImpl livroService = new LivroServiceImpl();
     Scanner scanner = new Scanner(System.in);
 
     public void menuInicial() {
