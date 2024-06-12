@@ -1,7 +1,6 @@
 package br.com.fatecmogidascruzes.view;
 
 import java.util.Scanner;
-
 import br.com.fatecmogidascruzes.model.entity.Cliente;
 import br.com.fatecmogidascruzes.model.entity.Funcionario;
 import br.com.fatecmogidascruzes.model.entity.Usuario;
@@ -55,8 +54,11 @@ public class MenuView {
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
+                    new ClienteView().buscarLivro();
+                    opcao = 0;
                     break;
                 case 2:
+                    
                     break;
                 case 3:
                 	//listar todos os pedidos                	
@@ -84,7 +86,7 @@ public class MenuView {
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
-                    break;
+                    
                 case 2:
                     break;
                 case 3:

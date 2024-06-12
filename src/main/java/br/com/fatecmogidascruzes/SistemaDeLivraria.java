@@ -3,7 +3,11 @@ package br.com.fatecmogidascruzes;
 import java.time.LocalDate;
 import java.util.List;
 import br.com.fatecmogidascruzes.model.entity.*;
-import br.com.fatecmogidascruzes.model.repository.*;
+import br.com.fatecmogidascruzes.model.repository.CategoriaRepository;
+import br.com.fatecmogidascruzes.model.repository.ClienteRepository;
+import br.com.fatecmogidascruzes.model.repository.FuncionarioRepository;
+import br.com.fatecmogidascruzes.model.repository.LivroRepository;
+import br.com.fatecmogidascruzes.model.repository.PedidoRepository;
 import br.com.fatecmogidascruzes.service.impl.*;
 import br.com.fatecmogidascruzes.view.MenuView;
 
@@ -60,7 +64,7 @@ public class SistemaDeLivraria {
         pedidoService.adicionarPedido(new Pedido("leo123@gmail.com", "Harry Potter", LocalDate.now(), 1, 50.0, "fatec"));
         System.out.println(PedidoRepository.findAll());
 
-        //******************************************//
+        /******************************************/
 
         //TESTES DE ATUALIZAR ENTIDADES
         System.out.println("\n**---- ATUALIZAR ---**");
@@ -97,7 +101,7 @@ public class SistemaDeLivraria {
         // Testando a atualização de pedido
         // System.out.println("\n---- ATUALIZAR PEDIDO ---" );
 
-        //******************************************//
+        /******************************************/
 
         //TESTES DE BUSCAR ENTIDADES
         System.out.println("\n**---- BUSCAR ---**");
@@ -142,7 +146,7 @@ public class SistemaDeLivraria {
         System.out.println(pedidoService.buscarPedido(3, "Harry Potter"));
         System.out.println(pedidoService.buscarPedido(4, "1"));
 
-        //******************************************//
+        /******************************************/
 
         //TESTES DE EXCLUIR ENTIDADES
         System.out.println("\n**---- EXCLUIR ---**");
@@ -189,6 +193,7 @@ public class SistemaDeLivraria {
 
         //TESTES MENUS
         System.out.println("\n\n\n**---- MENUS ---**");
-        new MenuView().menuInicial();
+        MenuView menuView = new MenuView();
+        menuView.menuInicial();
     }
 }
